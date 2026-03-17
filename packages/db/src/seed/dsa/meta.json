@@ -1,0 +1,167 @@
+{
+  "company": "Meta",
+  "questions": [
+    {
+      "title": "Move Zeroes",
+      "content": "Given an integer array `nums`, move all `0`s to the end of it while maintaining the relative order of the non-zero elements.\n\nYou must do this **in-place** without making a copy of the array.\n\n**Example 1:**\n\nInput: nums = [0,1,0,3,12]\nOutput: [1,3,12,0,0]\n\n**Example 2:**\n\nInput: nums = [0]\nOutput: [0]\n\n**Constraints:**\n- 1 <= nums.length <= 10^4\n- -2^31 <= nums[i] <= 2^31 - 1\n\n**Follow up:** Could you minimize the total number of operations done?",
+      "difficulty": "easy",
+      "topic": "arrays",
+      "starterCode": {
+        "cpp": "class Solution {\npublic:\n    void moveZeroes(vector<int>& nums) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * @param {number[]} nums\n * @return {void} Do not return anything, modify nums in-place instead.\n */\nvar moveZeroes = function(nums) {\n    // Write your solution here\n};",
+        "python": "class Solution:\n    def moveZeroes(self, nums: list[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        # Write your solution here\n        pass",
+        "go": "func moveZeroes(nums []int) {\n    // Write your solution here\n}",
+        "java": "class Solution {\n    public void moveZeroes(int[] nums) {\n        // Write your solution here\n    }\n}"
+      },
+      "testCases": [
+        { "input": "[0,1,0,3,12]", "expected": "[1,3,12,0,0]" },
+        { "input": "[0]", "expected": "[0]" },
+        { "input": "[1,2,3]", "expected": "[1,2,3]" }
+      ]
+    },
+    {
+      "title": "Valid Palindrome II",
+      "content": "Given a string `s`, return `true` if the string can be a palindrome after deleting **at most one** character from it.\n\n**Example 1:**\n\nInput: s = \"aba\"\nOutput: true\n\n**Example 2:**\n\nInput: s = \"abca\"\nOutput: true\nExplanation: You could delete the character 'c'.\n\n**Example 3:**\n\nInput: s = \"abc\"\nOutput: false\n\n**Constraints:**\n- 1 <= s.length <= 10^5\n- s consists of lowercase English letters.",
+      "difficulty": "easy",
+      "topic": "strings",
+      "starterCode": {
+        "cpp": "class Solution {\npublic:\n    bool validPalindrome(string s) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * @param {string} s\n * @return {boolean}\n */\nvar validPalindrome = function(s) {\n    // Write your solution here\n};",
+        "python": "class Solution:\n    def validPalindrome(self, s: str) -> bool:\n        # Write your solution here\n        pass",
+        "go": "func validPalindrome(s string) bool {\n    // Write your solution here\n    return false\n}",
+        "java": "class Solution {\n    public boolean validPalindrome(String s) {\n        // Write your solution here\n        return false;\n    }\n}"
+      },
+      "testCases": [
+        { "input": "\"aba\"", "expected": "true" },
+        { "input": "\"abca\"", "expected": "true" },
+        { "input": "\"abc\"", "expected": "false" }
+      ]
+    },
+    {
+      "title": "Subarray Sum Equals K",
+      "content": "Given an array of integers `nums` and an integer `k`, return the total number of subarrays whose sum equals to `k`.\n\nA subarray is a contiguous non-empty sequence of elements within an array.\n\n**Example 1:**\n\nInput: nums = [1,1,1], k = 2\nOutput: 2\nExplanation: The subarrays [1,1] (index 0-1) and [1,1] (index 1-2) both sum to 2.\n\n**Example 2:**\n\nInput: nums = [1,2,3], k = 3\nOutput: 2\nExplanation: The subarrays [1,2] and [3] both sum to 3.\n\n**Constraints:**\n- 1 <= nums.length <= 2 * 10^4\n- -1000 <= nums[i] <= 1000\n- -10^7 <= k <= 10^7\n\n**Hint:** Use a hash map to store prefix sums and their frequencies.",
+      "difficulty": "medium",
+      "topic": "arrays",
+      "starterCode": {
+        "cpp": "class Solution {\npublic:\n    int subarraySum(vector<int>& nums, int k) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * @param {number[]} nums\n * @param {number} k\n * @return {number}\n */\nvar subarraySum = function(nums, k) {\n    // Write your solution here\n};",
+        "python": "class Solution:\n    def subarraySum(self, nums: list[int], k: int) -> int:\n        # Write your solution here\n        pass",
+        "go": "func subarraySum(nums []int, k int) int {\n    // Write your solution here\n    return 0\n}",
+        "java": "class Solution {\n    public int subarraySum(int[] nums, int k) {\n        // Write your solution here\n        return 0;\n    }\n}"
+      },
+      "testCases": [
+        { "input": "nums = [1,1,1], k = 2", "expected": "2" },
+        { "input": "nums = [1,2,3], k = 3", "expected": "2" },
+        { "input": "nums = [1,-1,0], k = 0", "expected": "3" }
+      ]
+    },
+    {
+      "title": "Binary Tree Right Side View",
+      "content": "Given the `root` of a binary tree, imagine yourself standing on the **right side** of it. Return the values of the nodes you can see ordered from top to bottom.\n\n**Example 1:**\n\nInput: root = [1,2,3,null,5,null,4]\nOutput: [1,3,4]\nExplanation:\n       1         <---\n      / \\\n     2   3       <---\n      \\   \\\n       5   4     <---\n\n**Example 2:**\n\nInput: root = [1,null,3]\nOutput: [1,3]\n\n**Example 3:**\n\nInput: root = []\nOutput: []\n\n**Constraints:**\n- The number of nodes in the tree is in the range [0, 100].\n- -100 <= Node.val <= 100\n\n**Hint:** Use BFS (level-order traversal) and take the last node at each level.",
+      "difficulty": "medium",
+      "topic": "trees",
+      "starterCode": {
+        "cpp": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n * };\n */\nclass Solution {\npublic:\n    vector<int> rightSideView(TreeNode* root) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * Definition for a binary tree node.\n * function TreeNode(val, left, right) {\n *     this.val = (val===undefined ? 0 : val)\n *     this.left = (left===undefined ? null : left)\n *     this.right = (right===undefined ? null : right)\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {number[]}\n */\nvar rightSideView = function(root) {\n    // Write your solution here\n};",
+        "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def rightSideView(self, root: Optional[TreeNode]) -> list[int]:\n        # Write your solution here\n        pass",
+        "go": "/**\n * Definition for a binary tree node.\n * type TreeNode struct {\n *     Val int\n *     Left *TreeNode\n *     Right *TreeNode\n * }\n */\nfunc rightSideView(root *TreeNode) []int {\n    // Write your solution here\n    return nil\n}",
+        "java": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n * }\n */\nclass Solution {\n    public List<Integer> rightSideView(TreeNode root) {\n        // Write your solution here\n        return new ArrayList<>();\n    }\n}"
+      },
+      "testCases": [
+        { "input": "[1,2,3,null,5,null,4]", "expected": "[1,3,4]" },
+        { "input": "[1,null,3]", "expected": "[1,3]" },
+        { "input": "[]", "expected": "[]" }
+      ]
+    },
+    {
+      "title": "Lowest Common Ancestor of a Binary Search Tree",
+      "content": "Given a binary search tree (BST), find the lowest common ancestor (LCA) node of two given nodes in the BST.\n\nAccording to the definition of LCA on Wikipedia: \"The lowest common ancestor is defined between two nodes `p` and `q` as the lowest node in `T` that has both `p` and `q` as descendants (where we allow a node to be a descendant of itself).\"\n\n**Example 1:**\n\nInput: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8\nOutput: 6\nExplanation: The LCA of nodes 2 and 8 is 6.\n\n**Example 2:**\n\nInput: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4\nOutput: 2\nExplanation: The LCA of nodes 2 and 4 is 2, since a node can be a descendant of itself according to the LCA definition.\n\n**Example 3:**\n\nInput: root = [2,1], p = 2, q = 1\nOutput: 2\n\n**Constraints:**\n- The number of nodes in the tree is in the range [2, 10^5].\n- -10^9 <= Node.val <= 10^9\n- All Node.val are unique.\n- p != q\n- p and q will exist in the BST.\n\n**Hint:** Leverage the BST property: left subtree values < root < right subtree values.",
+      "difficulty": "medium",
+      "topic": "trees",
+      "starterCode": {
+        "cpp": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}\n * };\n */\nclass Solution {\npublic:\n    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n/**\n * @param {TreeNode} root\n * @param {TreeNode} p\n * @param {TreeNode} q\n * @return {TreeNode}\n */\nvar lowestCommonAncestor = function(root, p, q) {\n    // Write your solution here\n};",
+        "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.left = None\n#         self.right = None\nclass Solution:\n    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:\n        # Write your solution here\n        pass",
+        "go": "/**\n * Definition for a binary tree node.\n * type TreeNode struct {\n *     Val   int\n *     Left  *TreeNode\n *     Right *TreeNode\n * }\n */\nfunc lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {\n    // Write your solution here\n    return nil\n}",
+        "java": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nclass Solution {\n    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {\n        // Write your solution here\n        return null;\n    }\n}"
+      },
+      "testCases": [
+        { "input": "root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8", "expected": "6" },
+        { "input": "root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4", "expected": "2" },
+        { "input": "root = [2,1], p = 2, q = 1", "expected": "2" }
+      ]
+    },
+    {
+      "title": "Product of Array Except Self",
+      "content": "Given an integer array `nums`, return an array `answer` such that `answer[i]` is equal to the product of all the elements of `nums` except `nums[i]`.\n\nThe product of any prefix or suffix of `nums` is **guaranteed** to fit in a **32-bit** integer.\n\nYou must write an algorithm that runs in O(n) time and **without using the division operation**.\n\n**Example 1:**\n\nInput: nums = [1,2,3,4]\nOutput: [24,12,8,6]\n\n**Example 2:**\n\nInput: nums = [-1,1,0,-3,3]\nOutput: [0,0,9,0,0]\n\n**Constraints:**\n- 2 <= nums.length <= 10^5\n- -30 <= nums[i] <= 30\n- The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.\n\n**Follow up:** Can you solve it in O(1) extra space complexity? (The output array does not count as extra space for space complexity analysis.)\n\n**Hint:** Use prefix and suffix product arrays. For each index, the result is the product of all elements to its left multiplied by the product of all elements to its right.",
+      "difficulty": "medium",
+      "topic": "arrays",
+      "starterCode": {
+        "cpp": "class Solution {\npublic:\n    vector<int> productExceptSelf(vector<int>& nums) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * @param {number[]} nums\n * @return {number[]}\n */\nvar productExceptSelf = function(nums) {\n    // Write your solution here\n};",
+        "python": "class Solution:\n    def productExceptSelf(self, nums: list[int]) -> list[int]:\n        # Write your solution here\n        pass",
+        "go": "func productExceptSelf(nums []int) []int {\n    // Write your solution here\n    return nil\n}",
+        "java": "class Solution {\n    public int[] productExceptSelf(int[] nums) {\n        // Write your solution here\n        return new int[0];\n    }\n}"
+      },
+      "testCases": [
+        { "input": "[1,2,3,4]", "expected": "[24,12,8,6]" },
+        { "input": "[-1,1,0,-3,3]", "expected": "[0,0,9,0,0]" },
+        { "input": "[2,3]", "expected": "[3,2]" }
+      ]
+    },
+    {
+      "title": "Random Pick with Weight",
+      "content": "You are given a **0-indexed** array of positive integers `w` where `w[i]` describes the **weight** of the `i`th index.\n\nYou need to implement the function `pickIndex()`, which **randomly** picks an index in the range `[0, w.length - 1]` (**inclusive**) and returns it. The **probability** of picking an index `i` is `w[i] / sum(w)`.\n\nFor example, if `w = [1, 3]`, the probability of picking index `0` is `1 / (1 + 3) = 0.25` (i.e., 25%), and the probability of picking index `1` is `3 / (1 + 3) = 0.75` (i.e., 75%).\n\n**Example 1:**\n\nInput:\n[\"Solution\", \"pickIndex\"]\n[[[1]], []]\nOutput: [null, 0]\nExplanation:\nSolution solution = new Solution([1]);\nsolution.pickIndex(); // return 0. The only option is to return 0 since there is only one element in w.\n\n**Example 2:**\n\nInput:\n[\"Solution\", \"pickIndex\", \"pickIndex\", \"pickIndex\", \"pickIndex\", \"pickIndex\"]\n[[[1, 3]], [], [], [], [], []]\nOutput: [null, 1, 1, 1, 1, 0]\nExplanation:\nSolution solution = new Solution([1, 3]);\nsolution.pickIndex(); // return 1. It is returning the second element (index = 1) that has a probability of 3/4.\nsolution.pickIndex(); // return 1\nsolution.pickIndex(); // return 1\nsolution.pickIndex(); // return 1\nsolution.pickIndex(); // return 0. It is returning the first element (index = 0) that has a probability of 1/4.\n\nSince this is a randomization problem, multiple answers are allowed.\n\n**Constraints:**\n- 1 <= w.length <= 10^4\n- 1 <= w[i] <= 10^5\n- pickIndex will be called at most 10^4 times.\n\n**Hint:** Build a prefix sum array, then use binary search to find the index corresponding to a random number in the range [1, totalSum].",
+      "difficulty": "medium",
+      "topic": "design",
+      "starterCode": {
+        "cpp": "class Solution {\npublic:\n    Solution(vector<int>& w) {\n        // Write your initialization here\n    }\n    \n    int pickIndex() {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * @param {number[]} w\n */\nvar Solution = function(w) {\n    // Write your initialization here\n};\n\n/**\n * @return {number}\n */\nSolution.prototype.pickIndex = function() {\n    // Write your solution here\n};",
+        "python": "class Solution:\n    def __init__(self, w: list[int]):\n        # Write your initialization here\n        pass\n\n    def pickIndex(self) -> int:\n        # Write your solution here\n        pass",
+        "go": "type Solution struct {\n    // Define your fields here\n}\n\nfunc Constructor(w []int) Solution {\n    // Write your initialization here\n    return Solution{}\n}\n\nfunc (this *Solution) PickIndex() int {\n    // Write your solution here\n    return 0\n}",
+        "java": "class Solution {\n    public Solution(int[] w) {\n        // Write your initialization here\n    }\n    \n    public int pickIndex() {\n        // Write your solution here\n        return 0;\n    }\n}"
+      },
+      "testCases": [
+        { "input": "w = [1]", "expected": "0" },
+        { "input": "w = [1, 3]", "expected": "0 or 1 (probabilistic: index 1 should appear ~75% of the time)" },
+        { "input": "w = [3, 14, 1, 7]", "expected": "0, 1, 2, or 3 (probabilistic: index 1 should appear most frequently)" }
+      ]
+    },
+    {
+      "title": "Alien Dictionary",
+      "content": "There is a new alien language that uses the English alphabet. However, the order of the letters is unknown to you.\n\nYou are given a list of strings `words` from the alien language's dictionary, where the strings in `words` are **sorted lexicographically** by the rules of this new language.\n\nDerive the order of letters in this language and return it as a string of the unique letters in the alien alphabet sorted according to the alien language's rules. If there is no valid solution, return `\"\"`. If there are multiple valid solutions, return **any of them**.\n\n**Example 1:**\n\nInput: words = [\"wrt\",\"wrf\",\"er\",\"ett\",\"rftt\"]\nOutput: \"wertf\"\nExplanation:\nFrom \"wrt\" and \"wrf\", we can deduce 't' < 'f'.\nFrom \"wrf\" and \"er\", we can deduce 'w' < 'e'.\nFrom \"er\" and \"ett\", we can deduce 'r' < 't'.\nFrom \"ett\" and \"rftt\", we can deduce 'e' < 'r'.\nSo the order is: w -> e -> r -> t -> f.\n\n**Example 2:**\n\nInput: words = [\"z\",\"x\"]\nOutput: \"zx\"\nExplanation: From the dictionary, 'z' comes before 'x', so the order is z -> x.\n\n**Example 3:**\n\nInput: words = [\"z\",\"x\",\"z\"]\nOutput: \"\"\nExplanation: The order is invalid since 'z' cannot come both before and after 'x'.\n\n**Constraints:**\n- 1 <= words.length <= 100\n- 1 <= words[i].length <= 100\n- words[i] consists of only lowercase English letters.\n\n**Hint:** Build a directed graph of character ordering relationships, then perform topological sort. Detect cycles to identify invalid orderings.",
+      "difficulty": "hard",
+      "topic": "graphs",
+      "starterCode": {
+        "cpp": "class Solution {\npublic:\n    string alienOrder(vector<string>& words) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * @param {string[]} words\n * @return {string}\n */\nvar alienOrder = function(words) {\n    // Write your solution here\n};",
+        "python": "class Solution:\n    def alienOrder(self, words: list[str]) -> str:\n        # Write your solution here\n        pass",
+        "go": "func alienOrder(words []string) string {\n    // Write your solution here\n    return \"\"\n}",
+        "java": "class Solution {\n    public String alienOrder(String[] words) {\n        // Write your solution here\n        return \"\";\n    }\n}"
+      },
+      "testCases": [
+        { "input": "[\"wrt\",\"wrf\",\"er\",\"ett\",\"rftt\"]", "expected": "\"wertf\"" },
+        { "input": "[\"z\",\"x\"]", "expected": "\"zx\"" },
+        { "input": "[\"z\",\"x\",\"z\"]", "expected": "\"\"" }
+      ]
+    },
+    {
+      "title": "Minimum Window Substring",
+      "content": "Given two strings `s` and `t` of lengths `m` and `n` respectively, return the **minimum window substring** of `s` such that every character in `t` (**including duplicates**) is included in the window. If there is no such substring, return the empty string `\"\"`.\n\nThe testcases will be generated such that the answer is **unique**.\n\n**Example 1:**\n\nInput: s = \"ADOBECODEBANC\", t = \"ABC\"\nOutput: \"BANC\"\nExplanation: The minimum window substring \"BANC\" includes 'A', 'B', and 'C' from string t.\n\n**Example 2:**\n\nInput: s = \"a\", t = \"a\"\nOutput: \"a\"\nExplanation: The entire string s is the minimum window.\n\n**Example 3:**\n\nInput: s = \"a\", t = \"aa\"\nOutput: \"\"\nExplanation: Both 'a's from t must be included in the window. Since the largest window of s only has one 'a', return empty string.\n\n**Constraints:**\n- m == s.length\n- n == t.length\n- 1 <= m, n <= 10^5\n- s and t consist of uppercase and lowercase English letters.\n\n**Follow up:** Could you find an algorithm that runs in O(m + n) time?\n\n**Hint:** Use the sliding window technique with two pointers. Maintain a character frequency map for `t` and expand/contract the window while tracking how many required characters are satisfied.",
+      "difficulty": "hard",
+      "topic": "strings",
+      "starterCode": {
+        "cpp": "class Solution {\npublic:\n    string minWindow(string s, string t) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * @param {string} s\n * @param {string} t\n * @return {string}\n */\nvar minWindow = function(s, t) {\n    // Write your solution here\n};",
+        "python": "class Solution:\n    def minWindow(self, s: str, t: str) -> str:\n        # Write your solution here\n        pass",
+        "go": "func minWindow(s string, t string) string {\n    // Write your solution here\n    return \"\"\n}",
+        "java": "class Solution {\n    public String minWindow(String s, String t) {\n        // Write your solution here\n        return \"\";\n    }\n}"
+      },
+      "testCases": [
+        { "input": "s = \"ADOBECODEBANC\", t = \"ABC\"", "expected": "\"BANC\"" },
+        { "input": "s = \"a\", t = \"a\"", "expected": "\"a\"" },
+        { "input": "s = \"a\", t = \"aa\"", "expected": "\"\"" }
+      ]
+    }
+  ]
+}

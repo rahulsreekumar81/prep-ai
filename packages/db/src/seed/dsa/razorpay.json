@@ -1,0 +1,159 @@
+{
+  "company": "Razorpay",
+  "questions": [
+    {
+      "title": "Contains Duplicate",
+      "content": "Given an integer array `nums`, return `true` if any value appears at least twice in the array, and return `false` if every element is distinct.\n\n**Example 1:**\n```\nInput: nums = [1, 2, 3, 1]\nOutput: true\nExplanation: The element 1 occurs at indices 0 and 3.\n```\n\n**Example 2:**\n```\nInput: nums = [1, 2, 3, 4]\nOutput: false\nExplanation: All elements are distinct.\n```\n\n**Example 3:**\n```\nInput: nums = [1, 1, 1, 3, 3, 4, 3, 2, 4, 2]\nOutput: true\n```\n\n**Constraints:**\n- 1 <= nums.length <= 10^5\n- -10^9 <= nums[i] <= 10^9",
+      "difficulty": "easy",
+      "topic": "arrays",
+      "starterCode": {
+        "cpp": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool containsDuplicate(vector<int>& nums) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * @param {number[]} nums\n * @return {boolean}\n */\nfunction containsDuplicate(nums) {\n    // Write your solution here\n}",
+        "python": "from typing import List\n\nclass Solution:\n    def containsDuplicate(self, nums: List[int]) -> bool:\n        # Write your solution here\n        pass",
+        "go": "package main\n\nfunc containsDuplicate(nums []int) bool {\n    // Write your solution here\n    return false\n}",
+        "java": "import java.util.*;\n\nclass Solution {\n    public boolean containsDuplicate(int[] nums) {\n        // Write your solution here\n        return false;\n    }\n}"
+      },
+      "testCases": [
+        { "input": "[1, 2, 3, 1]", "expected": "true" },
+        { "input": "[1, 2, 3, 4]", "expected": "false" },
+        { "input": "[1, 1, 1, 3, 3, 4, 3, 2, 4, 2]", "expected": "true" }
+      ]
+    },
+    {
+      "title": "Implement Queue using Stacks",
+      "content": "Implement a first-in-first-out (FIFO) queue using only two stacks. The implemented queue should support all the functions of a normal queue: `push`, `peek`, `pop`, and `empty`.\n\nImplement the `MyQueue` class:\n- `void push(int x)` - Pushes element x to the back of the queue.\n- `int pop()` - Removes the element from the front of the queue and returns it.\n- `int peek()` - Returns the element at the front of the queue without removing it.\n- `boolean empty()` - Returns `true` if the queue is empty, `false` otherwise.\n\n**Notes:**\n- You must use only standard operations of a stack, which means only `push to top`, `peek/pop from top`, `size`, and `is empty` operations are valid.\n\n**Example 1:**\n```\nInput:\n[\"MyQueue\", \"push\", \"push\", \"peek\", \"pop\", \"empty\"]\n[[], [1], [2], [], [], []]\nOutput: [null, null, null, 1, 1, false]\nExplanation:\nMyQueue myQueue = new MyQueue();\nmyQueue.push(1); // queue is: [1]\nmyQueue.push(2); // queue is: [1, 2]\nmyQueue.peek();  // return 1\nmyQueue.pop();   // return 1, queue is: [2]\nmyQueue.empty(); // return false\n```\n\n**Constraints:**\n- 1 <= x <= 9\n- At most 100 calls will be made to push, pop, peek, and empty.\n- All the calls to pop and peek are valid (i.e., the queue is not empty when called).",
+      "difficulty": "easy",
+      "topic": "design",
+      "starterCode": {
+        "cpp": "#include <stack>\nusing namespace std;\n\nclass MyQueue {\npublic:\n    MyQueue() {\n        // Initialize your data structure here\n    }\n\n    void push(int x) {\n        // Write your solution here\n    }\n\n    int pop() {\n        // Write your solution here\n        return 0;\n    }\n\n    int peek() {\n        // Write your solution here\n        return 0;\n    }\n\n    bool empty() {\n        // Write your solution here\n        return true;\n    }\n};",
+        "javascript": "class MyQueue {\n    constructor() {\n        // Initialize your data structure here\n    }\n\n    /**\n     * @param {number} x\n     * @return {void}\n     */\n    push(x) {\n        // Write your solution here\n    }\n\n    /**\n     * @return {number}\n     */\n    pop() {\n        // Write your solution here\n    }\n\n    /**\n     * @return {number}\n     */\n    peek() {\n        // Write your solution here\n    }\n\n    /**\n     * @return {boolean}\n     */\n    empty() {\n        // Write your solution here\n    }\n}",
+        "python": "class MyQueue:\n    def __init__(self):\n        # Initialize your data structure here\n        pass\n\n    def push(self, x: int) -> None:\n        # Write your solution here\n        pass\n\n    def pop(self) -> int:\n        # Write your solution here\n        pass\n\n    def peek(self) -> int:\n        # Write your solution here\n        pass\n\n    def empty(self) -> bool:\n        # Write your solution here\n        pass",
+        "go": "package main\n\ntype MyQueue struct {\n    // Define your data structure here\n}\n\nfunc Constructor() MyQueue {\n    // Initialize your data structure here\n    return MyQueue{}\n}\n\nfunc (this *MyQueue) Push(x int) {\n    // Write your solution here\n}\n\nfunc (this *MyQueue) Pop() int {\n    // Write your solution here\n    return 0\n}\n\nfunc (this *MyQueue) Peek() int {\n    // Write your solution here\n    return 0\n}\n\nfunc (this *MyQueue) Empty() bool {\n    // Write your solution here\n    return true\n}",
+        "java": "import java.util.*;\n\nclass MyQueue {\n    public MyQueue() {\n        // Initialize your data structure here\n    }\n\n    public void push(int x) {\n        // Write your solution here\n    }\n\n    public int pop() {\n        // Write your solution here\n        return 0;\n    }\n\n    public int peek() {\n        // Write your solution here\n        return 0;\n    }\n\n    public boolean empty() {\n        // Write your solution here\n        return true;\n    }\n}"
+      },
+      "testCases": [
+        {
+          "input": "[\"MyQueue\", \"push\", \"push\", \"peek\", \"pop\", \"empty\"]\n[[], [1], [2], [], [], []]",
+          "expected": "[null, null, null, 1, 1, false]"
+        },
+        {
+          "input": "[\"MyQueue\", \"push\", \"push\", \"push\", \"pop\", \"pop\", \"pop\", \"empty\"]\n[[], [1], [2], [3], [], [], [], []]",
+          "expected": "[null, null, null, null, 1, 2, 3, true]"
+        }
+      ]
+    },
+    {
+      "title": "3Sum",
+      "content": "Given an integer array `nums`, return all the triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.\n\nNotice that the solution set must not contain duplicate triplets.\n\n**Example 1:**\n```\nInput: nums = [-1, 0, 1, 2, -1, -4]\nOutput: [[-1, -1, 2], [-1, 0, 1]]\nExplanation:\nnums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.\nnums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.\nnums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.\nThe distinct triplets are [-1, -1, 2] and [-1, 0, 1].\nNote that the order of the output and the order of the triplets does not matter.\n```\n\n**Example 2:**\n```\nInput: nums = [0, 1, 1]\nOutput: []\nExplanation: The only possible triplet does not sum up to 0.\n```\n\n**Example 3:**\n```\nInput: nums = [0, 0, 0]\nOutput: [[0, 0, 0]]\nExplanation: The only possible triplet sums up to 0.\n```\n\n**Constraints:**\n- 3 <= nums.length <= 3000\n- -10^5 <= nums[i] <= 10^5",
+      "difficulty": "medium",
+      "topic": "arrays",
+      "starterCode": {
+        "cpp": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<vector<int>> threeSum(vector<int>& nums) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * @param {number[]} nums\n * @return {number[][]}\n */\nfunction threeSum(nums) {\n    // Write your solution here\n}",
+        "python": "from typing import List\n\nclass Solution:\n    def threeSum(self, nums: List[int]) -> List[List[int]]:\n        # Write your solution here\n        pass",
+        "go": "package main\n\nfunc threeSum(nums []int) [][]int {\n    // Write your solution here\n    return nil\n}",
+        "java": "import java.util.*;\n\nclass Solution {\n    public List<List<Integer>> threeSum(int[] nums) {\n        // Write your solution here\n        return new ArrayList<>();\n    }\n}"
+      },
+      "testCases": [
+        { "input": "[-1, 0, 1, 2, -1, -4]", "expected": "[[-1, -1, 2], [-1, 0, 1]]" },
+        { "input": "[0, 1, 1]", "expected": "[]" },
+        { "input": "[0, 0, 0]", "expected": "[[0, 0, 0]]" }
+      ]
+    },
+    {
+      "title": "Validate Binary Search Tree",
+      "content": "Given the root of a binary tree, determine if it is a valid binary search tree (BST).\n\nA valid BST is defined as follows:\n- The left subtree of a node contains only nodes with keys strictly less than the node's key.\n- The right subtree of a node contains only nodes with keys strictly greater than the node's key.\n- Both the left and right subtrees must also be binary search trees.\n\n**Example 1:**\n```\nInput: root = [2, 1, 3]\n    2\n   / \\\n  1   3\nOutput: true\n```\n\n**Example 2:**\n```\nInput: root = [5, 1, 4, null, null, 3, 6]\n    5\n   / \\\n  1   4\n     / \\\n    3   6\nOutput: false\nExplanation: The root node's value is 5 but its right child's value is 4, which is less than 5.\n```\n\n**Example 3:**\n```\nInput: root = [5, 4, 6, null, null, 3, 7]\n    5\n   / \\\n  4   6\n     / \\\n    3   7\nOutput: false\nExplanation: Although 6 > 5, the node with value 3 is in the right subtree of the root (which should only contain values > 5).\n```\n\n**Constraints:**\n- The number of nodes in the tree is in the range [1, 10^4].\n- -2^31 <= Node.val <= 2^31 - 1",
+      "difficulty": "medium",
+      "topic": "trees",
+      "starterCode": {
+        "cpp": "#include <climits>\nusing namespace std;\n\nstruct TreeNode {\n    int val;\n    TreeNode *left;\n    TreeNode *right;\n    TreeNode() : val(0), left(nullptr), right(nullptr) {}\n    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n};\n\nclass Solution {\npublic:\n    bool isValidBST(TreeNode* root) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * Definition for a binary tree node.\n * function TreeNode(val, left, right) {\n *     this.val = (val === undefined ? 0 : val)\n *     this.left = (left === undefined ? null : left)\n *     this.right = (right === undefined ? null : right)\n * }\n */\n/**\n * @param {TreeNode} root\n * @return {boolean}\n */\nfunction isValidBST(root) {\n    // Write your solution here\n}",
+        "python": "from typing import Optional\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\nclass Solution:\n    def isValidBST(self, root: Optional[TreeNode]) -> bool:\n        # Write your solution here\n        pass",
+        "go": "package main\n\ntype TreeNode struct {\n    Val   int\n    Left  *TreeNode\n    Right *TreeNode\n}\n\nfunc isValidBST(root *TreeNode) bool {\n    // Write your solution here\n    return false\n}",
+        "java": "class TreeNode {\n    int val;\n    TreeNode left;\n    TreeNode right;\n    TreeNode() {}\n    TreeNode(int val) { this.val = val; }\n    TreeNode(int val, TreeNode left, TreeNode right) {\n        this.val = val;\n        this.left = left;\n        this.right = right;\n    }\n}\n\nclass Solution {\n    public boolean isValidBST(TreeNode root) {\n        // Write your solution here\n        return false;\n    }\n}"
+      },
+      "testCases": [
+        { "input": "[2, 1, 3]", "expected": "true" },
+        { "input": "[5, 1, 4, null, null, 3, 6]", "expected": "false" },
+        { "input": "[5, 4, 6, null, null, 3, 7]", "expected": "false" }
+      ]
+    },
+    {
+      "title": "Top K Frequent Elements",
+      "content": "Given an integer array `nums` and an integer `k`, return the `k` most frequent elements. You may return the answer in any order.\n\n**Example 1:**\n```\nInput: nums = [1, 1, 1, 2, 2, 3], k = 2\nOutput: [1, 2]\nExplanation: 1 appears 3 times, 2 appears 2 times, and 3 appears 1 time. The two most frequent elements are 1 and 2.\n```\n\n**Example 2:**\n```\nInput: nums = [1], k = 1\nOutput: [1]\n```\n\n**Example 3:**\n```\nInput: nums = [4, 4, 4, 1, 1, 2, 2, 2, 3], k = 2\nOutput: [4, 2]\nExplanation: 4 appears 3 times, 2 appears 3 times, 1 appears 2 times, and 3 appears 1 time. The two most frequent elements are 4 and 2.\n```\n\n**Constraints:**\n- 1 <= nums.length <= 10^5\n- -10^4 <= nums[i] <= 10^4\n- k is in the range [1, the number of unique elements in the array].\n- It is guaranteed that the answer is unique.\n\n**Follow up:** Your algorithm's time complexity must be better than O(n log n), where n is the array's size.",
+      "difficulty": "medium",
+      "topic": "arrays",
+      "starterCode": {
+        "cpp": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> topKFrequent(vector<int>& nums, int k) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * @param {number[]} nums\n * @param {number} k\n * @return {number[]}\n */\nfunction topKFrequent(nums, k) {\n    // Write your solution here\n}",
+        "python": "from typing import List\n\nclass Solution:\n    def topKFrequent(self, nums: List[int], k: int) -> List[int]:\n        # Write your solution here\n        pass",
+        "go": "package main\n\nfunc topKFrequent(nums []int, k int) []int {\n    // Write your solution here\n    return nil\n}",
+        "java": "import java.util.*;\n\nclass Solution {\n    public int[] topKFrequent(int[] nums, int k) {\n        // Write your solution here\n        return new int[]{};\n    }\n}"
+      },
+      "testCases": [
+        { "input": "nums = [1, 1, 1, 2, 2, 3], k = 2", "expected": "[1, 2]" },
+        { "input": "nums = [1], k = 1", "expected": "[1]" },
+        { "input": "nums = [4, 4, 4, 1, 1, 2, 2, 2, 3], k = 2", "expected": "[4, 2]" }
+      ]
+    },
+    {
+      "title": "Decode Ways",
+      "content": "A message containing letters from A-Z can be encoded into numbers using the following mapping:\n\n```\n'A' -> \"1\"\n'B' -> \"2\"\n...\n'Z' -> \"26\"\n```\n\nTo decode an encoded message, all the digits must be grouped then mapped back into letters using the reverse of the mapping above. There may be multiple ways to decode the message. For example, `\"11106\"` can be mapped into:\n- `\"AAJF\"` with the grouping `(1 1 10 6)`\n- `\"KJF\"` with the grouping `(11 10 6)`\n\nNote that the grouping `(1 11 06)` is invalid because `\"06\"` cannot be mapped into `'F'` since `\"6\"` is different from `\"06\"`.\n\nGiven a string `s` containing only digits, return the number of ways to decode it.\n\nThe test cases are generated so that the answer fits in a 32-bit integer.\n\n**Example 1:**\n```\nInput: s = \"12\"\nOutput: 2\nExplanation: \"12\" could be decoded as \"AB\" (1 2) or \"L\" (12).\n```\n\n**Example 2:**\n```\nInput: s = \"226\"\nOutput: 3\nExplanation: \"226\" could be decoded as \"BZ\" (2 26), \"VF\" (22 6), or \"BBF\" (2 2 6).\n```\n\n**Example 3:**\n```\nInput: s = \"06\"\nOutput: 0\nExplanation: \"06\" cannot be mapped to \"F\" because of the leading zero (\"6\" is different from \"06\"). Since there is no valid mapping for \"06\", there are no valid ways to decode this.\n```\n\n**Constraints:**\n- 1 <= s.length <= 100\n- s contains only digits and may contain leading zeros.",
+      "difficulty": "medium",
+      "topic": "dp",
+      "starterCode": {
+        "cpp": "#include <string>\nusing namespace std;\n\nclass Solution {\npublic:\n    int numDecodings(string s) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nfunction numDecodings(s) {\n    // Write your solution here\n}",
+        "python": "class Solution:\n    def numDecodings(self, s: str) -> int:\n        # Write your solution here\n        pass",
+        "go": "package main\n\nfunc numDecodings(s string) int {\n    // Write your solution here\n    return 0\n}",
+        "java": "class Solution {\n    public int numDecodings(String s) {\n        // Write your solution here\n        return 0;\n    }\n}"
+      },
+      "testCases": [
+        { "input": "\"12\"", "expected": "2" },
+        { "input": "\"226\"", "expected": "3" },
+        { "input": "\"06\"", "expected": "0" }
+      ]
+    },
+    {
+      "title": "Word Break",
+      "content": "Given a string `s` and a dictionary of strings `wordDict`, return `true` if `s` can be segmented into a space-separated sequence of one or more dictionary words.\n\nNote that the same word in the dictionary may be reused multiple times in the segmentation.\n\n**Example 1:**\n```\nInput: s = \"leetcode\", wordDict = [\"leet\", \"code\"]\nOutput: true\nExplanation: Return true because \"leetcode\" can be segmented as \"leet code\".\n```\n\n**Example 2:**\n```\nInput: s = \"applepenapple\", wordDict = [\"apple\", \"pen\"]\nOutput: true\nExplanation: Return true because \"applepenapple\" can be segmented as \"apple pen apple\".\nNote that you are allowed to reuse a dictionary word.\n```\n\n**Example 3:**\n```\nInput: s = \"catsandog\", wordDict = [\"cats\", \"dog\", \"sand\", \"and\", \"cat\"]\nOutput: false\n```\n\n**Constraints:**\n- 1 <= s.length <= 300\n- 1 <= wordDict.length <= 1000\n- 1 <= wordDict[i].length <= 20\n- s and wordDict[i] consist of only lowercase English letters.\n- All the strings of wordDict are unique.",
+      "difficulty": "medium",
+      "topic": "dp",
+      "starterCode": {
+        "cpp": "#include <string>\n#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool wordBreak(string s, vector<string>& wordDict) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * @param {string} s\n * @param {string[]} wordDict\n * @return {boolean}\n */\nfunction wordBreak(s, wordDict) {\n    // Write your solution here\n}",
+        "python": "from typing import List\n\nclass Solution:\n    def wordBreak(self, s: str, wordDict: List[str]) -> bool:\n        # Write your solution here\n        pass",
+        "go": "package main\n\nfunc wordBreak(s string, wordDict []string) bool {\n    // Write your solution here\n    return false\n}",
+        "java": "import java.util.*;\n\nclass Solution {\n    public boolean wordBreak(String s, List<String> wordDict) {\n        // Write your solution here\n        return false;\n    }\n}"
+      },
+      "testCases": [
+        { "input": "s = \"leetcode\", wordDict = [\"leet\", \"code\"]", "expected": "true" },
+        { "input": "s = \"applepenapple\", wordDict = [\"apple\", \"pen\"]", "expected": "true" },
+        { "input": "s = \"catsandog\", wordDict = [\"cats\", \"dog\", \"sand\", \"and\", \"cat\"]", "expected": "false" }
+      ]
+    },
+    {
+      "title": "Design a Rate Limiter",
+      "content": "Design and implement a rate limiter using the sliding window algorithm. The rate limiter should determine whether a new request from a given client should be allowed or rejected based on the number of requests made within a sliding time window.\n\nImplement the `RateLimiter` class:\n- `RateLimiter(int maxRequests, int windowSizeInSeconds)` - Initializes the rate limiter with the maximum number of requests allowed (`maxRequests`) within a sliding window of `windowSizeInSeconds` seconds.\n- `boolean allowRequest(String clientId, int timestampInSeconds)` - Returns `true` if the request from the given `clientId` at the given timestamp should be allowed, and `false` if it should be rate-limited. The timestamp is given in seconds and calls are made in non-decreasing order of timestamp.\n\nThe sliding window algorithm works as follows:\n- For each request, consider only the requests made within the last `windowSizeInSeconds` seconds (inclusive of the current timestamp).\n- If the number of requests in that window is less than `maxRequests`, allow the request.\n- Otherwise, reject the request.\n\n**Example 1:**\n```\nInput:\n[\"RateLimiter\", \"allowRequest\", \"allowRequest\", \"allowRequest\", \"allowRequest\", \"allowRequest\"]\n[[3, 5], [\"client1\", 1], [\"client1\", 2], [\"client1\", 3], [\"client1\", 4], [\"client1\", 6]]\nOutput: [null, true, true, true, false, false]\nExplanation:\nRateLimiter rateLimiter = new RateLimiter(3, 5);\nrateLimiter.allowRequest(\"client1\", 1); // Window [1]: 1 request, allowed\nrateLimiter.allowRequest(\"client1\", 2); // Window [1,2]: 2 requests, allowed\nrateLimiter.allowRequest(\"client1\", 3); // Window [1,2,3]: 3 requests, allowed\nrateLimiter.allowRequest(\"client1\", 4); // Window [1,2,3,4]: 4 requests > 3, rejected\nrateLimiter.allowRequest(\"client1\", 6); // Window [2,3,4,6]: still 4 requests (including rejected? No, only allowed ones count). Window [2,3,6]: 3 allowed + this = 4 > 3, rejected. Actually window is [2,3,6] = 3 past allowed requests, so this 4th is rejected.\n```\n\n**Example 2:**\n```\nInput:\n[\"RateLimiter\", \"allowRequest\", \"allowRequest\", \"allowRequest\", \"allowRequest\", \"allowRequest\"]\n[[2, 3], [\"client1\", 1], [\"client2\", 1], [\"client1\", 2], [\"client1\", 4], [\"client1\", 5]]\nOutput: [null, true, true, true, false, true]\nExplanation:\nRateLimiter rateLimiter = new RateLimiter(2, 3);\nrateLimiter.allowRequest(\"client1\", 1); // client1 Window [1]: 1 request, allowed\nrateLimiter.allowRequest(\"client2\", 1); // client2 Window [1]: 1 request, allowed (separate client)\nrateLimiter.allowRequest(\"client1\", 2); // client1 Window [1,2]: 2 requests, allowed\nrateLimiter.allowRequest(\"client1\", 4); // client1 Window [2,4]: requests at t=1 expired (4-3=1, so window starts at t=2). 2 existing + 1 = 3 > 2, rejected\nrateLimiter.allowRequest(\"client1\", 5); // client1 Window [5]: requests at t=1,2 expired (5-3=2, window starts at t=3). Only 0 in window, allowed\n```\n\n**Constraints:**\n- 1 <= maxRequests <= 1000\n- 1 <= windowSizeInSeconds <= 3600\n- 1 <= clientId.length <= 100\n- clientId consists of lowercase English letters and digits.\n- 1 <= timestampInSeconds <= 10^9\n- Timestamps are given in non-decreasing order.\n- At most 10^4 calls will be made to allowRequest.",
+      "difficulty": "hard",
+      "topic": "design",
+      "starterCode": {
+        "cpp": "#include <string>\n#include <unordered_map>\n#include <queue>\nusing namespace std;\n\nclass RateLimiter {\npublic:\n    RateLimiter(int maxRequests, int windowSizeInSeconds) {\n        // Initialize your data structure here\n    }\n\n    bool allowRequest(string clientId, int timestampInSeconds) {\n        // Write your solution here\n        return false;\n    }\n};",
+        "javascript": "class RateLimiter {\n    /**\n     * @param {number} maxRequests\n     * @param {number} windowSizeInSeconds\n     */\n    constructor(maxRequests, windowSizeInSeconds) {\n        // Initialize your data structure here\n    }\n\n    /**\n     * @param {string} clientId\n     * @param {number} timestampInSeconds\n     * @return {boolean}\n     */\n    allowRequest(clientId, timestampInSeconds) {\n        // Write your solution here\n    }\n}",
+        "python": "class RateLimiter:\n    def __init__(self, maxRequests: int, windowSizeInSeconds: int):\n        # Initialize your data structure here\n        pass\n\n    def allowRequest(self, clientId: str, timestampInSeconds: int) -> bool:\n        # Write your solution here\n        pass",
+        "go": "package main\n\ntype RateLimiter struct {\n    // Define your data structure here\n}\n\nfunc NewRateLimiter(maxRequests int, windowSizeInSeconds int) RateLimiter {\n    // Initialize your data structure here\n    return RateLimiter{}\n}\n\nfunc (rl *RateLimiter) AllowRequest(clientId string, timestampInSeconds int) bool {\n    // Write your solution here\n    return false\n}",
+        "java": "import java.util.*;\n\nclass RateLimiter {\n    public RateLimiter(int maxRequests, int windowSizeInSeconds) {\n        // Initialize your data structure here\n    }\n\n    public boolean allowRequest(String clientId, int timestampInSeconds) {\n        // Write your solution here\n        return false;\n    }\n}"
+      },
+      "testCases": [
+        {
+          "input": "[\"RateLimiter\", \"allowRequest\", \"allowRequest\", \"allowRequest\", \"allowRequest\", \"allowRequest\"]\n[[3, 5], [\"client1\", 1], [\"client1\", 2], [\"client1\", 3], [\"client1\", 4], [\"client1\", 6]]",
+          "expected": "[null, true, true, true, false, false]"
+        },
+        {
+          "input": "[\"RateLimiter\", \"allowRequest\", \"allowRequest\", \"allowRequest\", \"allowRequest\", \"allowRequest\"]\n[[2, 3], [\"client1\", 1], [\"client2\", 1], [\"client1\", 2], [\"client1\", 4], [\"client1\", 5]]",
+          "expected": "[null, true, true, true, false, true]"
+        }
+      ]
+    }
+  ]
+}

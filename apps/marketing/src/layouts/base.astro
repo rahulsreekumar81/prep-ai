@@ -1,0 +1,42 @@
+---
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="PrepAI - AI-powered mock interviews with personalized feedback, voice recording, and company-specific preparation."
+    />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-white font-sans antialiased">
+    <nav class="flex items-center justify-between border-b px-6 py-4">
+      <a href="/" class="text-xl font-bold">PrepAI</a>
+      <div class="flex items-center gap-6">
+        <a href="/pricing" class="text-sm text-gray-600 hover:text-gray-900">Pricing</a>
+        <a href="/about" class="text-sm text-gray-600 hover:text-gray-900">About</a>
+        <a href="/blog" class="text-sm text-gray-600 hover:text-gray-900">Blog</a>
+        <a
+          href="https://app.prepai.in/auth/login"
+          class="rounded-md bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700"
+        >
+          Login
+        </a>
+      </div>
+    </nav>
+
+    <slot />
+
+    <footer class="border-t px-6 py-8 text-center text-sm text-gray-500">
+      <p>&copy; 2026 PrepAI. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

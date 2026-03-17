@@ -1,0 +1,13 @@
+{
+  "company": "Microsoft",
+  "data": [
+    {
+      "role": "SDE-1 (L59-60)",
+      "content": "Microsoft SDE-1 Interview Pattern:\n\nFormat: 4 Rounds (3 Technical + 1 AA/Hiring Manager)\n\nRound Breakdown:\n- Round 1-2: Coding (Leetcode Medium, focus on arrays, strings, trees)\n- Round 3: System Design light + Coding\n- Round 4: As Appropriate (AA) - behavioral + culture fit\n\nKey Focus Areas:\n- Clean code with proper edge case handling\n- Object-Oriented Design\n- Problem-solving approach matters more than optimal solution\n- Growth mindset and collaboration\n\nCommon Questions:\n- LRU Cache\n- Binary tree problems (serialize/deserialize, lowest common ancestor)\n- String manipulation\n- Basic system design: URL shortener, key-value store\n\nBehavioral (Growth Mindset):\n- Tell me about a time you received tough feedback\n- How do you learn from failures?\n- Describe a time you helped a teammate grow\n- How do you handle disagreements in code reviews?\n\nTips:\n- Microsoft values growth mindset — show you learn from mistakes\n- Write clean, production-quality code on whiteboard\n- Ask clarifying questions before coding\n- CTC range: 20-30 LPA for SDE-1 (India)\n- Teams culture: collaboration > individual brilliance"
+    },
+    {
+      "role": "SDE-2 (L61-62)",
+      "content": "Microsoft SDE-2 Interview Pattern:\n\nFormat: 4-5 Rounds (2 Coding + 1 System Design + 1 Design + 1 AA)\n\nSystem Design:\n- Design Teams messaging system\n- Design OneDrive file sync\n- Design Azure notification service\n- Design a distributed cache\n\nExpectations beyond SDE-1:\n- Drive technical decisions independently\n- Mentor junior engineers\n- Cross-team collaboration experience\n- Deep expertise in one domain\n\nCTC range: 35-55 LPA for SDE-2"
+    }
+  ]
+}

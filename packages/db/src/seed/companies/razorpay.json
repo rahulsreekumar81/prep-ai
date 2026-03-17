@@ -1,0 +1,9 @@
+{
+  "company": "Razorpay",
+  "data": [
+    {
+      "role": "SDE-1",
+      "content": "Razorpay SDE-1 Interview Pattern:\n\nFormat: 1 Online Assessment + 3 Rounds (1 DSA + 1 Machine Coding/LLD + 1 Cultural Fit)\n\nKey Focus:\n- Strong DSA fundamentals (Leetcode Easy-Medium)\n- Machine coding round: build a small feature in 60-90 mins\n- Clean code, SOLID principles\n\nCommon Machine Coding Problems:\n- Build a simple payment splitting system\n- Design a basic notification system\n- Implement a task scheduler\n- Build a simple cache with eviction policy\n\nCultural Fit Questions:\n- Why Razorpay?\n- How do you handle tight deadlines?\n- Tell me about a project you're proud of\n- How do you approach learning new technologies?\n\nTech Stack: Go, Ruby, React, PostgreSQL, Redis, Kafka\n\nTips:\n- Machine coding round is make-or-break — practice building small systems in 60 mins\n- Show knowledge of payment systems and fintech basics\n- Clean code structure matters more than completion\n- CTC range: 18-25 LPA for SDE-1"
+    }
+  ]
+}

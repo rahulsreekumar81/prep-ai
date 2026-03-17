@@ -1,0 +1,164 @@
+{
+  "company": "Microsoft",
+  "questions": [
+    {
+      "title": "Reverse Linked List",
+      "content": "Given the head of a singly linked list, reverse the list, and return the reversed list.\n\nA linked list can be reversed either iteratively or recursively. Could you implement both?\n\nExample 1:\nInput: head = [1,2,3,4,5]\nOutput: [5,4,3,2,1]\n\nExample 2:\nInput: head = [1,2]\nOutput: [2,1]\n\nExample 3:\nInput: head = []\nOutput: []\n\nConstraints:\n- The number of nodes in the list is the range [0, 5000].\n- -5000 <= Node.val <= 5000",
+      "difficulty": "easy",
+      "topic": "linked_lists",
+      "starterCode": {
+        "cpp": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode() : val(0), next(nullptr) {}\n *     ListNode(int x) : val(x), next(nullptr) {}\n *     ListNode(int x, ListNode *next) : val(x), next(next) {}\n * };\n */\nclass Solution {\npublic:\n    ListNode* reverseList(ListNode* head) {\n        \n    }\n};",
+        "javascript": "/**\n * Definition for singly-linked list.\n * function ListNode(val, next) {\n *     this.val = (val===undefined ? 0 : val)\n *     this.next = (next===undefined ? null : next)\n * }\n */\n/**\n * @param {ListNode} head\n * @return {ListNode}\n */\nvar reverseList = function(head) {\n    \n};",
+        "python": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\nclass Solution:\n    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:\n        ",
+        "go": "/**\n * Definition for singly-linked list.\n * type ListNode struct {\n *     Val int\n *     Next *ListNode\n * }\n */\nfunc reverseList(head *ListNode) *ListNode {\n    \n}",
+        "java": "/**\n * Definition for singly-linked list.\n * public class ListNode {\n *     int val;\n *     ListNode next;\n *     ListNode() {}\n *     ListNode(int val) { this.val = val; }\n *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }\n * }\n */\nclass Solution {\n    public ListNode reverseList(ListNode head) {\n        \n    }\n}"
+      },
+      "testCases": [
+        { "input": "[1,2,3,4,5]", "expected": "[5,4,3,2,1]" },
+        { "input": "[1,2]", "expected": "[2,1]" },
+        { "input": "[]", "expected": "[]" }
+      ]
+    },
+    {
+      "title": "Add Two Numbers",
+      "content": "You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.\n\nYou may assume the two numbers do not contain any leading zero, except the number 0 itself.\n\nExample 1:\nInput: l1 = [2,4,3], l2 = [5,6,4]\nOutput: [7,0,8]\nExplanation: 342 + 465 = 807.\n\nExample 2:\nInput: l1 = [0], l2 = [0]\nOutput: [0]\n\nExample 3:\nInput: l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]\nOutput: [8,9,9,9,0,0,0,1]\n\nConstraints:\n- The number of nodes in each linked list is in the range [1, 100].\n- 0 <= Node.val <= 9\n- It is guaranteed that the list represents a number that does not have leading zeros.",
+      "difficulty": "medium",
+      "topic": "linked_lists",
+      "starterCode": {
+        "cpp": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode() : val(0), next(nullptr) {}\n *     ListNode(int x) : val(x), next(nullptr) {}\n *     ListNode(int x, ListNode *next) : val(x), next(next) {}\n * };\n */\nclass Solution {\npublic:\n    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {\n        \n    }\n};",
+        "javascript": "/**\n * Definition for singly-linked list.\n * function ListNode(val, next) {\n *     this.val = (val===undefined ? 0 : val)\n *     this.next = (next===undefined ? null : next)\n * }\n */\n/**\n * @param {ListNode} l1\n * @param {ListNode} l2\n * @return {ListNode}\n */\nvar addTwoNumbers = function(l1, l2) {\n    \n};",
+        "python": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\nclass Solution:\n    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:\n        ",
+        "go": "/**\n * Definition for singly-linked list.\n * type ListNode struct {\n *     Val int\n *     Next *ListNode\n * }\n */\nfunc addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {\n    \n}",
+        "java": "/**\n * Definition for singly-linked list.\n * public class ListNode {\n *     int val;\n *     ListNode next;\n *     ListNode() {}\n *     ListNode(int val) { this.val = val; }\n *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }\n * }\n */\nclass Solution {\n    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {\n        \n    }\n}"
+      },
+      "testCases": [
+        { "input": "l1 = [2,4,3], l2 = [5,6,4]", "expected": "[7,0,8]" },
+        { "input": "l1 = [0], l2 = [0]", "expected": "[0]" },
+        { "input": "l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]", "expected": "[8,9,9,9,0,0,0,1]" }
+      ]
+    },
+    {
+      "title": "String to Integer (atoi)",
+      "content": "Implement the myAtoi(string s) function, which converts a string to a 32-bit signed integer.\n\nThe algorithm for myAtoi(string s) is as follows:\n\n1. Whitespace: Ignore any leading whitespace (\" \").\n2. Signedness: Determine the sign by checking if the next character is '-' or '+', assuming positivity if neither present.\n3. Conversion: Read the integer by skipping leading zeros until a non-digit character is encountered or the end of the string is reached. If no digits were read, then the result is 0.\n4. Rounding: If the integer is out of the 32-bit signed integer range [-2^31, 2^31 - 1], then round the integer to remain in the range. Specifically, integers less than -2^31 should be rounded to -2^31, and integers greater than 2^31 - 1 should be rounded to 2^31 - 1.\n\nReturn the integer as the final result.\n\nExample 1:\nInput: s = \"42\"\nOutput: 42\nExplanation: The underlined characters are what is read in and the caret is the current reader position.\nStep 1: \"42\" (no characters read because there is no leading whitespace)\nStep 2: \"42\" (no characters read because there is neither a '-' nor '+')\nStep 3: \"42\" (\"42\" is read in)\n\nExample 2:\nInput: s = \"   -042\"\nOutput: -42\nExplanation:\nStep 1: \"   -042\" (leading whitespace is read and ignored)\nStep 2: \"   -042\" ('-' is read, so the result should be negative)\nStep 3: \"   -042\" (\"042\" is read in, leading zeros ignored in the result)\n\nExample 3:\nInput: s = \"1337c0d3\"\nOutput: 1337\nExplanation:\nStep 3: \"1337c0d3\" (\"1337\" is read in; reading stops because the next character is a non-digit)\n\nExample 4:\nInput: s = \"0-1\"\nOutput: 0\nExplanation:\nStep 3: \"0-1\" (\"0\" is read in; reading stops because the next character is a non-digit)\n\nExample 5:\nInput: s = \"words and 987\"\nOutput: 0\nExplanation: Reading stops at the first non-digit character 'w'.\n\nConstraints:\n- 0 <= s.length <= 200\n- s consists of English letters (lower-case and upper-case), digits (0-9), ' ', '+', '-', and '.'.",
+      "difficulty": "medium",
+      "topic": "strings",
+      "starterCode": {
+        "cpp": "class Solution {\npublic:\n    int myAtoi(string s) {\n        \n    }\n};",
+        "javascript": "/**\n * @param {string} s\n * @return {number}\n */\nvar myAtoi = function(s) {\n    \n};",
+        "python": "class Solution:\n    def myAtoi(self, s: str) -> int:\n        ",
+        "go": "func myAtoi(s string) int {\n    \n}",
+        "java": "class Solution {\n    public int myAtoi(String s) {\n        \n    }\n}"
+      },
+      "testCases": [
+        { "input": "\"42\"", "expected": "42" },
+        { "input": "\"   -042\"", "expected": "-42" },
+        { "input": "\"1337c0d3\"", "expected": "1337" }
+      ]
+    },
+    {
+      "title": "Spiral Matrix",
+      "content": "Given an m x n matrix, return all elements of the matrix in spiral order.\n\nSpiral order starts from the top-left corner and proceeds to the right, then down, then left, then up, and repeats until all elements have been visited.\n\nExample 1:\nInput: matrix = [[1,2,3],[4,5,6],[7,8,9]]\nOutput: [1,2,3,6,9,8,7,4,5]\n\nExample 2:\nInput: matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]\nOutput: [1,2,3,4,8,12,11,10,9,5,6,7]\n\nExample 3:\nInput: matrix = [[1]]\nOutput: [1]\n\nConstraints:\n- m == matrix.length\n- n == matrix[i].length\n- 1 <= m, n <= 10\n- -100 <= matrix[i][j] <= 100",
+      "difficulty": "medium",
+      "topic": "arrays",
+      "starterCode": {
+        "cpp": "class Solution {\npublic:\n    vector<int> spiralOrder(vector<vector<int>>& matrix) {\n        \n    }\n};",
+        "javascript": "/**\n * @param {number[][]} matrix\n * @return {number[]}\n */\nvar spiralOrder = function(matrix) {\n    \n};",
+        "python": "class Solution:\n    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:\n        ",
+        "go": "func spiralOrder(matrix [][]int) []int {\n    \n}",
+        "java": "class Solution {\n    public List<Integer> spiralOrder(int[][] matrix) {\n        \n    }\n}"
+      },
+      "testCases": [
+        { "input": "[[1,2,3],[4,5,6],[7,8,9]]", "expected": "[1,2,3,6,9,8,7,4,5]" },
+        { "input": "[[1,2,3,4],[5,6,7,8],[9,10,11,12]]", "expected": "[1,2,3,4,8,12,11,10,9,5,6,7]" }
+      ]
+    },
+    {
+      "title": "Clone Graph",
+      "content": "Given a reference of a node in a connected undirected graph, return a deep copy (clone) of the graph.\n\nEach node in the graph contains a value (int) and a list (List[Node]) of its neighbors.\n\nclass Node {\n    public int val;\n    public List<Node> neighbors;\n}\n\nTest case format:\nFor simplicity, each node's value is the same as the node's index (1-indexed). For example, the first node with val == 1, the second node with val == 2, and so on. The graph is represented in the test case using an adjacency list.\n\nAn adjacency list is a collection of unordered lists used to represent a finite graph. Each list describes the set of neighbors of a node in the graph.\n\nThe given node will always be the first node with val = 1. You must return the copy of the given node as a reference to the cloned graph.\n\nExample 1:\nInput: adjList = [[2,4],[1,3],[2,4],[1,3]]\nOutput: [[2,4],[1,3],[2,4],[1,3]]\nExplanation: There are 4 nodes in the graph.\n1st node (val = 1)'s neighbors are 2nd node (val = 2) and 4th node (val = 4).\n2nd node (val = 2)'s neighbors are 1st node (val = 1) and 3rd node (val = 3).\n3rd node (val = 3)'s neighbors are 2nd node (val = 2) and 4th node (val = 4).\n4th node (val = 4)'s neighbors are 1st node (val = 1) and 3rd node (val = 3).\n\nExample 2:\nInput: adjList = [[]]\nOutput: [[]]\nExplanation: Note that the input contains one empty list. The graph consists of only one node with val = 1 and it does not have any neighbors.\n\nExample 3:\nInput: adjList = []\nOutput: []\nExplanation: This an empty graph, it does not have any nodes.\n\nConstraints:\n- The number of nodes in the graph is in the range [0, 100].\n- 1 <= Node.val <= 100\n- Node.val is unique for each node.\n- There are no repeated edges and no self-loops in the graph.\n- The Graph is connected and all nodes can be visited starting from the given node.",
+      "difficulty": "medium",
+      "topic": "graphs",
+      "starterCode": {
+        "cpp": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    vector<Node*> neighbors;\n    Node() {\n        val = 0;\n        neighbors = vector<Node*>();\n    }\n    Node(int _val) {\n        val = _val;\n        neighbors = vector<Node*>();\n    }\n    Node(int _val, vector<Node*> _neighbors) {\n        val = _val;\n        neighbors = _neighbors;\n    }\n};\n*/\nclass Solution {\npublic:\n    Node* cloneGraph(Node* node) {\n        \n    }\n};",
+        "javascript": "/**\n * // Definition for a _Node.\n * function _Node(val, neighbors) {\n *    this.val = val === undefined ? 0 : val;\n *    this.neighbors = neighbors === undefined ? [] : neighbors;\n * };\n */\n/**\n * @param {_Node} node\n * @return {_Node}\n */\nvar cloneGraph = function(node) {\n    \n};",
+        "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val = 0, neighbors = None):\n        self.val = val\n        self.neighbors = neighbors if neighbors is not None else []\n\"\"\"\nclass Solution:\n    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:\n        ",
+        "go": "/**\n * Definition for a Node.\n * type Node struct {\n *     Val int\n *     Neighbors []*Node\n * }\n */\nfunc cloneGraph(node *Node) *Node {\n    \n}",
+        "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public List<Node> neighbors;\n    public Node() {\n        val = 0;\n        neighbors = new ArrayList<Node>();\n    }\n    public Node(int _val) {\n        val = _val;\n        neighbors = new ArrayList<Node>();\n    }\n    public Node(int _val, ArrayList<Node> _neighbors) {\n        val = _val;\n        neighbors = _neighbors;\n    }\n}\n*/\nclass Solution {\n    public Node cloneGraph(Node node) {\n        \n    }\n}"
+      },
+      "testCases": [
+        { "input": "[[2,4],[1,3],[2,4],[1,3]]", "expected": "[[2,4],[1,3],[2,4],[1,3]]" },
+        { "input": "[[]]", "expected": "[[]]" },
+        { "input": "[]", "expected": "[]" }
+      ]
+    },
+    {
+      "title": "Find Minimum in Rotated Sorted Array",
+      "content": "Suppose an array of length n sorted in ascending order is rotated between 1 and n times. For example, the array nums = [0,1,2,4,5,6,7] might become:\n\n- [4,5,6,7,0,1,2] if it was rotated 4 times.\n- [0,1,2,4,5,6,7] if it was rotated 7 times.\n\nNotice that rotating an array [a[0], a[1], a[2], ..., a[n-1]] 1 time results in the array [a[n-1], a[0], a[1], a[2], ..., a[n-2]].\n\nGiven the sorted rotated array nums of unique elements, return the minimum element of this array.\n\nYou must write an algorithm that runs in O(log n) time.\n\nExample 1:\nInput: nums = [3,4,5,1,2]\nOutput: 1\nExplanation: The original array was [1,2,3,4,5] rotated 3 times.\n\nExample 2:\nInput: nums = [4,5,6,7,0,1,2]\nOutput: 0\nExplanation: The original array was [0,1,2,4,5,6,7] and it was rotated 4 times.\n\nExample 3:\nInput: nums = [11,13,15,17]\nOutput: 11\nExplanation: The original array was [11,13,15,17] and it was rotated 4 times.\n\nConstraints:\n- n == nums.length\n- 1 <= n <= 5000\n- -5000 <= nums[i] <= 5000\n- All the integers of nums are unique.\n- nums is sorted and rotated between 1 and n times.",
+      "difficulty": "medium",
+      "topic": "arrays",
+      "starterCode": {
+        "cpp": "class Solution {\npublic:\n    int findMin(vector<int>& nums) {\n        \n    }\n};",
+        "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar findMin = function(nums) {\n    \n};",
+        "python": "class Solution:\n    def findMin(self, nums: List[int]) -> int:\n        ",
+        "go": "func findMin(nums []int) int {\n    \n}",
+        "java": "class Solution {\n    public int findMin(int[] nums) {\n        \n    }\n}"
+      },
+      "testCases": [
+        { "input": "[3,4,5,1,2]", "expected": "1" },
+        { "input": "[4,5,6,7,0,1,2]", "expected": "0" },
+        { "input": "[11,13,15,17]", "expected": "11" }
+      ]
+    },
+    {
+      "title": "Word Ladder",
+      "content": "A transformation sequence from word beginWord to word endWord using a dictionary wordList is a sequence of words beginWord -> s1 -> s2 -> ... -> sk such that:\n\n- Every adjacent pair of words differs by a single letter.\n- Every si for 1 <= i <= k is in wordList. Note that beginWord does not need to be in wordList.\n- sk == endWord\n\nGiven two words, beginWord and endWord, and a dictionary wordList, return the number of words in the shortest transformation sequence from beginWord to endWord, or 0 if no such sequence exists.\n\nExample 1:\nInput: beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]\nOutput: 5\nExplanation: One shortest transformation sequence is \"hit\" -> \"hot\" -> \"dot\" -> \"dog\" -> \"cog\", which is 5 words long.\n\nExample 2:\nInput: beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\"]\nOutput: 0\nExplanation: The endWord \"cog\" is not in wordList, therefore there is no valid transformation sequence.\n\nConstraints:\n- 1 <= beginWord.length <= 10\n- endWord.length == beginWord.length\n- 1 <= wordList.length <= 5000\n- wordList[i].length == beginWord.length\n- beginWord, endWord, and wordList[i] consist of lowercase English letters.\n- beginWord != endWord\n- All the words in wordList are unique.",
+      "difficulty": "hard",
+      "topic": "graphs",
+      "starterCode": {
+        "cpp": "class Solution {\npublic:\n    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {\n        \n    }\n};",
+        "javascript": "/**\n * @param {string} beginWord\n * @param {string} endWord\n * @param {string[]} wordList\n * @return {number}\n */\nvar ladderLength = function(beginWord, endWord, wordList) {\n    \n};",
+        "python": "class Solution:\n    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:\n        ",
+        "go": "func ladderLength(beginWord string, endWord string, wordList []string) int {\n    \n}",
+        "java": "class Solution {\n    public int ladderLength(String beginWord, String endWord, List<String> wordList) {\n        \n    }\n}"
+      },
+      "testCases": [
+        { "input": "beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]", "expected": "5" },
+        { "input": "beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\"]", "expected": "0" }
+      ]
+    },
+    {
+      "title": "Longest Increasing Subsequence",
+      "content": "Given an integer array nums, return the length of the longest strictly increasing subsequence.\n\nA subsequence is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.\n\nExample 1:\nInput: nums = [10,9,2,5,3,7,101,18]\nOutput: 4\nExplanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.\n\nExample 2:\nInput: nums = [0,1,0,3,2,3]\nOutput: 4\n\nExample 3:\nInput: nums = [7,7,7,7,7,7,7]\nOutput: 1\n\nConstraints:\n- 1 <= nums.length <= 2500\n- -10^4 <= nums[i] <= 10^4\n\nFollow up: Can you come up with an algorithm that runs in O(n log n) time complexity?",
+      "difficulty": "medium",
+      "topic": "dp",
+      "starterCode": {
+        "cpp": "class Solution {\npublic:\n    int lengthOfLIS(vector<int>& nums) {\n        \n    }\n};",
+        "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar lengthOfLIS = function(nums) {\n    \n};",
+        "python": "class Solution:\n    def lengthOfLIS(self, nums: List[int]) -> int:\n        ",
+        "go": "func lengthOfLIS(nums []int) int {\n    \n}",
+        "java": "class Solution {\n    public int lengthOfLIS(int[] nums) {\n        \n    }\n}"
+      },
+      "testCases": [
+        { "input": "[10,9,2,5,3,7,101,18]", "expected": "4" },
+        { "input": "[0,1,0,3,2,3]", "expected": "4" },
+        { "input": "[7,7,7,7,7,7,7]", "expected": "1" }
+      ]
+    },
+    {
+      "title": "Min Stack",
+      "content": "Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.\n\nImplement the MinStack class:\n\n- MinStack() initializes the stack object.\n- void push(int val) pushes the element val onto the stack.\n- void pop() removes the element on the top of the stack.\n- int top() gets the top element of the stack.\n- int getMin() retrieves the minimum element in the stack.\n\nYou must implement a solution with O(1) time complexity for each function.\n\nExample 1:\nInput:\n[\"MinStack\",\"push\",\"push\",\"push\",\"getMin\",\"pop\",\"top\",\"getMin\"]\n[[],[-2],[0],[-3],[],[],[],[]]\nOutput:\n[null,null,null,null,-3,null,0,-2]\n\nExplanation:\nMinStack minStack = new MinStack();\nminStack.push(-2);\nminStack.push(0);\nminStack.push(-3);\nminStack.getMin(); // return -3\nminStack.pop();\nminStack.top();    // return 0\nminStack.getMin(); // return -2\n\nConstraints:\n- -2^31 <= val <= 2^31 - 1\n- Methods pop, top and getMin operations will always be called on non-empty stacks.\n- At most 3 * 10^4 calls will be made to push, pop, top, and getMin.",
+      "difficulty": "medium",
+      "topic": "design",
+      "starterCode": {
+        "cpp": "class MinStack {\npublic:\n    MinStack() {\n        \n    }\n    \n    void push(int val) {\n        \n    }\n    \n    void pop() {\n        \n    }\n    \n    int top() {\n        \n    }\n    \n    int getMin() {\n        \n    }\n};\n\n/**\n * Your MinStack object will be instantiated and called as such:\n * MinStack* obj = new MinStack();\n * obj->push(val);\n * obj->pop();\n * int param_3 = obj->top();\n * int param_4 = obj->getMin();\n */",
+        "javascript": "\nvar MinStack = function() {\n    \n};\n\n/** \n * @param {number} val\n * @return {void}\n */\nMinStack.prototype.push = function(val) {\n    \n};\n\n/**\n * @return {void}\n */\nMinStack.prototype.pop = function() {\n    \n};\n\n/**\n * @return {number}\n */\nMinStack.prototype.top = function() {\n    \n};\n\n/**\n * @return {number}\n */\nMinStack.prototype.getMin = function() {\n    \n};\n\n/** \n * Your MinStack object will be instantiated and called as such:\n * var obj = new MinStack()\n * obj.push(val)\n * obj.pop()\n * var param_3 = obj.top()\n * var param_4 = obj.getMin()\n */",
+        "python": "class MinStack:\n\n    def __init__(self):\n        \n\n    def push(self, val: int) -> None:\n        \n\n    def pop(self) -> None:\n        \n\n    def top(self) -> int:\n        \n\n    def getMin(self) -> int:\n        \n\n\n# Your MinStack object will be instantiated and called as such:\n# obj = MinStack()\n# obj.push(val)\n# obj.pop()\n# param_3 = obj.top()\n# param_4 = obj.getMin()",
+        "go": "type MinStack struct {\n    \n}\n\n\nfunc Constructor() MinStack {\n    \n}\n\n\nfunc (this *MinStack) Push(val int)  {\n    \n}\n\n\nfunc (this *MinStack) Pop()  {\n    \n}\n\n\nfunc (this *MinStack) Top() int {\n    \n}\n\n\nfunc (this *MinStack) GetMin() int {\n    \n}\n\n\n/**\n * Your MinStack object will be instantiated and called as such:\n * obj := Constructor();\n * obj.Push(val);\n * obj.Pop();\n * param_3 := obj.Top();\n * param_4 := obj.GetMin();\n */",
+        "java": "class MinStack {\n\n    public MinStack() {\n        \n    }\n    \n    public void push(int val) {\n        \n    }\n    \n    public void pop() {\n        \n    }\n    \n    public int top() {\n        \n    }\n    \n    public int getMin() {\n        \n    }\n}\n\n/**\n * Your MinStack object will be instantiated and called as such:\n * MinStack obj = new MinStack();\n * obj.push(val);\n * obj.pop();\n * int param_3 = obj.top();\n * int param_4 = obj.getMin();\n */"
+      },
+      "testCases": [
+        { "input": "[\"MinStack\",\"push\",\"push\",\"push\",\"getMin\",\"pop\",\"top\",\"getMin\"], [[],[-2],[0],[-3],[],[],[],[]]", "expected": "[null,null,null,null,-3,null,0,-2]" },
+        { "input": "[\"MinStack\",\"push\",\"push\",\"getMin\",\"pop\",\"getMin\"], [[],[1],[-1],[],[],[]]", "expected": "[null,null,null,-1,null,1]" }
+      ]
+    }
+  ]
+}

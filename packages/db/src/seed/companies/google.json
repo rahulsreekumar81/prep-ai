@@ -1,0 +1,13 @@
+{
+  "company": "Google",
+  "data": [
+    {
+      "role": "L3 Software Engineer",
+      "content": "Google L3 (Entry-Mid Level) Interview Pattern:\n\nFormat: 1 Phone Screen + 4-5 Onsite Rounds (3 Coding + 1 Googleyness & Leadership + 1 System Design light)\n\nKey Focus Areas:\n- Algorithmic thinking (Medium-Hard Leetcode)\n- Code quality and edge case handling\n- Googleyness: collaboration, humility, ability to navigate ambiguity\n\nMost Common Algorithm Topics:\n1. Arrays & Strings (sliding window, two pointers)\n2. Trees & Graphs (BFS, DFS, shortest path)\n3. Dynamic Programming (medium difficulty)\n4. Recursion and Backtracking\n5. Hash Maps for optimization\n\nGoogleyness Questions:\n- Tell me about a time you had to work with someone difficult\n- Describe a situation where you had to learn something quickly\n- How do you handle ambiguous requirements?\n- Tell me about a time you failed and what you learned\n\nTips:\n- Think aloud during coding rounds — process matters as much as solution\n- Always discuss time and space complexity\n- Write clean, readable code — Google cares about code quality\n- Ask clarifying questions before jumping into solutions\n- Multiple correct approaches > one optimal approach rushed"
+    },
+    {
+      "role": "L4 Software Engineer",
+      "content": "Google L4 (Mid-Senior) Interview Pattern:\n\nFormat: 4-5 Onsite Rounds (2-3 Coding + 1 System Design + 1 Googleyness & Leadership)\n\nSystem Design is critical at L4:\n- Design Google Maps search\n- Design Gmail\n- Design YouTube video processing pipeline\n- Design a web crawler\n\nExpectations beyond L3:\n- Demonstrate technical leadership\n- Show impact beyond your immediate team\n- Deep expertise in at least one area\n- Design for scale (millions of users)\n\nTips:\n- System Design: focus on scalability, reliability, and trade-offs\n- Leadership: show examples of influencing without authority\n- Coding: expected to solve hard problems cleanly"
+    }
+  ]
+}

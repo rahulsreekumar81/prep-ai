@@ -1,0 +1,240 @@
+{
+  "company": "Amazon",
+  "questions": [
+    {
+      "title": "Valid Parentheses",
+      "content": "Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.\n\nAn input string is valid if:\n1. Open brackets must be closed by the same type of brackets.\n2. Open brackets must be closed in the correct order.\n3. Every close bracket has a corresponding open bracket of the same type.\n\n**Example 1:**\n```\nInput: s = \"()\"\nOutput: true\n```\n\n**Example 2:**\n```\nInput: s = \"()[]{}\"\nOutput: true\n```\n\n**Example 3:**\n```\nInput: s = \"(]\"\nOutput: false\n```\n\n**Example 4:**\n```\nInput: s = \"([)]\"\nOutput: false\n```\n\n**Example 5:**\n```\nInput: s = \"{[]}\"\nOutput: true\n```\n\n**Constraints:**\n- `1 <= s.length <= 10^4`\n- `s` consists of parentheses only `'()[]{}'`.",
+      "difficulty": "easy",
+      "topic": "strings",
+      "starterCode": {
+        "cpp": "#include <string>\n#include <stack>\nusing namespace std;\n\nclass Solution {\npublic:\n    bool isValid(string s) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * @param {string} s\n * @return {boolean}\n */\nfunction isValid(s) {\n    // Write your solution here\n}",
+        "python": "class Solution:\n    def isValid(self, s: str) -> bool:\n        # Write your solution here\n        pass",
+        "go": "func isValid(s string) bool {\n    // Write your solution here\n    return false\n}",
+        "java": "class Solution {\n    public boolean isValid(String s) {\n        // Write your solution here\n        return false;\n    }\n}"
+      },
+      "testCases": [
+        {
+          "input": "\"()\"",
+          "expectedOutput": "true"
+        },
+        {
+          "input": "\"()[]{}\"",
+          "expectedOutput": "true"
+        },
+        {
+          "input": "\"(]\"",
+          "expectedOutput": "false"
+        }
+      ]
+    },
+    {
+      "title": "Best Time to Buy and Sell Stock",
+      "content": "You are given an array `prices` where `prices[i]` is the price of a given stock on the `i`th day.\n\nYou want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.\n\nReturn the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return `0`.\n\n**Example 1:**\n```\nInput: prices = [7,1,5,3,6,4]\nOutput: 5\nExplanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6 - 1 = 5.\nNote that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.\n```\n\n**Example 2:**\n```\nInput: prices = [7,6,4,3,1]\nOutput: 0\nExplanation: In this case, no transactions are done and the max profit = 0.\n```\n\n**Constraints:**\n- `1 <= prices.length <= 10^5`\n- `0 <= prices[i] <= 10^4`",
+      "difficulty": "easy",
+      "topic": "arrays",
+      "starterCode": {
+        "cpp": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    int maxProfit(vector<int>& prices) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * @param {number[]} prices\n * @return {number}\n */\nfunction maxProfit(prices) {\n    // Write your solution here\n}",
+        "python": "class Solution:\n    def maxProfit(self, prices: list[int]) -> int:\n        # Write your solution here\n        pass",
+        "go": "func maxProfit(prices []int) int {\n    // Write your solution here\n    return 0\n}",
+        "java": "class Solution {\n    public int maxProfit(int[] prices) {\n        // Write your solution here\n        return 0;\n    }\n}"
+      },
+      "testCases": [
+        {
+          "input": "[7,1,5,3,6,4]",
+          "expectedOutput": "5"
+        },
+        {
+          "input": "[7,6,4,3,1]",
+          "expectedOutput": "0"
+        },
+        {
+          "input": "[2,4,1]",
+          "expectedOutput": "2"
+        }
+      ]
+    },
+    {
+      "title": "Number of Islands",
+      "content": "Given an `m x n` 2D binary grid `grid` which represents a map of `'1'`s (land) and `'0'`s (water), return the number of islands.\n\nAn island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.\n\n**Example 1:**\n```\nInput: grid = [\n  [\"1\",\"1\",\"1\",\"1\",\"0\"],\n  [\"1\",\"1\",\"0\",\"1\",\"0\"],\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"0\",\"0\",\"0\",\"0\",\"0\"]\n]\nOutput: 1\n```\n\n**Example 2:**\n```\nInput: grid = [\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"0\",\"0\",\"1\",\"0\",\"0\"],\n  [\"0\",\"0\",\"0\",\"1\",\"1\"]\n]\nOutput: 3\n```\n\n**Constraints:**\n- `m == grid.length`\n- `n == grid[i].length`\n- `1 <= m, n <= 300`\n- `grid[i][j]` is `'0'` or `'1'`.",
+      "difficulty": "medium",
+      "topic": "graphs",
+      "starterCode": {
+        "cpp": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    int numIslands(vector<vector<char>>& grid) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * @param {character[][]} grid\n * @return {number}\n */\nfunction numIslands(grid) {\n    // Write your solution here\n}",
+        "python": "class Solution:\n    def numIslands(self, grid: list[list[str]]) -> int:\n        # Write your solution here\n        pass",
+        "go": "func numIslands(grid [][]byte) int {\n    // Write your solution here\n    return 0\n}",
+        "java": "class Solution {\n    public int numIslands(char[][] grid) {\n        // Write your solution here\n        return 0;\n    }\n}"
+      },
+      "testCases": [
+        {
+          "input": "[[\"1\",\"1\",\"1\",\"1\",\"0\"],[\"1\",\"1\",\"0\",\"1\",\"0\"],[\"1\",\"1\",\"0\",\"0\",\"0\"],[\"0\",\"0\",\"0\",\"0\",\"0\"]]",
+          "expectedOutput": "1"
+        },
+        {
+          "input": "[[\"1\",\"1\",\"0\",\"0\",\"0\"],[\"1\",\"1\",\"0\",\"0\",\"0\"],[\"0\",\"0\",\"1\",\"0\",\"0\"],[\"0\",\"0\",\"0\",\"1\",\"1\"]]",
+          "expectedOutput": "3"
+        }
+      ]
+    },
+    {
+      "title": "Group Anagrams",
+      "content": "Given an array of strings `strs`, group the anagrams together. You can return the answer in any order.\n\nAn anagram is a word or phrase formed by rearranging the letters of a different word or phrase, using all the original letters exactly once.\n\n**Example 1:**\n```\nInput: strs = [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\nOutput: [[\"bat\"],[\"nat\",\"tan\"],[\"ate\",\"eat\",\"tea\"]]\nExplanation: There is no string in strs that can be rearranged to form \"bat\". The strings \"nat\" and \"tan\" are anagrams as they can be rearranged to form each other. The strings \"ate\", \"eat\", and \"tea\" are anagrams as they can be rearranged to form each other.\n```\n\n**Example 2:**\n```\nInput: strs = [\"\"]\nOutput: [[\"\"]]\n```\n\n**Example 3:**\n```\nInput: strs = [\"a\"]\nOutput: [[\"a\"]]\n```\n\n**Constraints:**\n- `1 <= strs.length <= 10^4`\n- `0 <= strs[i].length <= 100`\n- `strs[i]` consists of lowercase English letters.",
+      "difficulty": "medium",
+      "topic": "strings",
+      "starterCode": {
+        "cpp": "#include <vector>\n#include <string>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<vector<string>> groupAnagrams(vector<string>& strs) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * @param {string[]} strs\n * @return {string[][]}\n */\nfunction groupAnagrams(strs) {\n    // Write your solution here\n}",
+        "python": "class Solution:\n    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:\n        # Write your solution here\n        pass",
+        "go": "func groupAnagrams(strs []string) [][]string {\n    // Write your solution here\n    return nil\n}",
+        "java": "import java.util.*;\n\nclass Solution {\n    public List<List<String>> groupAnagrams(String[] strs) {\n        // Write your solution here\n        return new ArrayList<>();\n    }\n}"
+      },
+      "testCases": [
+        {
+          "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+          "expectedOutput": "[[\"bat\"],[\"nat\",\"tan\"],[\"ate\",\"eat\",\"tea\"]]"
+        },
+        {
+          "input": "[\"\"]",
+          "expectedOutput": "[[\"\"]]"
+        },
+        {
+          "input": "[\"a\"]",
+          "expectedOutput": "[[\"a\"]]"
+        }
+      ]
+    },
+    {
+      "title": "Rotting Oranges",
+      "content": "You are given an `m x n` grid where each cell can have one of three values:\n- `0` representing an empty cell,\n- `1` representing a fresh orange, or\n- `2` representing a rotten orange.\n\nEvery minute, any fresh orange that is 4-directionally adjacent to a rotten orange becomes rotten.\n\nReturn the minimum number of minutes that must elapse until no cell has a fresh orange. If this is impossible, return `-1`.\n\n**Example 1:**\n```\nInput: grid = [[2,1,1],[1,1,0],[0,1,1]]\nOutput: 4\nExplanation:\nAt minute 0: [[2,1,1],[1,1,0],[0,1,1]]\nAt minute 1: [[2,2,1],[2,1,0],[0,1,1]]\nAt minute 2: [[2,2,2],[2,2,0],[0,1,1]]\nAt minute 3: [[2,2,2],[2,2,0],[0,2,1]]\nAt minute 4: [[2,2,2],[2,2,0],[0,2,2]]\n```\n\n**Example 2:**\n```\nInput: grid = [[2,1,1],[0,1,1],[1,0,1]]\nOutput: -1\nExplanation: The orange in the bottom left corner (row 2, column 0) is never rotten because rotting only happens 4-directionally.\n```\n\n**Example 3:**\n```\nInput: grid = [[0,2]]\nOutput: 0\nExplanation: Since there are already no fresh oranges at minute 0, the answer is just 0.\n```\n\n**Constraints:**\n- `m == grid.length`\n- `n == grid[i].length`\n- `1 <= m, n <= 10`\n- `grid[i][j]` is `0`, `1`, or `2`.",
+      "difficulty": "medium",
+      "topic": "graphs",
+      "starterCode": {
+        "cpp": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    int orangesRotting(vector<vector<int>>& grid) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * @param {number[][]} grid\n * @return {number}\n */\nfunction orangesRotting(grid) {\n    // Write your solution here\n}",
+        "python": "class Solution:\n    def orangesRotting(self, grid: list[list[int]]) -> int:\n        # Write your solution here\n        pass",
+        "go": "func orangesRotting(grid [][]int) int {\n    // Write your solution here\n    return 0\n}",
+        "java": "class Solution {\n    public int orangesRotting(int[][] grid) {\n        // Write your solution here\n        return 0;\n    }\n}"
+      },
+      "testCases": [
+        {
+          "input": "[[2,1,1],[1,1,0],[0,1,1]]",
+          "expectedOutput": "4"
+        },
+        {
+          "input": "[[2,1,1],[0,1,1],[1,0,1]]",
+          "expectedOutput": "-1"
+        },
+        {
+          "input": "[[0,2]]",
+          "expectedOutput": "0"
+        }
+      ]
+    },
+    {
+      "title": "LRU Cache",
+      "content": "Design a data structure that follows the constraints of a Least Recently Used (LRU) cache.\n\nImplement the `LRUCache` class:\n- `LRUCache(int capacity)` Initialize the LRU cache with positive size `capacity`.\n- `int get(int key)` Return the value of the `key` if the key exists, otherwise return `-1`.\n- `void put(int key, int value)` Update the value of the `key` if the key exists. Otherwise, add the `key-value` pair to the cache. If the number of keys exceeds the `capacity` from this operation, evict the least recently used key.\n\nThe functions `get` and `put` must each run in `O(1)` average time complexity.\n\n**Example 1:**\n```\nInput:\n[\"LRUCache\", \"put\", \"put\", \"get\", \"put\", \"get\", \"put\", \"get\", \"get\", \"get\"]\n[[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]\nOutput:\n[null, null, null, 1, null, -1, null, -1, 3, 4]\n\nExplanation:\nLRUCache lRUCache = new LRUCache(2);\nlRUCache.put(1, 1); // cache is {1=1}\nlRUCache.put(2, 2); // cache is {1=1, 2=2}\nlRUCache.get(1);    // return 1\nlRUCache.put(3, 3); // LRU key was 2, evicts key 2, cache is {1=1, 3=3}\nlRUCache.get(2);    // returns -1 (not found)\nlRUCache.put(4, 4); // LRU key was 1, evicts key 1, cache is {4=4, 3=3}\nlRUCache.get(1);    // return -1 (not found)\nlRUCache.get(3);    // return 3\nlRUCache.get(4);    // return 4\n```\n\n**Constraints:**\n- `1 <= capacity <= 3000`\n- `0 <= key <= 10^4`\n- `0 <= value <= 10^5`\n- At most `2 * 10^5` calls will be made to `get` and `put`.",
+      "difficulty": "hard",
+      "topic": "design",
+      "starterCode": {
+        "cpp": "#include <unordered_map>\n#include <list>\nusing namespace std;\n\nclass LRUCache {\npublic:\n    LRUCache(int capacity) {\n        // Write your solution here\n    }\n\n    int get(int key) {\n        // Write your solution here\n    }\n\n    void put(int key, int value) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * @param {number} capacity\n */\nvar LRUCache = function(capacity) {\n    // Write your solution here\n};\n\n/**\n * @param {number} key\n * @return {number}\n */\nLRUCache.prototype.get = function(key) {\n    // Write your solution here\n};\n\n/**\n * @param {number} key\n * @param {number} value\n * @return {void}\n */\nLRUCache.prototype.put = function(key, value) {\n    // Write your solution here\n};",
+        "python": "class LRUCache:\n    def __init__(self, capacity: int):\n        # Write your solution here\n        pass\n\n    def get(self, key: int) -> int:\n        # Write your solution here\n        pass\n\n    def put(self, key: int, value: int) -> None:\n        # Write your solution here\n        pass",
+        "go": "type LRUCache struct {\n    // Write your solution here\n}\n\nfunc Constructor(capacity int) LRUCache {\n    // Write your solution here\n    return LRUCache{}\n}\n\nfunc (this *LRUCache) Get(key int) int {\n    // Write your solution here\n    return -1\n}\n\nfunc (this *LRUCache) Put(key int, value int) {\n    // Write your solution here\n}",
+        "java": "import java.util.*;\n\nclass LRUCache {\n    public LRUCache(int capacity) {\n        // Write your solution here\n    }\n\n    public int get(int key) {\n        // Write your solution here\n        return -1;\n    }\n\n    public void put(int key, int value) {\n        // Write your solution here\n    }\n}"
+      },
+      "testCases": [
+        {
+          "input": "[\"LRUCache\",\"put\",\"put\",\"get\",\"put\",\"get\",\"put\",\"get\",\"get\",\"get\"]\n[[2],[1,1],[2,2],[1],[3,3],[2],[4,4],[1],[3],[4]]",
+          "expectedOutput": "[null,null,null,1,null,-1,null,-1,3,4]"
+        },
+        {
+          "input": "[\"LRUCache\",\"put\",\"get\"]\n[[1],[2,1],[2]]",
+          "expectedOutput": "[null,null,1]"
+        }
+      ]
+    },
+    {
+      "title": "Meeting Rooms II",
+      "content": "Given an array of meeting time intervals `intervals` where `intervals[i] = [start_i, end_i]`, return the minimum number of conference rooms required.\n\n**Example 1:**\n```\nInput: intervals = [[0,30],[5,10],[15,20]]\nOutput: 2\nExplanation: We need two meeting rooms.\nRoom 1: [0,30]\nRoom 2: [5,10], [15,20]\n```\n\n**Example 2:**\n```\nInput: intervals = [[7,10],[2,4]]\nOutput: 1\nExplanation: Only one meeting room is needed since the two meetings do not overlap.\n```\n\n**Example 3:**\n```\nInput: intervals = [[1,5],[2,6],[3,7],[4,8]]\nOutput: 4\nExplanation: All four meetings overlap with each other at time 4, so we need 4 rooms.\n```\n\n**Constraints:**\n- `1 <= intervals.length <= 10^4`\n- `0 <= start_i < end_i <= 10^6`",
+      "difficulty": "medium",
+      "topic": "arrays",
+      "starterCode": {
+        "cpp": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    int minMeetingRooms(vector<vector<int>>& intervals) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * @param {number[][]} intervals\n * @return {number}\n */\nfunction minMeetingRooms(intervals) {\n    // Write your solution here\n}",
+        "python": "class Solution:\n    def minMeetingRooms(self, intervals: list[list[int]]) -> int:\n        # Write your solution here\n        pass",
+        "go": "func minMeetingRooms(intervals [][]int) int {\n    // Write your solution here\n    return 0\n}",
+        "java": "class Solution {\n    public int minMeetingRooms(int[][] intervals) {\n        // Write your solution here\n        return 0;\n    }\n}"
+      },
+      "testCases": [
+        {
+          "input": "[[0,30],[5,10],[15,20]]",
+          "expectedOutput": "2"
+        },
+        {
+          "input": "[[7,10],[2,4]]",
+          "expectedOutput": "1"
+        },
+        {
+          "input": "[[1,5],[2,6],[3,7],[4,8]]",
+          "expectedOutput": "4"
+        }
+      ]
+    },
+    {
+      "title": "Serialize and Deserialize Binary Tree",
+      "content": "Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.\n\nDesign an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.\n\n**Example 1:**\n```\nInput: root = [1,2,3,null,null,4,5]\nOutput: [1,2,3,null,null,4,5]\nExplanation:\nThe tree looks like:\n    1\n   / \\\n  2   3\n     / \\\n    4   5\nAfter serialization and deserialization, the tree structure is preserved.\n```\n\n**Example 2:**\n```\nInput: root = []\nOutput: []\n```\n\n**Example 3:**\n```\nInput: root = [1]\nOutput: [1]\n```\n\n**Constraints:**\n- The number of nodes in the tree is in the range `[0, 10^4]`.\n- `-1000 <= Node.val <= 1000`",
+      "difficulty": "hard",
+      "topic": "trees",
+      "starterCode": {
+        "cpp": "#include <string>\nusing namespace std;\n\nstruct TreeNode {\n    int val;\n    TreeNode *left;\n    TreeNode *right;\n    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n};\n\nclass Codec {\npublic:\n    // Encodes a tree to a single string.\n    string serialize(TreeNode* root) {\n        // Write your solution here\n    }\n\n    // Decodes your encoded data to tree.\n    TreeNode* deserialize(string data) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * Definition for a binary tree node.\n * function TreeNode(val) {\n *     this.val = val;\n *     this.left = this.right = null;\n * }\n */\n\n/**\n * Encodes a tree to a single string.\n * @param {TreeNode} root\n * @return {string}\n */\nfunction serialize(root) {\n    // Write your solution here\n}\n\n/**\n * Decodes your encoded data to tree.\n * @param {string} data\n * @return {TreeNode}\n */\nfunction deserialize(data) {\n    // Write your solution here\n}",
+        "python": "class TreeNode:\n    def __init__(self, x):\n        self.val = x\n        self.left = None\n        self.right = None\n\nclass Codec:\n    def serialize(self, root: TreeNode) -> str:\n        \"\"\"Encodes a tree to a single string.\"\"\"\n        # Write your solution here\n        pass\n\n    def deserialize(self, data: str) -> TreeNode:\n        \"\"\"Decodes your encoded data to tree.\"\"\"\n        # Write your solution here\n        pass",
+        "go": "type TreeNode struct {\n    Val   int\n    Left  *TreeNode\n    Right *TreeNode\n}\n\ntype Codec struct {\n}\n\nfunc Constructor() Codec {\n    return Codec{}\n}\n\n// Serializes a tree to a single string.\nfunc (this *Codec) serialize(root *TreeNode) string {\n    // Write your solution here\n    return \"\"\n}\n\n// Deserializes your encoded data to tree.\nfunc (this *Codec) deserialize(data string) *TreeNode {\n    // Write your solution here\n    return nil\n}",
+        "java": "import java.util.*;\n\npublic class TreeNode {\n    int val;\n    TreeNode left;\n    TreeNode right;\n    TreeNode(int x) { val = x; }\n}\n\npublic class Codec {\n    // Encodes a tree to a single string.\n    public String serialize(TreeNode root) {\n        // Write your solution here\n        return \"\";\n    }\n\n    // Decodes your encoded data to tree.\n    public TreeNode deserialize(String data) {\n        // Write your solution here\n        return null;\n    }\n}"
+      },
+      "testCases": [
+        {
+          "input": "[1,2,3,null,null,4,5]",
+          "expectedOutput": "[1,2,3,null,null,4,5]"
+        },
+        {
+          "input": "[]",
+          "expectedOutput": "[]"
+        },
+        {
+          "input": "[1]",
+          "expectedOutput": "[1]"
+        }
+      ]
+    },
+    {
+      "title": "Maximum Profit in Job Scheduling",
+      "content": "We have `n` jobs, where every job is scheduled to be done from `startTime[i]` to `endTime[i]`, obtaining a profit of `profit[i]`.\n\nYou're given the `startTime`, `endTime` and `profit` arrays. Return the maximum profit you can take such that there are no two jobs in the subset with overlapping time range.\n\nIf you choose a job that ends at time `X` you will be able to start another job that starts at time `X`.\n\n**Example 1:**\n```\nInput: startTime = [1,2,3,3], endTime = [3,4,5,6], profit = [50,10,40,70]\nOutput: 120\nExplanation: The subset chosen is the first and fourth job.\nTime range [1,3) doesn't overlap with time range [3,6).\nTotal profit = 50 + 70 = 120.\n```\n\n**Example 2:**\n```\nInput: startTime = [1,2,3,4,6], endTime = [3,5,10,6,9], profit = [20,20,100,70,60]\nOutput: 150\nExplanation: The subset chosen is the first, fourth and fifth job.\nTotal profit = 20 + 70 + 60 = 150.\n```\n\n**Example 3:**\n```\nInput: startTime = [1,1,1], endTime = [2,3,4], profit = [5,6,4]\nOutput: 6\nExplanation: We can only pick one job since all three overlap. The second job gives the highest profit.\n```\n\n**Constraints:**\n- `1 <= startTime.length == endTime.length == profit.length <= 5 * 10^4`\n- `1 <= startTime[i] < endTime[i] <= 10^9`\n- `1 <= profit[i] <= 10^4`",
+      "difficulty": "hard",
+      "topic": "dp",
+      "starterCode": {
+        "cpp": "#include <vector>\nusing namespace std;\n\nclass Solution {\npublic:\n    int jobScheduling(vector<int>& startTime, vector<int>& endTime, vector<int>& profit) {\n        // Write your solution here\n    }\n};",
+        "javascript": "/**\n * @param {number[]} startTime\n * @param {number[]} endTime\n * @param {number[]} profit\n * @return {number}\n */\nfunction jobScheduling(startTime, endTime, profit) {\n    // Write your solution here\n}",
+        "python": "class Solution:\n    def jobScheduling(self, startTime: list[int], endTime: list[int], profit: list[int]) -> int:\n        # Write your solution here\n        pass",
+        "go": "func jobScheduling(startTime []int, endTime []int, profit []int) int {\n    // Write your solution here\n    return 0\n}",
+        "java": "import java.util.*;\n\nclass Solution {\n    public int jobScheduling(int[] startTime, int[] endTime, int[] profit) {\n        // Write your solution here\n        return 0;\n    }\n}"
+      },
+      "testCases": [
+        {
+          "input": "[1,2,3,3]\n[3,4,5,6]\n[50,10,40,70]",
+          "expectedOutput": "120"
+        },
+        {
+          "input": "[1,2,3,4,6]\n[3,5,10,6,9]\n[20,20,100,70,60]",
+          "expectedOutput": "150"
+        },
+        {
+          "input": "[1,1,1]\n[2,3,4]\n[5,6,4]",
+          "expectedOutput": "6"
+        }
+      ]
+    }
+  ]
+}

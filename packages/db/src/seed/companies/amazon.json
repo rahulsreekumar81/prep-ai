@@ -1,0 +1,13 @@
+{
+  "company": "Amazon",
+  "data": [
+    {
+      "role": "SDE-1",
+      "content": "Amazon SDE-1 Interview Pattern:\n\nFormat: 1 Online Assessment + 4 Onsite Rounds (2 Coding + 1 Behavioral + 1 Bar Raiser)\n\nKey Focus Areas:\n- Data Structures & Algorithms (Medium-Hard Leetcode)\n- Leadership Principles (LP) - Every behavioral answer must map to an LP\n- System Design basics for SDE-1\n\nMost Asked Leadership Principles:\n1. Customer Obsession - Tell me about a time you went above and beyond for a customer\n2. Ownership - Describe a situation where you took ownership of a project beyond your scope\n3. Have Backbone; Disagree and Commit - Tell me about a time you disagreed with your manager\n4. Dive Deep - Give an example where you had to dig into data to find a root cause\n5. Bias for Action - Tell me about a time you made a decision without all the information\n\nCommon Technical Questions:\n- LRU Cache implementation\n- Design a parking lot system\n- Two Sum / Three Sum variations\n- Graph traversal problems (BFS/DFS)\n- String manipulation with optimal complexity\n\nTips:\n- Always use STAR format for behavioral questions\n- Quantify results ('reduced latency by 40%' not 'improved performance')\n- Show you can write production-quality code, not just solve problems"
+    },
+    {
+      "role": "SDE-2",
+      "content": "Amazon SDE-2 Interview Pattern:\n\nFormat: 4-5 Onsite Rounds (2 Coding + 1 System Design + 1-2 Behavioral/Bar Raiser)\n\nKey Differences from SDE-1:\n- System Design round is mandatory and weighted heavily\n- Behavioral questions expect leadership and mentorship examples\n- Coding problems are medium-hard to hard\n\nSystem Design Topics:\n- Design URL shortener (like bit.ly)\n- Design a notification system\n- Design an e-commerce order processing system\n- Design a rate limiter\n\nExpected Leadership Principle depth:\n- Earn Trust - How do you build trust with cross-functional teams?\n- Deliver Results - Tell me about a time you delivered under tight deadlines\n- Invent and Simplify - How did you simplify a complex technical process?\n\nTips:\n- For System Design: always start with requirements gathering and capacity estimation\n- Show trade-off thinking: 'I chose X over Y because...'\n- Demonstrate mentorship experience"
+    }
+  ]
+}

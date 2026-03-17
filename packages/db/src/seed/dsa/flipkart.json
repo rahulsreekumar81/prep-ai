@@ -1,0 +1,213 @@
+{
+  "company": "Flipkart",
+  "questions": [
+    {
+      "title": "Maximum Subarray",
+      "content": "Given an integer array `nums`, find the subarray with the largest sum, and return its sum.\n\nA subarray is a contiguous non-empty sequence of elements within an array.\n\n**Example 1:**\n```\nInput: nums = [-2,1,-3,4,-1,2,1,-5,4]\nOutput: 6\nExplanation: The subarray [4,-1,2,1] has the largest sum 6.\n```\n\n**Example 2:**\n```\nInput: nums = [1]\nOutput: 1\nExplanation: The subarray [1] has the largest sum 1.\n```\n\n**Example 3:**\n```\nInput: nums = [5,4,-1,7,8]\nOutput: 23\nExplanation: The subarray [5,4,-1,7,8] has the largest sum 23.\n```\n\n**Constraints:**\n- 1 <= nums.length <= 10^5\n- -10^4 <= nums[i] <= 10^4\n\n**Follow up:** If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.",
+      "difficulty": "easy",
+      "topic": "arrays",
+      "starterCode": {
+        "cpp": "class Solution {\npublic:\n    int maxSubArray(vector<int>& nums) {\n        // Write your code here\n    }\n};",
+        "javascript": "/**\n * @param {number[]} nums\n * @return {number}\n */\nvar maxSubArray = function(nums) {\n    // Write your code here\n};",
+        "python": "class Solution:\n    def maxSubArray(self, nums: list[int]) -> int:\n        # Write your code here\n        pass",
+        "go": "func maxSubArray(nums []int) int {\n    // Write your code here\n}",
+        "java": "class Solution {\n    public int maxSubArray(int[] nums) {\n        // Write your code here\n    }\n}"
+      },
+      "testCases": [
+        {
+          "input": "[-2,1,-3,4,-1,2,1,-5,4]",
+          "expected": "6"
+        },
+        {
+          "input": "[1]",
+          "expected": "1"
+        },
+        {
+          "input": "[5,4,-1,7,8]",
+          "expected": "23"
+        }
+      ]
+    },
+    {
+      "title": "Sort Colors",
+      "content": "Given an array `nums` with `n` objects colored red, white, or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white, and blue.\n\nWe will use the integers `0`, `1`, and `2` to represent the color red, white, and blue, respectively.\n\nYou must solve this problem without using the library's sort function.\n\n**Example 1:**\n```\nInput: nums = [2,0,2,1,1,0]\nOutput: [0,0,1,1,2,2]\n```\n\n**Example 2:**\n```\nInput: nums = [2,0,1]\nOutput: [0,1,2]\n```\n\n**Constraints:**\n- n == nums.length\n- 1 <= n <= 300\n- nums[i] is either 0, 1, or 2.\n\n**Follow up:** Could you come up with a one-pass algorithm using only constant extra space? (Hint: Dutch National Flag algorithm)",
+      "difficulty": "medium",
+      "topic": "arrays",
+      "starterCode": {
+        "cpp": "class Solution {\npublic:\n    void sortColors(vector<int>& nums) {\n        // Write your code here\n    }\n};",
+        "javascript": "/**\n * @param {number[]} nums\n * @return {void} Do not return anything, modify nums in-place instead.\n */\nvar sortColors = function(nums) {\n    // Write your code here\n};",
+        "python": "class Solution:\n    def sortColors(self, nums: list[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        # Write your code here\n        pass",
+        "go": "func sortColors(nums []int) {\n    // Write your code here\n}",
+        "java": "class Solution {\n    public void sortColors(int[] nums) {\n        // Write your code here\n    }\n}"
+      },
+      "testCases": [
+        {
+          "input": "[2,0,2,1,1,0]",
+          "expected": "[0,0,1,1,2,2]"
+        },
+        {
+          "input": "[2,0,1]",
+          "expected": "[0,1,2]"
+        },
+        {
+          "input": "[0]",
+          "expected": "[0]"
+        }
+      ]
+    },
+    {
+      "title": "Next Permutation",
+      "content": "A permutation of an array of integers is an arrangement of its members into a sequence or linear order.\n\nThe next permutation of an array of integers is the next lexicographically greater permutation of its integer. More formally, if all the permutations of the array are sorted in one container according to their lexicographical order, then the next permutation of that array is the permutation that follows it in the sorted container. If such arrangement is not possible, the array must be rearranged as the lowest possible order (i.e., sorted in ascending order).\n\nFor example, the next permutation of `arr = [1,2,3]` is `[1,3,2]`.\nSimilarly, the next permutation of `arr = [2,3,1]` is `[3,1,2]`.\nWhile the next permutation of `arr = [3,2,1]` is `[1,2,3]` because `[3,2,1]` does not have a lexicographical larger rearrangement.\n\nGiven an array of integers `nums`, find the next permutation of `nums`.\n\nThe replacement must be in place and use only constant extra memory.\n\n**Example 1:**\n```\nInput: nums = [1,2,3]\nOutput: [1,3,2]\n```\n\n**Example 2:**\n```\nInput: nums = [3,2,1]\nOutput: [1,2,3]\n```\n\n**Example 3:**\n```\nInput: nums = [1,1,5]\nOutput: [1,5,1]\n```\n\n**Constraints:**\n- 1 <= nums.length <= 100\n- 0 <= nums[i] <= 100",
+      "difficulty": "medium",
+      "topic": "arrays",
+      "starterCode": {
+        "cpp": "class Solution {\npublic:\n    void nextPermutation(vector<int>& nums) {\n        // Write your code here\n    }\n};",
+        "javascript": "/**\n * @param {number[]} nums\n * @return {void} Do not return anything, modify nums in-place instead.\n */\nvar nextPermutation = function(nums) {\n    // Write your code here\n};",
+        "python": "class Solution:\n    def nextPermutation(self, nums: list[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        # Write your code here\n        pass",
+        "go": "func nextPermutation(nums []int) {\n    // Write your code here\n}",
+        "java": "class Solution {\n    public void nextPermutation(int[] nums) {\n        // Write your code here\n    }\n}"
+      },
+      "testCases": [
+        {
+          "input": "[1,2,3]",
+          "expected": "[1,3,2]"
+        },
+        {
+          "input": "[3,2,1]",
+          "expected": "[1,2,3]"
+        },
+        {
+          "input": "[1,1,5]",
+          "expected": "[1,5,1]"
+        }
+      ]
+    },
+    {
+      "title": "Kth Smallest Element in a BST",
+      "content": "Given the `root` of a binary search tree, and an integer `k`, return the `kth` smallest value (1-indexed) of all the values of the nodes in the tree.\n\n**Example 1:**\n```\nInput: root = [3,1,4,null,2], k = 1\n        3\n       / \\\n      1   4\n       \\\n        2\nOutput: 1\n```\n\n**Example 2:**\n```\nInput: root = [5,3,6,2,4,null,null,1], k = 3\n            5\n           / \\\n          3   6\n         / \\\n        2   4\n       /\n      1\nOutput: 3\n```\n\n**Constraints:**\n- The number of nodes in the tree is n.\n- 1 <= k <= n <= 10^4\n- 0 <= Node.val <= 10^4\n\n**Follow up:** If the BST is modified often (i.e., we can do insert and delete operations) and you need to find the kth smallest frequently, how would you optimize?",
+      "difficulty": "medium",
+      "topic": "trees",
+      "starterCode": {
+        "cpp": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n    int kthSmallest(TreeNode* root, int k) {\n        // Write your code here\n    }\n};",
+        "javascript": "/**\n * Definition for a binary tree node.\n * function TreeNode(val, left, right) {\n *     this.val = (val===undefined ? 0 : val)\n *     this.left = (left===undefined ? null : left)\n *     this.right = (right===undefined ? null : right)\n * }\n */\n/**\n * @param {TreeNode} root\n * @param {number} k\n * @return {number}\n */\nvar kthSmallest = function(root, k) {\n    // Write your code here\n};",
+        "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:\n        # Write your code here\n        pass",
+        "go": "/**\n * Definition for a binary tree node.\n * type TreeNode struct {\n *     Val int\n *     Left *TreeNode\n *     Right *TreeNode\n * }\n */\nfunc kthSmallest(root *TreeNode, k int) int {\n    // Write your code here\n}",
+        "java": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *     }\n * }\n */\nclass Solution {\n    public int kthSmallest(TreeNode root, int k) {\n        // Write your code here\n    }\n}"
+      },
+      "testCases": [
+        {
+          "input": "root = [3,1,4,null,2], k = 1",
+          "expected": "1"
+        },
+        {
+          "input": "root = [5,3,6,2,4,null,null,1], k = 3",
+          "expected": "3"
+        }
+      ]
+    },
+    {
+      "title": "Course Schedule",
+      "content": "There are a total of `numCourses` courses you have to take, labeled from `0` to `numCourses - 1`. You are given an array `prerequisites` where `prerequisites[i] = [ai, bi]` indicates that you must take course `bi` first if you want to take course `ai`.\n\nFor example, the pair `[0, 1]`, indicates that to take course `0` you have to first take course `1`.\n\nReturn `true` if you can finish all courses. Otherwise, return `false`.\n\n**Example 1:**\n```\nInput: numCourses = 2, prerequisites = [[1,0]]\nOutput: true\nExplanation: There are a total of 2 courses to take. To take course 1 you should have finished course 0. So it is possible.\n```\n\n**Example 2:**\n```\nInput: numCourses = 2, prerequisites = [[1,0],[0,1]]\nOutput: false\nExplanation: There are a total of 2 courses to take. To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible.\n```\n\n**Constraints:**\n- 1 <= numCourses <= 2000\n- 0 <= prerequisites.length <= 5000\n- prerequisites[i].length == 2\n- 0 <= ai, bi < numCourses\n- All the pairs prerequisites[i] are unique.",
+      "difficulty": "medium",
+      "topic": "graphs",
+      "starterCode": {
+        "cpp": "class Solution {\npublic:\n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n        // Write your code here\n    }\n};",
+        "javascript": "/**\n * @param {number} numCourses\n * @param {number[][]} prerequisites\n * @return {boolean}\n */\nvar canFinish = function(numCourses, prerequisites) {\n    // Write your code here\n};",
+        "python": "class Solution:\n    def canFinish(self, numCourses: int, prerequisites: list[list[int]]) -> bool:\n        # Write your code here\n        pass",
+        "go": "func canFinish(numCourses int, prerequisites [][]int) bool {\n    // Write your code here\n}",
+        "java": "class Solution {\n    public boolean canFinish(int numCourses, int[][] prerequisites) {\n        // Write your code here\n    }\n}"
+      },
+      "testCases": [
+        {
+          "input": "numCourses = 2, prerequisites = [[1,0]]",
+          "expected": "true"
+        },
+        {
+          "input": "numCourses = 2, prerequisites = [[1,0],[0,1]]",
+          "expected": "false"
+        },
+        {
+          "input": "numCourses = 4, prerequisites = [[1,0],[2,1],[3,2]]",
+          "expected": "true"
+        }
+      ]
+    },
+    {
+      "title": "Edit Distance",
+      "content": "Given two strings `word1` and `word2`, return the minimum number of operations required to convert `word1` to `word2`.\n\nYou have the following three operations permitted on a word:\n- Insert a character\n- Delete a character\n- Replace a character\n\n**Example 1:**\n```\nInput: word1 = \"horse\", word2 = \"ros\"\nOutput: 3\nExplanation:\nhorse -> rorse (replace 'h' with 'r')\nrorse -> rose (remove 'r')\nrose -> ros (remove 'e')\n```\n\n**Example 2:**\n```\nInput: word1 = \"intention\", word2 = \"execution\"\nOutput: 5\nExplanation:\nintention -> inention (remove 't')\ninention -> enention (replace 'i' with 'e')\nenention -> exention (replace 'n' with 'x')\nexention -> exection (replace 'n' with 'c')\nexection -> execution (insert 'u')\n```\n\n**Constraints:**\n- 0 <= word1.length, word2.length <= 500\n- word1 and word2 consist of lowercase English letters.",
+      "difficulty": "hard",
+      "topic": "dp",
+      "starterCode": {
+        "cpp": "class Solution {\npublic:\n    int minDistance(string word1, string word2) {\n        // Write your code here\n    }\n};",
+        "javascript": "/**\n * @param {string} word1\n * @param {string} word2\n * @return {number}\n */\nvar minDistance = function(word1, word2) {\n    // Write your code here\n};",
+        "python": "class Solution:\n    def minDistance(self, word1: str, word2: str) -> int:\n        # Write your code here\n        pass",
+        "go": "func minDistance(word1 string, word2 string) int {\n    // Write your code here\n}",
+        "java": "class Solution {\n    public int minDistance(String word1, String word2) {\n        // Write your code here\n    }\n}"
+      },
+      "testCases": [
+        {
+          "input": "word1 = \"horse\", word2 = \"ros\"",
+          "expected": "3"
+        },
+        {
+          "input": "word1 = \"intention\", word2 = \"execution\"",
+          "expected": "5"
+        },
+        {
+          "input": "word1 = \"\", word2 = \"abc\"",
+          "expected": "3"
+        }
+      ]
+    },
+    {
+      "title": "Largest Rectangle in Histogram",
+      "content": "Given an array of integers `heights` representing the histogram's bar height where the width of each bar is `1`, return the area of the largest rectangle in the histogram.\n\n**Example 1:**\n```\nInput: heights = [2,1,5,6,2,3]\nOutput: 10\nExplanation: The largest rectangle has an area of 10 units (formed by heights[2] and heights[3] with height 5 and width 2).\n\n  6\n  _\n 5| |\n _| |\n| | |   3\n| | | 2 _\n| | |_|_| |\n 2| | | | | |\n _| | | | | |\n| | | | | | |\n|_|_|_|_|_|_|\n```\n\n**Example 2:**\n```\nInput: heights = [2,4]\nOutput: 4\nExplanation: The largest rectangle has an area of 4 units (the bar at index 1 with height 4 and width 1).\n```\n\n**Constraints:**\n- 1 <= heights.length <= 10^5\n- 0 <= heights[i] <= 10^4\n\n**Hint:** Use a stack-based approach. Maintain a stack of indices of increasing heights. When a shorter bar is encountered, calculate areas for all taller bars in the stack.",
+      "difficulty": "hard",
+      "topic": "arrays",
+      "starterCode": {
+        "cpp": "class Solution {\npublic:\n    int largestRectangleArea(vector<int>& heights) {\n        // Write your code here\n    }\n};",
+        "javascript": "/**\n * @param {number[]} heights\n * @return {number}\n */\nvar largestRectangleArea = function(heights) {\n    // Write your code here\n};",
+        "python": "class Solution:\n    def largestRectangleArea(self, heights: list[int]) -> int:\n        # Write your code here\n        pass",
+        "go": "func largestRectangleArea(heights []int) int {\n    // Write your code here\n}",
+        "java": "class Solution {\n    public int largestRectangleArea(int[] heights) {\n        // Write your code here\n    }\n}"
+      },
+      "testCases": [
+        {
+          "input": "[2,1,5,6,2,3]",
+          "expected": "10"
+        },
+        {
+          "input": "[2,4]",
+          "expected": "4"
+        },
+        {
+          "input": "[1,1,1,1,1]",
+          "expected": "5"
+        }
+      ]
+    },
+    {
+      "title": "Design Twitter",
+      "content": "Design a simplified version of Twitter where users can post tweets, follow/unfollow another user, and is able to see the 10 most recent tweets in the user's news feed.\n\nImplement the `Twitter` class:\n\n- `Twitter()` Initializes your twitter object.\n- `void postTweet(int userId, int tweetId)` Composes a new tweet with ID `tweetId` by the user `userId`. Each call to this function will be made with a unique `tweetId`.\n- `List<Integer> getNewsFeed(int userId)` Retrieves the 10 most recent tweet IDs in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user themselves. Tweets must be ordered from most recent to least recent.\n- `void follow(int followerId, int followeeId)` The user with ID `followerId` started following the user with ID `followeeId`.\n- `void unfollow(int followerId, int followeeId)` The user with ID `followerId` started unfollowing the user with ID `followeeId`.\n\n**Example 1:**\n```\nInput\n[\"Twitter\", \"postTweet\", \"getNewsFeed\", \"follow\", \"getNewsFeed\", \"unfollow\", \"getNewsFeed\"]\n[[], [1, 5], [1], [1, 2], [1], [1, 2], [1]]\nOutput\n[null, null, [5], null, [5, 6], null, [5]]\n\nExplanation\nTwitter twitter = new Twitter();\ntwitter.postTweet(1, 5); // User 1 posts a new tweet (id = 5).\ntwitter.getNewsFeed(1);  // User 1's news feed should return a list with 1 tweet id -> [5]. return [5]\ntwitter.follow(1, 2);    // User 1 follows user 2.\ntwitter.getNewsFeed(1);  // User 1's news feed should return a list with 2 tweet ids -> [6, 5]. tweet id 6 should precede tweet id 5 because it is posted after tweet id 5.\ntwitter.unfollow(1, 2);  // User 1 unfollows user 2.\ntwitter.getNewsFeed(1);  // User 1's news feed should return a list with 1 tweet id -> [5], since user 1 is no longer following user 2.\n```\n\n**Constraints:**\n- 1 <= userId, followerId, followeeId <= 500\n- 0 <= tweetId <= 10^4\n- All the tweets have unique IDs.\n- At most 3 * 10^4 calls will be made to postTweet, getNewsFeed, follow, and unfollow.",
+      "difficulty": "medium",
+      "topic": "design",
+      "starterCode": {
+        "cpp": "class Twitter {\npublic:\n    Twitter() {\n        // Initialize your data structure here\n    }\n\n    void postTweet(int userId, int tweetId) {\n        // Write your code here\n    }\n\n    vector<int> getNewsFeed(int userId) {\n        // Write your code here\n    }\n\n    void follow(int followerId, int followeeId) {\n        // Write your code here\n    }\n\n    void unfollow(int followerId, int followeeId) {\n        // Write your code here\n    }\n};",
+        "javascript": "var Twitter = function() {\n    // Initialize your data structure here\n};\n\n/**\n * @param {number} userId\n * @param {number} tweetId\n * @return {void}\n */\nTwitter.prototype.postTweet = function(userId, tweetId) {\n    // Write your code here\n};\n\n/**\n * @param {number} userId\n * @return {number[]}\n */\nTwitter.prototype.getNewsFeed = function(userId) {\n    // Write your code here\n};\n\n/**\n * @param {number} followerId\n * @param {number} followeeId\n * @return {void}\n */\nTwitter.prototype.follow = function(followerId, followeeId) {\n    // Write your code here\n};\n\n/**\n * @param {number} followerId\n * @param {number} followeeId\n * @return {void}\n */\nTwitter.prototype.unfollow = function(followerId, followeeId) {\n    // Write your code here\n};",
+        "python": "class Twitter:\n\n    def __init__(self):\n        # Initialize your data structure here\n        pass\n\n    def postTweet(self, userId: int, tweetId: int) -> None:\n        # Write your code here\n        pass\n\n    def getNewsFeed(self, userId: int) -> list[int]:\n        # Write your code here\n        pass\n\n    def follow(self, followerId: int, followeeId: int) -> None:\n        # Write your code here\n        pass\n\n    def unfollow(self, followerId: int, followeeId: int) -> None:\n        # Write your code here\n        pass",
+        "go": "type Twitter struct {\n    // Define your data structure here\n}\n\nfunc Constructor() Twitter {\n    // Initialize your data structure here\n}\n\nfunc (this *Twitter) PostTweet(userId int, tweetId int) {\n    // Write your code here\n}\n\nfunc (this *Twitter) GetNewsFeed(userId int) []int {\n    // Write your code here\n}\n\nfunc (this *Twitter) Follow(followerId int, followeeId int) {\n    // Write your code here\n}\n\nfunc (this *Twitter) Unfollow(followerId int, followeeId int) {\n    // Write your code here\n}",
+        "java": "class Twitter {\n\n    public Twitter() {\n        // Initialize your data structure here\n    }\n\n    public void postTweet(int userId, int tweetId) {\n        // Write your code here\n    }\n\n    public List<Integer> getNewsFeed(int userId) {\n        // Write your code here\n    }\n\n    public void follow(int followerId, int followeeId) {\n        // Write your code here\n    }\n\n    public void unfollow(int followerId, int followeeId) {\n        // Write your code here\n    }\n}"
+      },
+      "testCases": [
+        {
+          "input": "[\"Twitter\",\"postTweet\",\"getNewsFeed\",\"follow\",\"getNewsFeed\",\"unfollow\",\"getNewsFeed\"]\n[[],[1,5],[1],[1,2],[1],[1,2],[1]]",
+          "expected": "[null,null,[5],null,[5,6],null,[5]]"
+        },
+        {
+          "input": "[\"Twitter\",\"postTweet\",\"postTweet\",\"getNewsFeed\"]\n[[],[1,1],[1,2],[1]]",
+          "expected": "[null,null,null,[2,1]]"
+        }
+      ]
+    }
+  ]
+}

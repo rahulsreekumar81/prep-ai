@@ -1,0 +1,9 @@
+{
+  "company": "Swiggy",
+  "data": [
+    {
+      "role": "SDE-1",
+      "content": "Swiggy SDE-1 Interview Pattern:\n\nFormat: 1 Online Assessment + 3 Rounds (1 DSA + 1 Machine Coding + 1 Cultural)\n\nKey Focus:\n- DSA: Leetcode Easy-Medium\n- Machine Coding: Build a feature from scratch in 60-90 mins (e.g., food ordering system, delivery allocation)\n- Clean code, extensible design, proper separation of concerns\n\nCommon Machine Coding Problems:\n- Design a food delivery cost calculator\n- Build a restaurant rating system\n- Implement a simple task queue\n- Design a coupon/discount engine\n\nCultural Questions:\n- Why Swiggy?\n- How do you handle ambiguous requirements?\n- Tell me about a production incident you handled\n- How do you prioritize tasks?\n\nTech Stack: Java, Kotlin, Go, React, PostgreSQL, Redis, Kafka\n\nTips:\n- Machine coding is the most important round\n- Use design patterns but don't over-engineer\n- Show you can write testable code\n- CTC range: 16-25 LPA for SDE-1"
+    }
+  ]
+}
