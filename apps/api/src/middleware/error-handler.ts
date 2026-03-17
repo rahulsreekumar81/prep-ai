@@ -1,10 +1,12 @@
 import type { ErrorHandler } from 'hono'
+import { HTTPException } from 'hono/http-exception'
 
 export const errorHandler: ErrorHandler = (err, c) => {
   console.error(`[ERROR] ${err.message}`, err.stack)
 
-  const status = 'status' in err ? (err.status as number) : 500
-  const message = status === 500 ? 'Internal server error' : err.message
+  if (err instanceof HTTPException) {
+    return c.json({ error: err.message }, err.status)
+  }
 
-  return c.json({ error: message }, status)
+  return c.json({ error: 'Internal server error' }, 500)
 }

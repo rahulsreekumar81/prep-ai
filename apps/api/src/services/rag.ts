@@ -1,31 +1,49 @@
-import { db } from '@prepai/db'
+import { ilike } from 'drizzle-orm'
+import { getDb } from '@prepai/db'
 import { companyData } from '@prepai/db/schema'
-import { sql } from 'drizzle-orm'
-import { generateEmbedding } from '../lib/ai-client'
 
 interface CompanyContextResult {
   content: string
   company: string
   role: string
-  similarity: number
 }
 
+/**
+ * Get company-specific interview context.
+ *
+ * MVP: Uses simple text matching on company name.
+ * Future: Switch to pgvector cosine similarity when embeddings are set up.
+ */
 export async function getCompanyContext(
   company: string,
   role: string,
 ): Promise<CompanyContextResult[]> {
-  const queryText = `${company} ${role} interview questions patterns`
-  const embedding = await generateEmbedding(queryText)
+  const db = getDb()
 
-  // pgvector cosine similarity search
-  const results = await db.execute(sql`
-    SELECT content, company, role,
-           1 - (embedding <=> ${JSON.stringify(embedding)}::vector) as similarity
-    FROM company_data
-    WHERE company ILIKE ${`%${company}%`}
-    ORDER BY embedding <=> ${JSON.stringify(embedding)}::vector
-    LIMIT 5
-  `)
+  try {
+    const results = await db
+      .select({
+        content: companyData.content,
+        company: companyData.company,
+        role: companyData.role,
+      })
+      .from(companyData)
+      .where(ilike(companyData.company, `%${company}%`))
+      .limit(5)
 
-  return results.rows as CompanyContextResult[]
+    // Prioritize matching roles if available
+    if (role && results.length > 1) {
+      const roleMatches = results.filter(
+        (r) =>
+          r.role.toLowerCase().includes(role.toLowerCase()) ||
+          role.toLowerCase().includes(r.role.toLowerCase()),
+      )
+      if (roleMatches.length > 0) return roleMatches
+    }
+
+    return results
+  } catch (err) {
+    console.warn('RAG query failed:', err)
+    return []
+  }
 }

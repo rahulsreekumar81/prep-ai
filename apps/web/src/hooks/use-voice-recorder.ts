@@ -10,13 +10,20 @@ export function useVoiceRecorder() {
   const startRecording = useCallback(async () => {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
 
-    const recorder = new MediaRecorder(stream, { mimeType: 'audio/webm' })
+    // Pick a supported audio format
+    const mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus')
+      ? 'audio/webm;codecs=opus'
+      : MediaRecorder.isTypeSupported('audio/webm')
+        ? 'audio/webm'
+        : 'audio/mp4'
+
+    const recorder = new MediaRecorder(stream, { mimeType })
     const chunks: Blob[] = []
 
     recorder.ondataavailable = (e) => chunks.push(e.data)
 
     recorder.onstop = () => {
-      const blob = new Blob(chunks, { type: 'audio/webm' })
+      const blob = new Blob(chunks, { type: recorder.mimeType })
       setAudioBlob(blob)
       stream.getTracks().forEach((track) => track.stop())
       if (timerRef.current) clearInterval(timerRef.current)

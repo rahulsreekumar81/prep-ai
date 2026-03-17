@@ -17,12 +17,20 @@ app.use(
   cors({
     origin: [process.env.WEB_URL || 'http://localhost:3000'],
     credentials: true,
+    allowHeaders: ['Content-Type', 'Authorization'],
+    allowMethods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   }),
 )
 app.onError(errorHandler)
 
 // Health check
-app.get('/health', (c) => c.json({ status: 'ok', timestamp: new Date().toISOString() }))
+app.get('/health', (c) =>
+  c.json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    version: '0.1.0',
+  }),
+)
 
 // Routes
 app.route('/api/auth', authRoutes)

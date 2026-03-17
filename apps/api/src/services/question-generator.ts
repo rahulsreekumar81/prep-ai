@@ -1,5 +1,5 @@
 import { generateText } from 'ai'
-import { groqClient } from '../lib/ai-client'
+import { getGroqProvider } from '../lib/ai-client'
 import { questionGenerationPrompt } from '../prompts/question-generation'
 
 interface GenerateQuestionsInput {
@@ -11,12 +11,13 @@ interface GenerateQuestionsInput {
 }
 
 export interface GeneratedQuestion {
-  id: string
   content: string
   type: 'technical' | 'behavioral' | 'system_design' | 'situational'
   difficulty: 'easy' | 'medium' | 'hard'
-  orderIndex: number
 }
+
+const VALID_TYPES = ['technical', 'behavioral', 'system_design', 'situational'] as const
+const VALID_DIFFICULTIES = ['easy', 'medium', 'hard'] as const
 
 export async function generateQuestions(
   input: GenerateQuestionsInput,
@@ -24,29 +25,44 @@ export async function generateQuestions(
   const prompt = questionGenerationPrompt(input)
 
   const { text } = await generateText({
-    model: groqClient('llama-3.1-70b-versatile'),
+    model: getGroqProvider()('llama-3.3-70b-versatile'),
     prompt,
     maxTokens: 2048,
+    temperature: 0.7,
   })
 
   try {
-    const parsed = JSON.parse(text)
-    return parsed.questions.map((q: any, i: number) => ({
-      id: `q_${Date.now()}_${i}`,
-      content: q.content,
-      type: q.type || 'technical',
-      difficulty: q.difficulty || 'medium',
-      orderIndex: i + 1,
+    // Try to extract JSON from the response (handles markdown code blocks)
+    const jsonMatch = text.match(/\{[\s\S]*\}/)
+    if (!jsonMatch) throw new Error('No JSON found')
+
+    const parsed = JSON.parse(jsonMatch[0])
+    const rawQuestions = parsed.questions || parsed
+
+    if (!Array.isArray(rawQuestions)) throw new Error('Questions is not an array')
+
+    return rawQuestions.slice(0, 7).map((q: any) => ({
+      content: String(q.content || q.question || q.text || ''),
+      type: VALID_TYPES.includes(q.type) ? q.type : 'technical',
+      difficulty: VALID_DIFFICULTIES.includes(q.difficulty) ? q.difficulty : 'medium',
     }))
-  } catch {
-    // Fallback: if JSON parsing fails, return raw questions
-    const lines = text.split('\n').filter((l) => l.trim())
-    return lines.slice(0, 10).map((line, i) => ({
-      id: `q_${Date.now()}_${i}`,
-      content: line.replace(/^\d+\.\s*/, ''),
+  } catch (err) {
+    console.warn('Failed to parse AI response as JSON, extracting questions from text:', err)
+
+    // Fallback: extract numbered questions from text
+    const lines = text
+      .split('\n')
+      .map((l) => l.trim())
+      .filter((l) => /^\d+[\.\)]\s/.test(l))
+
+    if (lines.length === 0) {
+      throw new Error('Failed to generate questions. AI response was not in expected format.')
+    }
+
+    return lines.slice(0, 7).map((line) => ({
+      content: line.replace(/^\d+[\.\)]\s*/, ''),
       type: 'technical' as const,
       difficulty: 'medium' as const,
-      orderIndex: i + 1,
     }))
   }
 }

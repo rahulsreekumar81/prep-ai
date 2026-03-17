@@ -28,6 +28,7 @@ export const questionTypeEnum = pgEnum('question_type', [
   'behavioral',
   'system_design',
   'situational',
+  'dsa',
 ])
 export const difficultyEnum = pgEnum('difficulty', ['easy', 'medium', 'hard'])
 
@@ -80,6 +81,11 @@ export const questions = pgTable('questions', {
   type: questionTypeEnum('type').notNull(),
   difficulty: difficultyEnum('difficulty').default('medium').notNull(),
   orderIndex: integer('order_index').notNull(),
+  metadata: jsonb('metadata').$type<{
+    title?: string
+    starterCode?: Record<string, string>
+    testCases?: Array<{ input: string; expected: string }>
+  }>(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 })
 
@@ -98,6 +104,20 @@ export const evaluations = pgTable('evaluations', {
   feedback: text('feedback').notNull(),
   sampleAnswer: text('sample_answer').notNull(),
   tips: jsonb('tips').$type<string[]>().default([]),
+  codeAnswer: text('code_answer'),
+  language: text('language'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+})
+
+export const dsaQuestionBank = pgTable('dsa_question_bank', {
+  id: text('id').primaryKey(),
+  company: text('company').notNull(),
+  title: text('title').notNull(),
+  content: text('content').notNull(),
+  difficulty: difficultyEnum('difficulty').default('medium').notNull(),
+  topic: text('topic').notNull(),
+  starterCode: jsonb('starter_code').$type<Record<string, string>>().notNull(),
+  testCases: jsonb('test_cases').$type<Array<{ input: string; expected: string }>>().notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 })
 

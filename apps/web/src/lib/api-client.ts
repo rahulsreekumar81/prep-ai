@@ -1,81 +1,130 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
 
-async function request<T>(path: string, options?: RequestInit): Promise<T> {
-  const res = await fetch(`${API_URL}${path}`, {
-    ...options,
-    headers: {
-      'Content-Type': 'application/json',
-      ...options?.headers,
-    },
-    credentials: 'include',
-  })
+class ApiError extends Error {
+  status: number
+  constructor(message: string, status: number) {
+    super(message)
+    this.status = status
+  }
+}
 
-  if (!res.ok) {
-    const error = await res.json().catch(() => ({ error: 'Request failed' }))
-    throw new Error(error.error || 'Request failed')
+async function request<T>(path: string, options?: RequestInit & { token?: string }): Promise<T> {
+  const { token, ...fetchOptions } = options || {}
+
+  const headers: Record<string, string> = {
+    ...((fetchOptions.headers as Record<string, string>) || {}),
   }
 
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`
+  }
+
+  // Only set Content-Type for non-FormData requests
+  if (!(fetchOptions.body instanceof FormData)) {
+    headers['Content-Type'] = 'application/json'
+  }
+
+  const res = await fetch(`${API_URL}${path}`, {
+    ...fetchOptions,
+    headers,
+  })
+
   const json = await res.json()
+
+  if (!res.ok) {
+    throw new ApiError(json.error || 'Request failed', res.status)
+  }
+
   return json.data
 }
 
 export const api = {
-  // Auth
-  signup: (data: { email: string; password: string; name: string }) =>
-    request('/api/auth/signup', { method: 'POST', body: JSON.stringify(data) }),
+  auth: {
+    signup: (data: { email: string; password: string; name: string }) =>
+      request<{ token: string; user: any }>('/api/auth/signup', {
+        method: 'POST',
+        body: JSON.stringify(data),
+      }),
 
-  login: (data: { email: string; password: string }) =>
-    request('/api/auth/login', { method: 'POST', body: JSON.stringify(data) }),
+    login: (data: { email: string; password: string }) =>
+      request<{ token: string; user: any }>('/api/auth/login', {
+        method: 'POST',
+        body: JSON.stringify(data),
+      }),
 
-  me: () => request('/api/auth/me'),
-
-  // Resume
-  uploadResume: async (file: File) => {
-    const formData = new FormData()
-    formData.append('file', file)
-    const res = await fetch(`${API_URL}/api/interviews/upload-resume`, {
-      method: 'POST',
-      body: formData,
-      credentials: 'include',
-    })
-    const json = await res.json()
-    return json.data
+    me: (token: string) => request<{ user: any }>('/api/auth/me', { token }),
   },
 
-  // Interview
-  startInterview: (data: {
-    resumeText: string
-    jobDescription: string
-    companyName?: string
-    roleTitle?: string
-  }) => request('/api/interviews', { method: 'POST', body: JSON.stringify(data) }),
+  interviews: {
+    create: (
+      token: string,
+      data: {
+        resumeText: string
+        jobDescription: string
+        companyName?: string
+        roleTitle?: string
+      },
+    ) =>
+      request<any>('/api/interviews', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        token,
+      }),
 
-  getInterviews: () => request('/api/interviews'),
+    list: (token: string) => request<{ interviews: any[] }>('/api/interviews', { token }),
 
-  getInterview: (id: string) => request(`/api/interviews/${id}`),
+    get: (token: string, id: string) => request<any>(`/api/interviews/${id}`, { token }),
 
-  // Audio transcription
-  transcribeAudio: async (audioBlob: Blob) => {
-    const formData = new FormData()
-    formData.append('audio', audioBlob, 'recording.webm')
-    const res = await fetch(`${API_URL}/api/interviews/temp/questions/temp/audio`, {
-      method: 'POST',
-      body: formData,
-      credentials: 'include',
-    })
-    const json = await res.json()
-    return json.data
+    uploadResume: async (token: string, file: File) => {
+      const formData = new FormData()
+      formData.append('file', file)
+      return request<{ id: string; text: string; pages: number }>(
+        '/api/interviews/upload-resume',
+        {
+          method: 'POST',
+          body: formData,
+          token,
+        },
+      )
+    },
+
+    transcribe: async (token: string, interviewId: string, audioBlob: Blob) => {
+      const formData = new FormData()
+      formData.append('audio', audioBlob, 'recording.webm')
+      return request<{ transcript: string }>(`/api/interviews/${interviewId}/transcribe`, {
+        method: 'POST',
+        body: formData,
+        token,
+      })
+    },
+
+    complete: (token: string, id: string) =>
+      request<any>(`/api/interviews/${id}/complete`, { method: 'POST', token }),
   },
 
-  // Evaluation
-  evaluateAnswer: (data: {
-    question: string
-    answer: string
-    jobDescription: string
-    companyName?: string
-  }) => request('/api/evaluations', { method: 'POST', body: JSON.stringify(data) }),
+  evaluations: {
+    submit: (
+      token: string,
+      data: {
+        questionId: string
+        interviewId: string
+        answer: string
+        codeAnswer?: string
+        language?: string
+      },
+    ) =>
+      request<any>('/api/evaluations', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        token,
+      }),
 
-  // Dashboard
-  getDashboard: () => request('/api/users/dashboard'),
-  getProgress: () => request('/api/users/progress'),
+    getSummary: (token: string, interviewId: string) =>
+      request<any>(`/api/evaluations/interview/${interviewId}`, { token }),
+  },
+
+  users: {
+    dashboard: (token: string) => request<any>('/api/users/dashboard', { token }),
+    progress: (token: string) => request<any>('/api/users/progress', { token }),
+  },
 }
