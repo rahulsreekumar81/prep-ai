@@ -4,9 +4,7 @@ import { useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   Select,
   SelectContent,
@@ -42,12 +40,7 @@ export default function NewInterviewPage() {
     async (files: File[]) => {
       if (!token || files.length === 0) return
       const file = files[0]
-
-      if (file.type !== 'application/pdf') {
-        toast.error('Please upload a PDF file')
-        return
-      }
-
+      if (file.type !== 'application/pdf') { toast.error('Please upload a PDF file'); return }
       setUploading(true)
       try {
         const result = await api.interviews.uploadResume(token, file)
@@ -74,15 +67,8 @@ export default function NewInterviewPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!token) return
-
-    if (!resumeText.trim()) {
-      toast.error('Please upload your resume or paste the text')
-      return
-    }
-    if (!jobDescription.trim()) {
-      toast.error('Please paste the job description')
-      return
-    }
+    if (!resumeText.trim()) { toast.error('Please upload your resume or paste the text'); return }
+    if (!jobDescription.trim()) { toast.error('Please paste the job description'); return }
 
     setLoading(true)
     try {
@@ -101,150 +87,134 @@ export default function NewInterviewPage() {
   }
 
   if (!_hasHydrated) return null
-  if (!token) {
-    router.push('/auth/login')
-    return null
-  }
+  if (!token) { router.push('/auth/login'); return null }
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight">New mock interview</h1>
-        <p className="text-sm text-muted-foreground">
-          Upload your resume and paste the job description to get started.
+        <p className="text-[11px] font-semibold uppercase tracking-widest text-[#60A5FA] mb-1">
+          Quick Interview
+        </p>
+        <h1 className="text-2xl font-bold text-white">New Mock Interview</h1>
+        <p className="text-sm text-[#64748B] mt-1">
+          Upload your resume and job description to get tailored questions.
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-4">
         {/* Resume Upload */}
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Resume</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {resumeFile ? (
-              <div className="flex items-center justify-between rounded-md border px-4 py-3">
-                <div className="flex items-center gap-2">
-                  <FileText className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm">{resumeFile}</span>
-                </div>
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="icon"
-                  className="h-8 w-8"
-                  onClick={() => {
-                    setResumeFile(null)
-                    setResumeText('')
-                  }}
-                >
-                  <X className="h-4 w-4" />
-                </Button>
+        <div className="rounded-xl border border-[#1E2535] bg-[#161B26] p-5 space-y-3">
+          <p className="text-sm font-semibold text-white">Resume</p>
+
+          {resumeFile ? (
+            <div className="flex items-center justify-between rounded-xl border border-[#1E2535] bg-[#0F1219] px-4 py-3">
+              <div className="flex items-center gap-2">
+                <FileText className="h-4 w-4 text-[#60A5FA]" />
+                <span className="text-sm text-white">{resumeFile}</span>
               </div>
-            ) : (
-              <div
-                {...getRootProps()}
-                onClick={open}
-                className={`flex cursor-pointer flex-col items-center justify-center rounded-md border border-dashed px-6 py-10 transition-colors ${
-                  isDragActive ? 'border-primary bg-muted/50' : 'hover:bg-muted/50'
-                }`}
+              <button
+                type="button"
+                className="text-[#64748B] hover:text-white transition-colors"
+                onClick={() => { setResumeFile(null); setResumeText('') }}
               >
-                <input {...getInputProps()} />
-                {uploading ? (
-                  <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
-                ) : (
-                  <>
-                    <Upload className="mb-2 h-6 w-6 text-muted-foreground" />
-                    <p className="text-sm text-muted-foreground">
-                      Drop your PDF here or click to browse
-                    </p>
-                    <p className="mt-1 text-xs text-muted-foreground">Max 5MB</p>
-                  </>
-                )}
-              </div>
-            )}
-
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t" />
-              </div>
-              <div className="relative flex justify-center text-xs">
-                <span className="bg-card px-2 text-muted-foreground">or paste text</span>
-              </div>
+                <X className="h-4 w-4" />
+              </button>
             </div>
+          ) : (
+            <div
+              {...getRootProps()}
+              onClick={open}
+              className={`flex cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed px-6 py-10 transition-colors ${
+                isDragActive
+                  ? 'border-[#2563EB] bg-[#172554]/20'
+                  : 'border-[#1E2535] hover:border-[#2563EB]/40 hover:bg-[#172554]/10'
+              }`}
+            >
+              <input {...getInputProps()} />
+              {uploading ? (
+                <Loader2 className="h-6 w-6 animate-spin text-[#2563EB]" />
+              ) : (
+                <>
+                  <Upload className="mb-2 h-6 w-6 text-[#64748B]" />
+                  <p className="text-sm text-[#94A3B8]">Drop your PDF here or click to browse</p>
+                  <p className="mt-1 text-xs text-[#64748B]">Max 5MB</p>
+                </>
+              )}
+            </div>
+          )}
 
-            <Textarea
-              placeholder="Paste your resume content here..."
-              rows={4}
-              value={resumeText}
-              onChange={(e) => setResumeText(e.target.value)}
-              className="resize-none text-sm"
-            />
-          </CardContent>
-        </Card>
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t border-[#1E2535]" />
+            </div>
+            <div className="relative flex justify-center text-xs">
+              <span className="bg-[#161B26] px-2 text-[#64748B]">or paste text</span>
+            </div>
+          </div>
+
+          <Textarea
+            placeholder="Paste your resume content here..."
+            rows={4}
+            value={resumeText}
+            onChange={(e) => setResumeText(e.target.value)}
+            className="resize-none bg-[#0F1219] border-[#1E2535] text-sm text-white placeholder:text-[#334155] focus:border-[#2563EB]"
+          />
+        </div>
 
         {/* Job Description */}
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Job description</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Textarea
-              placeholder="Paste the job description here..."
-              rows={6}
-              value={jobDescription}
-              onChange={(e) => setJobDescription(e.target.value)}
-              required
-              className="resize-none text-sm"
-            />
-          </CardContent>
-        </Card>
+        <div className="rounded-xl border border-[#1E2535] bg-[#161B26] p-5 space-y-3">
+          <p className="text-sm font-semibold text-white">Job Description</p>
+          <Textarea
+            placeholder="Paste the job description here..."
+            rows={6}
+            value={jobDescription}
+            onChange={(e) => setJobDescription(e.target.value)}
+            required
+            className="resize-none bg-[#0F1219] border-[#1E2535] text-sm text-white placeholder:text-[#334155] focus:border-[#2563EB]"
+          />
+        </div>
 
         {/* Company & Role */}
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Target company & role</CardTitle>
-          </CardHeader>
-          <CardContent className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div className="space-y-2">
-              <Label htmlFor="company" className="text-xs">
-                Company (optional)
-              </Label>
+        <div className="rounded-xl border border-[#1E2535] bg-[#161B26] p-5 space-y-3">
+          <p className="text-sm font-semibold text-white">Target Company & Role <span className="text-[#64748B] font-normal">(optional)</span></p>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs text-[#94A3B8] mb-1.5">Company</label>
               <Select value={companyName} onValueChange={setCompanyName}>
-                <SelectTrigger>
+                <SelectTrigger className="bg-[#0F1219] border-[#1E2535] text-[#94A3B8] focus:border-[#2563EB]">
                   <SelectValue placeholder="Select company" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-[#1E2640] border-[#1E2535] text-white">
                   {COMPANIES.map((c) => (
-                    <SelectItem key={c} value={c}>
-                      {c}
-                    </SelectItem>
+                    <SelectItem key={c} value={c}>{c}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="role" className="text-xs">
-                Role (optional)
-              </Label>
+            <div>
+              <label className="block text-xs text-[#94A3B8] mb-1.5">Role</label>
               <Input
-                id="role"
                 placeholder="e.g. SDE-1, Frontend Engineer"
                 value={roleTitle}
                 onChange={(e) => setRoleTitle(e.target.value)}
+                className="bg-[#0F1219] border-[#1E2535] text-white placeholder:text-[#334155] focus:border-[#2563EB]"
               />
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
-        <Button type="submit" className="w-full" disabled={loading}>
+        <Button
+          type="submit"
+          disabled={loading}
+          className="w-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-semibold py-2.5"
+        >
           {loading ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               Generating questions...
             </>
           ) : (
-            'Start Interview'
+            'Start Interview →'
           )}
         </Button>
       </form>

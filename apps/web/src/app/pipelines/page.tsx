@@ -3,11 +3,10 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { Badge } from '@/components/ui/badge'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useAuth } from '@/lib/store'
 import { api } from '@/lib/api-client'
+import { ChevronRight } from 'lucide-react'
 
 interface Pipeline {
   id: string
@@ -23,15 +22,6 @@ interface Pipeline {
   }>
 }
 
-const ROUND_TYPE_COLORS: Record<string, string> = {
-  oa: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400',
-  coding: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
-  phone_screen: 'bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-400',
-  system_design: 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400',
-  behavioral: 'bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400',
-  mixed: 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-400',
-}
-
 const ROUND_TYPE_LABELS: Record<string, string> = {
   oa: 'OA',
   coding: 'Coding',
@@ -41,55 +31,82 @@ const ROUND_TYPE_LABELS: Record<string, string> = {
   mixed: 'Mixed',
 }
 
-const COMPANY_COLORS: Record<string, string> = {
-  Google: 'bg-blue-500',
-  Amazon: 'bg-orange-500',
-  Meta: 'bg-blue-600',
-  Microsoft: 'bg-green-600',
-  Flipkart: 'bg-yellow-500',
-  Razorpay: 'bg-indigo-500',
+const BADGE_STYLES: Record<string, string> = {
+  oa: 'bg-[#3B82F6]/15 text-[#93C5FD]',
+  coding: 'bg-[#10B981]/15 text-[#6EE7B7]',
+  phone_screen: 'bg-[#06B6D4]/15 text-[#67E8F9]',
+  system_design: 'bg-[#8B5CF6]/15 text-[#C4B5FD]',
+  behavioral: 'bg-[#F97316]/15 text-[#FDBA74]',
+  mixed: 'bg-[#64748B]/15 text-[#94A3B8]',
 }
 
-function RoundBadge({ type }: { type: string }) {
-  return (
-    <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${ROUND_TYPE_COLORS[type] || ROUND_TYPE_COLORS.mixed}`}>
-      {ROUND_TYPE_LABELS[type] || type}
-    </span>
-  )
+const COMPANY_COLORS: Record<string, string> = {
+  Google: 'bg-[#4285F4]',
+  Amazon: 'bg-[#FF9900]',
+  Meta: 'bg-[#0668E1]',
+  Microsoft: 'bg-[#7FBA00]',
+  Flipkart: 'bg-[#2874F0]',
+  Razorpay: 'bg-[#3395FF]',
+  Netflix: 'bg-[#E50914]',
+  Apple: 'bg-[#555555]',
+}
+
+const COMPANY_GRADIENTS: Record<string, string> = {
+  Google: 'from-[#4285F4]/10 to-transparent',
+  Amazon: 'from-[#FF9900]/10 to-transparent',
+  Meta: 'from-[#0668E1]/10 to-transparent',
+  Microsoft: 'from-[#7FBA00]/10 to-transparent',
+  Flipkart: 'from-[#2874F0]/10 to-transparent',
+  Razorpay: 'from-[#3395FF]/10 to-transparent',
+  Netflix: 'from-[#E50914]/10 to-transparent',
+  Apple: 'from-[#555555]/10 to-transparent',
 }
 
 function PipelineCard({ pipeline }: { pipeline: Pipeline }) {
-  const color = COMPANY_COLORS[pipeline.company] || 'bg-gray-500'
+  const colorClass = COMPANY_COLORS[pipeline.company] || 'bg-[#2563EB]'
+  const gradientClass = COMPANY_GRADIENTS[pipeline.company] || 'from-[#2563EB]/10 to-transparent'
   const totalMinutes = pipeline.rounds.reduce((sum, r) => sum + r.durationMinutes, 0)
   const hours = Math.floor(totalMinutes / 60)
-  const minutes = totalMinutes % 60
-  const durationLabel = hours > 0 ? `~${hours}h ${minutes > 0 ? `${minutes}m` : ''}` : `~${minutes}m`
+  const mins = totalMinutes % 60
+  const durationLabel = hours > 0 ? `~${hours}h ${mins > 0 ? `${mins}m` : ''}` : `~${mins}m`
 
   return (
     <Link href={`/pipelines/${encodeURIComponent(pipeline.company)}`}>
-      <Card className="group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-md">
-        <CardHeader className="pb-3">
+      <div
+        className={`group relative overflow-hidden rounded-xl border border-[#1E2535] bg-gradient-to-br ${gradientClass} bg-[#161B26] p-5 transition-all cursor-pointer hover:border-[#2563EB]/40 hover:shadow-[0_0_16px_rgba(37,99,235,0.12)]`}
+      >
+        <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
-            <div className={`flex h-10 w-10 items-center justify-center rounded-full text-white font-bold text-lg ${color}`}>
+            <div
+              className={`flex h-12 w-12 items-center justify-center rounded-xl ${colorClass} text-lg font-bold text-white shadow-lg`}
+            >
               {pipeline.company[0]}
             </div>
             <div>
-              <p className="font-semibold leading-tight">{pipeline.company}</p>
-              <p className="text-xs text-muted-foreground">{pipeline.role}</p>
+              <p className="font-semibold text-white">{pipeline.company}</p>
+              <p className="text-xs text-[#64748B] mt-0.5">{pipeline.role}</p>
             </div>
           </div>
-        </CardHeader>
-        <CardContent className="space-y-3">
-          <p className="text-xs text-muted-foreground">
-            {pipeline.totalRounds} rounds · {durationLabel} total
-          </p>
-          <div className="flex flex-wrap gap-1">
-            {pipeline.rounds.map((r) => (
-              <RoundBadge key={r.id} type={r.roundType} />
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+          <ChevronRight className="h-4 w-4 text-[#64748B] opacity-0 transition-opacity group-hover:opacity-100" />
+        </div>
+
+        <div className="mt-4 flex items-center gap-2 text-xs text-[#64748B]">
+          <span>{pipeline.totalRounds} rounds</span>
+          <span>·</span>
+          <span>{durationLabel} total</span>
+        </div>
+
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          {pipeline.rounds.map((r) => (
+            <span
+              key={r.id}
+              className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${BADGE_STYLES[r.roundType] || BADGE_STYLES.mixed}`}
+            >
+              {ROUND_TYPE_LABELS[r.roundType] || r.roundType}
+            </span>
+          ))}
+        </div>
+      </div>
     </Link>
   )
 }
@@ -117,40 +134,52 @@ export default function PipelinesPage() {
 
   return (
     <div className="space-y-8">
+      {/* Header */}
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Choose Your Interview</h1>
-        <p className="text-sm text-muted-foreground">
-          Select a company to start their real hiring pipeline
+        <p className="text-[11px] font-semibold uppercase tracking-widest text-[#60A5FA] mb-2">
+          Interview Prep
+        </p>
+        <h1 className="text-[48px] font-extrabold leading-none tracking-tight text-white">
+          Choose Your Interview
+        </h1>
+        <p className="mt-3 text-base text-[#94A3B8]">
+          Experience the exact hiring process for your dream company
         </p>
       </div>
 
       {loading ? (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {[1, 2, 3].map((i) => (
-            <Card key={i}>
-              <CardHeader>
-                <Skeleton className="h-10 w-10 rounded-full" />
-                <Skeleton className="mt-2 h-4 w-32" />
-              </CardHeader>
-              <CardContent>
-                <Skeleton className="h-4 w-full" />
-              </CardContent>
-            </Card>
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <div key={i} className="rounded-xl border border-[#1E2535] bg-[#161B26] p-5 space-y-3">
+              <div className="flex items-center gap-3">
+                <Skeleton className="h-12 w-12 rounded-xl bg-[#1E2535]" />
+                <div className="space-y-1.5">
+                  <Skeleton className="h-4 w-20 bg-[#1E2535]" />
+                  <Skeleton className="h-3 w-28 bg-[#1E2535]" />
+                </div>
+              </div>
+              <Skeleton className="h-3 w-24 bg-[#1E2535]" />
+              <div className="flex gap-1.5">
+                <Skeleton className="h-5 w-12 rounded-full bg-[#1E2535]" />
+                <Skeleton className="h-5 w-16 rounded-full bg-[#1E2535]" />
+                <Skeleton className="h-5 w-12 rounded-full bg-[#1E2535]" />
+              </div>
+            </div>
           ))}
         </div>
       ) : pipelines.length === 0 ? (
-        <div className="rounded-lg border border-dashed p-12 text-center">
-          <p className="text-sm text-muted-foreground">No pipelines available yet.</p>
+        <div className="rounded-xl border border-dashed border-[#1E2535] p-16 text-center">
+          <p className="text-sm text-[#64748B]">No pipelines available yet.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
           {pipelines.map((p) => (
             <PipelineCard key={p.id} pipeline={p} />
           ))}
         </div>
       )}
 
-      <p className="text-xs text-muted-foreground text-center">
+      <p className="text-center text-xs text-[#334155]">
         More companies coming soon — Amazon, Meta, Microsoft pipelines launching next
       </p>
     </div>

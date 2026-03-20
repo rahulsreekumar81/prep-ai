@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
-import { SendHorizonal, Bot } from 'lucide-react'
+import { SendHorizonal, Zap } from 'lucide-react'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
 
@@ -66,20 +66,17 @@ export function AiChat({
 
       setIsStreaming(true)
 
-      // Add candidate message if there's text
       const newMessages: Message[] = [...messages]
       if (userMessage) {
-        const candidateMsg: Message = {
+        newMessages.push({
           role: 'candidate',
           content: userMessage,
           timestamp: new Date().toISOString(),
-        }
-        newMessages.push(candidateMsg)
+        })
         setMessages(newMessages)
       }
       setInput('')
 
-      // Add placeholder for streaming response
       const placeholderMsg: Message = {
         role: 'interviewer',
         content: '',
@@ -103,13 +100,12 @@ export function AiChat({
         if (!res.ok) {
           const err = await res.json()
           if (err.status === 'throttled' || err.status === 'limit_reached') {
-            setMessages(newMessages) // remove placeholder
+            setMessages(newMessages)
             return
           }
           throw new Error(err.error || 'AI interaction failed')
         }
 
-        // Stream the response
         const reader = res.body?.getReader()
         const decoder = new TextDecoder()
         let fullText = ''
@@ -118,13 +114,10 @@ export function AiChat({
           while (true) {
             const { done, value } = await reader.read()
             if (done) break
-
             const chunk = decoder.decode(value, { stream: true })
-            // Parse SSE data chunks
             const lines = chunk.split('\n')
             for (const line of lines) {
               if (line.startsWith('0:')) {
-                // Vercel AI SDK data stream format: 0:"text chunk"
                 try {
                   const textChunk = JSON.parse(line.slice(2))
                   fullText += textChunk
@@ -137,9 +130,7 @@ export function AiChat({
                     }
                     return updated
                   })
-                } catch {
-                  // skip malformed chunks
-                }
+                } catch { /* skip malformed chunks */ }
               }
             }
           }
@@ -147,7 +138,6 @@ export function AiChat({
 
         setInteractionCount((prev) => prev + 1)
       } catch (err) {
-        // Remove placeholder on error
         setMessages(newMessages)
         console.error('AI interaction error:', err)
       } finally {
@@ -158,9 +148,7 @@ export function AiChat({
   )
 
   const handleSend = () => {
-    if (input.trim()) {
-      sendInteraction(input.trim())
-    }
+    if (input.trim()) sendInteraction(input.trim())
   }
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -173,17 +161,19 @@ export function AiChat({
   const remaining = maxInteractions - interactionCount
 
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex h-full flex-col bg-[#141720]">
       {/* Header */}
-      <div className="flex items-center justify-between border-b px-4 py-3">
+      <div className="flex items-center justify-between border-b border-[#1E2535] px-4 py-3">
         <div className="flex items-center gap-2">
-          <Bot className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm font-medium">AI Interviewer</span>
-          <span className="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">
+          <div className="flex h-6 w-6 items-center justify-center rounded bg-[#2563EB]">
+            <Zap className="h-3 w-3 text-white" />
+          </div>
+          <span className="text-sm font-semibold text-white">AI Interviewer</span>
+          <span className="rounded-full bg-[#172554] px-2 py-0.5 text-[11px] font-medium text-[#60A5FA]">
             {company}
           </span>
         </div>
-        <span className="text-xs text-muted-foreground">
+        <span className="text-[11px] text-[#64748B] font-mono">
           {interactionCount}/{maxInteractions}
         </span>
       </div>
@@ -193,14 +183,14 @@ export function AiChat({
         {messages.map((msg, i) => (
           <div key={i} className={`flex ${msg.role === 'candidate' ? 'justify-end' : 'justify-start'}`}>
             <div
-              className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm leading-relaxed ${
+              className={`max-w-[88%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
                 msg.role === 'candidate'
-                  ? 'bg-primary text-primary-foreground rounded-br-sm'
-                  : 'bg-muted text-foreground rounded-bl-sm'
+                  ? 'bg-[#2563EB] text-white rounded-br-sm'
+                  : 'bg-[#1C2235] text-[#E2E8F0] rounded-bl-sm'
               }`}
             >
               {msg.content || (
-                <span className="flex gap-1 items-center text-muted-foreground text-xs">
+                <span className="flex gap-1 items-center text-xs opacity-50">
                   <span className="animate-bounce">●</span>
                   <span className="animate-bounce [animation-delay:0.1s]">●</span>
                   <span className="animate-bounce [animation-delay:0.2s]">●</span>
@@ -209,36 +199,22 @@ export function AiChat({
             </div>
           </div>
         ))}
-
-        {isStreaming && messages[messages.length - 1]?.content === '' && (
-          <div className="flex justify-start">
-            <div className="bg-muted rounded-2xl rounded-bl-sm px-3 py-2">
-              <span className="flex gap-1 items-center text-xs text-muted-foreground">
-                <span className="animate-bounce">●</span>
-                <span className="animate-bounce [animation-delay:0.1s]">●</span>
-                <span className="animate-bounce [animation-delay:0.2s]">●</span>
-              </span>
-            </div>
-          </div>
-        )}
       </div>
 
       {/* Input */}
-      <div className="border-t p-3 space-y-2">
+      <div className="border-t border-[#1E2535] p-3 space-y-2">
         {remaining <= 5 && remaining > 0 && (
-          <p className="text-xs text-muted-foreground text-center">
+          <p className="text-[11px] text-[#F59E0B] text-center font-medium">
             {remaining} interaction{remaining !== 1 ? 's' : ''} remaining
           </p>
         )}
         {remaining === 0 && (
-          <p className="text-xs text-muted-foreground text-center">
-            Maximum interactions reached
-          </p>
+          <p className="text-[11px] text-[#64748B] text-center">Maximum interactions reached</p>
         )}
         <div className="flex gap-2">
           <input
             ref={inputRef}
-            className="flex-1 rounded-md border bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+            className="flex-1 rounded-xl border border-[#1E2535] bg-[#0F1219] px-3 py-2 text-sm text-white placeholder:text-[#334155] focus:outline-none focus:ring-1 focus:ring-[#2563EB] focus:border-[#2563EB] transition-colors"
             placeholder="Explain your approach or ask a question..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -249,12 +225,13 @@ export function AiChat({
             size="icon"
             onClick={handleSend}
             disabled={!input.trim() || isStreaming || remaining === 0 || disabled}
+            className="bg-[#2563EB] hover:bg-[#1D4ED8] text-white rounded-xl flex-shrink-0"
           >
             <SendHorizonal className="h-4 w-4" />
           </Button>
         </div>
-        <p className="text-xs text-center text-muted-foreground">
-          The interviewer observes your code automatically
+        <p className="text-[11px] text-center text-[#334155]">
+          Interviewer observes your code automatically
         </p>
       </div>
     </div>

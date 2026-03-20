@@ -5,7 +5,6 @@ import { useParams, useRouter } from 'next/navigation'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 import {
   Select,
@@ -19,11 +18,11 @@ import { api } from '@/lib/api-client'
 import { AiChat } from '@/components/ai-chat'
 import { useCodeDebounce } from '@/hooks/use-code-debounce'
 import { toast } from 'sonner'
-import { Loader2, Timer, ChevronDown, ChevronUp } from 'lucide-react'
+import { Loader2, Timer, ChevronDown, ChevronUp, Zap, ArrowLeft } from 'lucide-react'
 
 const CodeEditor = dynamic(
   () => import('@/components/code-editor').then((m) => ({ default: m.CodeEditor })),
-  { ssr: false, loading: () => <Skeleton className="h-full w-full" /> },
+  { ssr: false, loading: () => <Skeleton className="h-full w-full bg-[#0F1219]" /> },
 )
 
 type Language = 'python' | 'javascript' | 'java' | 'cpp' | 'go'
@@ -48,8 +47,10 @@ interface RoundInfo {
   questionCount: number
 }
 
-interface AttemptInfo {
-  pipelineId: string
+const DIFFICULTY_STYLES: Record<string, string> = {
+  easy: 'bg-[#22C55E]/15 text-[#4ADE80]',
+  medium: 'bg-[#F59E0B]/15 text-[#FCD34D]',
+  hard: 'bg-[#EF4444]/15 text-[#F87171]',
 }
 
 function useTimer(durationMinutes: number) {
@@ -79,7 +80,6 @@ export default function ActiveRoundPage() {
 
   const [questions, setQuestions] = useState<Question[]>([])
   const [roundInfo, setRoundInfo] = useState<RoundInfo | null>(null)
-  const [attemptInfo, setAttemptInfo] = useState<AttemptInfo | null>(null)
   const [company, setCompany] = useState('Google')
   const [loading, setLoading] = useState(true)
   const [started, setStarted] = useState(false)
@@ -93,25 +93,22 @@ export default function ActiveRoundPage() {
 
   const codeRef = useRef('')
 
-  // Keep codeRef in sync
   useEffect(() => {
     codeRef.current = code
   }, [code])
 
   const currentQuestion = questions[currentQIndex]
-  const isDsaRound = roundInfo?.roundType === 'coding' || roundInfo?.roundType === 'oa' || roundInfo?.roundType === 'phone_screen'
+  const isDsaRound =
+    roundInfo?.roundType === 'coding' ||
+    roundInfo?.roundType === 'oa' ||
+    roundInfo?.roundType === 'phone_screen'
   const isBehavioralRound = roundInfo?.roundType === 'behavioral'
 
   const { label: timerLabel, isWarning } = useTimer(roundInfo?.durationMinutes || 45)
 
-  // Handle code changes with debounce (only for coding rounds)
-  const handleAiTrigger = useCallback(
-    (newCode: string) => {
-      codeRef.current = newCode
-      // AiChat's internal trigger handles sending — code is picked up via codeRef
-    },
-    [],
-  )
+  const handleAiTrigger = useCallback((newCode: string) => {
+    codeRef.current = newCode
+  }, [])
   const { handleCodeChange } = useCodeDebounce(handleAiTrigger)
 
   useEffect(() => {
@@ -121,14 +118,11 @@ export default function ActiveRoundPage() {
       return
     }
 
-    // Load attempt to get pipeline info
     api.pipelines
       .getAttempt(token, attemptId)
       .then((data) => {
-        setAttemptInfo({ pipelineId: data.attempt.pipelineId })
         setCompany(data.pipeline.company)
 
-        // Find round info
         const round = data.rounds.find((r: any) => r.session?.id === roundId)
         if (round) {
           setRoundInfo({
@@ -138,7 +132,6 @@ export default function ActiveRoundPage() {
             questionCount: round.questionCount,
           })
 
-          // If round is already in_progress, load questions
           if (round.session?.status === 'in_progress') {
             setStarted(true)
             return api.pipelines.getRoundQuestions(token, roundId)
@@ -180,16 +173,13 @@ export default function ActiveRoundPage() {
   const handleLanguageChange = (lang: Language) => {
     setLanguage(lang)
     const starterCode = currentQuestion?.metadata?.starterCode?.[lang]
-    if (starterCode) {
-      setCode(starterCode)
-    }
+    if (starterCode) setCode(starterCode)
   }
 
   const handleSubmit = async () => {
     if (!token) return
     setSubmitting(true)
     try {
-      // For DSA questions, submit code evaluations
       if (isDsaRound && questions.length > 0) {
         for (const q of questions) {
           const qCode = answers[q.id] || (q.id === currentQuestion?.id ? code : '')
@@ -214,15 +204,12 @@ export default function ActiveRoundPage() {
         }
       }
 
-      // Complete the round
       const result = await api.pipelines.completeRound(token, roundId)
-
       if (result.passed) {
         toast.success(`Round passed! Score: ${result.score}/10`)
       } else {
         toast.error(`Round not passed. Score: ${result.score}/10`)
       }
-
       router.push(`/pipeline/${attemptId}`)
     } catch (err: any) {
       toast.error(err.message || 'Failed to submit')
@@ -235,9 +222,9 @@ export default function ActiveRoundPage() {
 
   if (loading) {
     return (
-      <div className="flex h-[calc(100vh-4rem)] gap-4 p-4">
-        <Skeleton className="flex-1" />
-        <Skeleton className="w-80" />
+      <div className="flex h-screen gap-0 bg-[#0D0F14]">
+        <Skeleton className="flex-1 rounded-none bg-[#0F1219]" />
+        <Skeleton className="w-80 rounded-none bg-[#141720]" />
       </div>
     )
   }
@@ -245,47 +232,80 @@ export default function ActiveRoundPage() {
   // Pre-start screen
   if (!started) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-6 max-w-lg mx-auto text-center">
-        <div>
-          <h1 className="text-2xl font-semibold">{roundInfo?.name}</h1>
-          <p className="text-sm text-muted-foreground mt-1">
-            {roundInfo?.durationMinutes} min · {roundInfo?.questionCount}{' '}
-            {roundInfo?.questionCount === 1 ? 'question' : 'questions'}
-          </p>
+      <div className="flex h-screen flex-col items-center justify-center bg-[#0D0F14] text-center px-6">
+        {/* Top bar */}
+        <div className="absolute top-0 left-0 right-0 flex items-center justify-between border-b border-[#1E2535] px-6 h-14">
+          <div className="flex items-center gap-2.5">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#2563EB]">
+              <Zap className="h-3.5 w-3.5 text-white" />
+            </div>
+            <span className="text-sm font-bold text-white">PrepAI</span>
+          </div>
+          <Link href={`/pipeline/${attemptId}`} className="flex items-center gap-1.5 text-sm text-[#94A3B8] hover:text-white">
+            <ArrowLeft className="h-4 w-4" /> Exit
+          </Link>
         </div>
-        <p className="text-sm text-muted-foreground">
-          {roundInfo?.roundType === 'coding' || roundInfo?.roundType === 'oa'
-            ? 'You\'ll have an AI interviewer helping you through the problem. Think aloud and communicate your approach.'
-            : 'Answer the questions clearly and concisely using the STAR method where appropriate.'}
-        </p>
-        <Button onClick={handleStartRound} disabled={starting} size="lg">
-          {starting ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Loading questions...
-            </>
-          ) : (
-            'Start Round'
-          )}
-        </Button>
+
+        <div className="max-w-md space-y-6">
+          <div
+            className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-widest ${
+              isDsaRound
+                ? 'bg-[#10B981]/15 text-[#6EE7B7]'
+                : 'bg-[#F97316]/15 text-[#FDBA74]'
+            }`}
+          >
+            {isDsaRound ? 'Coding Round' : roundInfo?.roundType === 'behavioral' ? 'Behavioral Round' : roundInfo?.roundType}
+          </div>
+          <div>
+            <h1 className="text-2xl font-bold text-white">{roundInfo?.name}</h1>
+            <p className="mt-2 text-sm text-[#94A3B8]">
+              {roundInfo?.durationMinutes} min · {roundInfo?.questionCount}{' '}
+              {roundInfo?.questionCount === 1 ? 'question' : 'questions'}
+            </p>
+          </div>
+          <p className="text-sm text-[#64748B] leading-relaxed">
+            {isDsaRound
+              ? 'You\'ll have an AI interviewer helping you through the problem. Think aloud and communicate your approach.'
+              : 'Answer the questions clearly and concisely using the STAR method where appropriate.'}
+          </p>
+          <Button
+            onClick={handleStartRound}
+            disabled={starting}
+            className="bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-semibold px-8 py-2.5"
+          >
+            {starting ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Loading questions...
+              </>
+            ) : (
+              'Start Round →'
+            )}
+          </Button>
+        </div>
       </div>
     )
   }
 
-  // Coding round — split pane
+  // DSA / Coding round — IDE layout
   if (isDsaRound && currentQuestion) {
     const testCases = currentQuestion.metadata?.testCases || []
 
     return (
-      <div className="flex h-[calc(100vh-4rem)] overflow-hidden">
-        {/* Left panel: Problem + Editor */}
-        <div className="flex flex-col flex-1 min-w-0 border-r">
-          {/* Round info bar */}
-          <div className="flex items-center justify-between border-b px-4 py-2 bg-muted/30">
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <span>{company}</span>
-              <span>·</span>
-              <span>{roundInfo?.name}</span>
+      <div className="flex h-screen overflow-hidden bg-[#0D0F14]">
+        {/* Left panel */}
+        <div className="flex flex-col flex-1 min-w-0 border-r border-[#1E2535]">
+          {/* Top bar */}
+          <div className="flex items-center justify-between border-b border-[#1E2535] bg-[#141720] px-4 h-12">
+            <div className="flex items-center gap-3">
+              <div className="flex h-6 w-6 items-center justify-center rounded bg-[#2563EB]">
+                <Zap className="h-3 w-3 text-white" />
+              </div>
+              <div className="flex items-center gap-2 text-xs text-[#64748B]">
+                <span className="text-white font-medium">{company}</span>
+                <span>·</span>
+                <span>{roundInfo?.name}</span>
+              </div>
             </div>
             <div className="flex items-center gap-3">
               {questions.length > 1 && (
@@ -301,10 +321,10 @@ export default function ActiveRoundPage() {
                         const starter = q.metadata?.starterCode?.[language]
                         setCode(starter || answers[q.id] || '')
                       }}
-                      className={`h-6 w-6 rounded text-xs font-medium ${
+                      className={`h-6 w-6 rounded text-xs font-medium transition-colors ${
                         i === currentQIndex
-                          ? 'bg-primary text-primary-foreground'
-                          : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                          ? 'bg-[#2563EB] text-white'
+                          : 'bg-[#1C2235] text-[#94A3B8] hover:bg-[#1E2535]'
                       }`}
                     >
                       {i + 1}
@@ -312,36 +332,43 @@ export default function ActiveRoundPage() {
                   ))}
                 </div>
               )}
+              {/* Timer */}
               <span
-                className={`rounded-full px-2 py-1 text-xs font-mono font-medium ${
+                className={`flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-mono font-semibold ${
                   isWarning
-                    ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
-                    : 'bg-muted text-muted-foreground'
+                    ? 'bg-[#EF4444]/15 text-[#F87171]'
+                    : 'bg-[#1C2235] text-[#94A3B8]'
                 }`}
               >
-                <Timer className="inline h-3 w-3 mr-1" />
+                <Timer className="h-3 w-3" />
                 {timerLabel}
               </span>
             </div>
           </div>
 
           {/* Problem description */}
-          <div className="flex-shrink-0 max-h-[40%] overflow-y-auto p-4 border-b">
-            <div className="flex items-center gap-2 mb-2">
-              <h2 className="text-base font-semibold">
+          <div className="flex-shrink-0 max-h-[40%] overflow-y-auto p-5 border-b border-[#1E2535] bg-[#0D0F14]">
+            <div className="flex items-center gap-2.5 mb-3">
+              <h2 className="text-base font-bold text-white">
                 {currentQuestion.metadata?.title || `Problem ${currentQIndex + 1}`}
               </h2>
-              <Badge variant="outline" className="text-xs capitalize">
+              <span
+                className={`rounded-full px-2 py-0.5 text-[11px] font-semibold capitalize ${
+                  DIFFICULTY_STYLES[currentQuestion.difficulty] || DIFFICULTY_STYLES.medium
+                }`}
+              >
                 {currentQuestion.difficulty}
-              </Badge>
+              </span>
             </div>
-            <p className="text-sm leading-relaxed whitespace-pre-wrap">{currentQuestion.content}</p>
+            <p className="text-sm text-[#94A3B8] leading-relaxed whitespace-pre-wrap">
+              {currentQuestion.content}
+            </p>
 
             {testCases.length > 0 && (
-              <div className="mt-3">
+              <div className="mt-4">
                 <button
                   type="button"
-                  className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground"
+                  className="flex items-center gap-1 text-xs text-[#64748B] hover:text-[#94A3B8] transition-colors"
                   onClick={() => setShowTestCases(!showTestCases)}
                 >
                   {showTestCases ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
@@ -350,9 +377,16 @@ export default function ActiveRoundPage() {
                 {showTestCases && (
                   <div className="mt-2 space-y-2">
                     {testCases.map((tc, i) => (
-                      <div key={i} className="rounded-md bg-muted p-2 font-mono text-xs">
-                        <div className="text-muted-foreground">Input: {tc.input}</div>
-                        <div className="text-muted-foreground">Expected: {tc.expected}</div>
+                      <div
+                        key={i}
+                        className="rounded-lg bg-[#0F1219] border border-[#1E2535] p-3 font-mono text-xs"
+                      >
+                        <div className="text-[#64748B]">
+                          <span className="text-[#94A3B8]">Input:</span> {tc.input}
+                        </div>
+                        <div className="text-[#64748B] mt-0.5">
+                          <span className="text-[#94A3B8]">Expected:</span> {tc.expected}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -363,12 +397,12 @@ export default function ActiveRoundPage() {
 
           {/* Code editor */}
           <div className="flex-1 flex flex-col overflow-hidden">
-            <div className="flex items-center justify-between border-b px-3 py-1.5 bg-muted/20">
+            <div className="flex items-center justify-between border-b border-[#1E2535] bg-[#141720] px-3 py-1.5">
               <Select value={language} onValueChange={(v) => handleLanguageChange(v as Language)}>
-                <SelectTrigger className="h-7 w-36 text-xs">
+                <SelectTrigger className="h-7 w-36 text-xs bg-transparent border-[#1E2535] text-[#94A3B8]">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-[#1E2640] border-[#1E2535] text-white">
                   <SelectItem value="python">Python</SelectItem>
                   <SelectItem value="javascript">JavaScript</SelectItem>
                   <SelectItem value="java">Java</SelectItem>
@@ -390,11 +424,23 @@ export default function ActiveRoundPage() {
           </div>
 
           {/* Submit bar */}
-          <div className="border-t px-4 py-3 flex items-center justify-between">
-            <Button variant="ghost" size="sm" asChild>
-              <Link href={`/pipeline/${attemptId}`}>Exit round</Link>
+          <div className="border-t border-[#1E2535] bg-[#141720] px-4 py-3 flex items-center justify-between">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-[#94A3B8] hover:text-white hover:bg-[#1C2235]"
+              asChild
+            >
+              <Link href={`/pipeline/${attemptId}`}>
+                <ArrowLeft className="mr-1.5 h-3.5 w-3.5" />
+                Exit round
+              </Link>
             </Button>
-            <Button onClick={handleSubmit} disabled={submitting}>
+            <Button
+              onClick={handleSubmit}
+              disabled={submitting}
+              className="bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-semibold"
+            >
               {submitting ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -408,7 +454,7 @@ export default function ActiveRoundPage() {
         </div>
 
         {/* Right panel: AI Chat */}
-        <div className="w-80 flex-shrink-0 flex flex-col overflow-hidden">
+        <div className="w-80 flex-shrink-0 flex flex-col overflow-hidden bg-[#141720]">
           <AiChat
             roundSessionId={roundId}
             token={token}
@@ -422,66 +468,101 @@ export default function ActiveRoundPage() {
     )
   }
 
-  // Behavioral / system design round — simple Q&A
+  // Behavioral round
   return (
-    <div className="space-y-6 max-w-2xl mx-auto py-8">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-xl font-semibold">{roundInfo?.name}</h1>
-          <p className="text-sm text-muted-foreground">
+    <div className="flex h-screen flex-col bg-[#0D0F14]">
+      {/* Top bar */}
+      <div className="flex items-center justify-between border-b border-[#1E2535] bg-[#141720] px-6 h-14">
+        <div className="flex items-center gap-2.5">
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#2563EB]">
+            <Zap className="h-3.5 w-3.5 text-white" />
+          </div>
+          <span className="text-sm font-bold text-white">PrepAI</span>
+        </div>
+        <div className="text-center">
+          <p className="text-xs font-semibold text-white">{roundInfo?.name}</p>
+          <p className="text-[11px] text-[#64748B]">
             Question {currentQIndex + 1} of {questions.length}
           </p>
         </div>
         <span
-          className={`rounded-full px-3 py-1 text-sm font-mono ${
-            isWarning ? 'bg-red-100 text-red-700' : 'bg-muted text-muted-foreground'
+          className={`flex items-center gap-1 rounded-full px-3 py-1 text-xs font-mono font-semibold ${
+            isWarning ? 'bg-[#EF4444]/15 text-[#F87171]' : 'bg-[#1C2235] text-[#94A3B8]'
           }`}
         >
-          <Timer className="inline h-3 w-3 mr-1" />
+          <Timer className="h-3 w-3" />
           {timerLabel}
         </span>
       </div>
 
-      <div className="rounded-lg border p-4">
-        <p className="text-sm leading-relaxed">{currentQuestion?.content}</p>
-      </div>
+      {/* Content */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="mx-auto max-w-2xl px-6 py-8 space-y-6">
+          {/* Question label */}
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#60A5FA]">
+            Question {currentQIndex + 1} of {questions.length} · {roundInfo?.roundType === 'behavioral' ? 'Behavioral' : 'Interview'}
+          </p>
 
-      <textarea
-        className="w-full rounded-md border bg-background p-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-ring"
-        rows={8}
-        placeholder="Type your answer here..."
-        value={currentQuestion ? (answers[currentQuestion.id] || '') : ''}
-        onChange={(e) =>
-          currentQuestion &&
-          setAnswers((prev) => ({ ...prev, [currentQuestion.id]: e.target.value }))
-        }
-      />
+          {/* Question card */}
+          <div className="rounded-xl border border-[#1E2535] bg-[#161B26] p-5">
+            <p className="text-base leading-relaxed text-white">
+              {currentQuestion?.content}
+            </p>
+          </div>
 
-      <div className="flex items-center justify-between">
-        {currentQIndex > 0 ? (
-          <Button
-            variant="outline"
-            onClick={() => setCurrentQIndex((i) => i - 1)}
-          >
-            Previous
-          </Button>
-        ) : (
-          <div />
-        )}
-        {currentQIndex < questions.length - 1 ? (
-          <Button onClick={() => setCurrentQIndex((i) => i + 1)}>Next Question</Button>
-        ) : (
-          <Button onClick={handleSubmit} disabled={submitting}>
-            {submitting ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Submitting...
-              </>
+          {/* Answer textarea */}
+          <div>
+            <label className="block text-xs font-medium text-[#94A3B8] mb-2">Your Answer</label>
+            <textarea
+              className="w-full rounded-xl border border-[#1E2535] bg-[#0F1219] p-4 text-sm text-white placeholder:text-[#334155] resize-none focus:outline-none focus:ring-1 focus:ring-[#2563EB] focus:border-[#2563EB] transition-colors"
+              rows={10}
+              placeholder="Type your answer here... Use STAR method: Situation, Task, Action, Result."
+              value={currentQuestion ? (answers[currentQuestion.id] || '') : ''}
+              onChange={(e) =>
+                currentQuestion &&
+                setAnswers((prev) => ({ ...prev, [currentQuestion.id]: e.target.value }))
+              }
+            />
+          </div>
+
+          {/* Navigation */}
+          <div className="flex items-center justify-between">
+            {currentQIndex > 0 ? (
+              <Button
+                variant="outline"
+                className="border-[#1E2535] text-[#94A3B8] hover:bg-[#1C2235] hover:text-white"
+                onClick={() => setCurrentQIndex((i) => i - 1)}
+              >
+                Previous
+              </Button>
             ) : (
-              'Submit Round'
+              <div />
             )}
-          </Button>
-        )}
+            {currentQIndex < questions.length - 1 ? (
+              <Button
+                className="bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-semibold"
+                onClick={() => setCurrentQIndex((i) => i + 1)}
+              >
+                Next Question
+              </Button>
+            ) : (
+              <Button
+                className="bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-semibold"
+                onClick={handleSubmit}
+                disabled={submitting}
+              >
+                {submitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Submitting...
+                  </>
+                ) : (
+                  'Submit Round'
+                )}
+              </Button>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   )
