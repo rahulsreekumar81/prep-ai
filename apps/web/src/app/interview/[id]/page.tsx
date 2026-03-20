@@ -97,7 +97,7 @@ function ScoreBar({ label, score }: { label: string; score: number }) {
 
 export default function InterviewPage() {
   const { id } = useParams<{ id: string }>()
-  const { token } = useAuth()
+  const { token, _hasHydrated } = useAuth()
   const router = useRouter()
 
   const [questions, setQuestions] = useState<Question[]>([])
@@ -134,6 +134,7 @@ export default function InterviewPage() {
   }, [])
 
   useEffect(() => {
+    if (!_hasHydrated) return
     if (!token) {
       router.push('/auth/login')
       return
@@ -145,7 +146,7 @@ export default function InterviewPage() {
       })
       .catch(() => toast.error('Failed to load interview'))
       .finally(() => setLoadingInterview(false))
-  }, [token, id, router])
+  }, [token, id, router, _hasHydrated])
 
   // Warn before leaving during an active interview
   useEffect(() => {
@@ -270,7 +271,7 @@ export default function InterviewPage() {
     }
   }
 
-  if (!token) return null
+  if (!_hasHydrated || !token) return null
 
   if (loadingInterview) {
     return (

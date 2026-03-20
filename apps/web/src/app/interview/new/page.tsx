@@ -27,7 +27,7 @@ const COMPANIES = [
 ]
 
 export default function NewInterviewPage() {
-  const { token } = useAuth()
+  const { token, _hasHydrated } = useAuth()
   const router = useRouter()
 
   const [resumeText, setResumeText] = useState('')
@@ -100,6 +100,7 @@ export default function NewInterviewPage() {
     }
   }
 
+  if (!_hasHydrated) return null
   if (!token) {
     router.push('/auth/login')
     return null

@@ -203,13 +203,14 @@ function QuestionCard({ item, index }: { item: QuestionResult; index: number }) 
 
 export default function InterviewResultPage() {
   const { id } = useParams<{ id: string }>()
-  const { token } = useAuth()
+  const { token, _hasHydrated } = useAuth()
   const router = useRouter()
 
   const [data, setData] = useState<SummaryData | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    if (!_hasHydrated) return
     if (!token) {
       router.push('/auth/login')
       return
@@ -219,9 +220,9 @@ export default function InterviewResultPage() {
       .then(setData)
       .catch(() => toast.error('Failed to load results'))
       .finally(() => setLoading(false))
-  }, [token, id, router])
+  }, [token, id, router, _hasHydrated])
 
-  if (!token) return null
+  if (!_hasHydrated || !token) return null
 
   if (loading) {
     return (

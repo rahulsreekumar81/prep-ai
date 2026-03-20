@@ -21,12 +21,13 @@ interface DashboardData {
 }
 
 export default function DashboardPage() {
-  const { token, user } = useAuth()
+  const { token, user, _hasHydrated } = useAuth()
   const router = useRouter()
   const [data, setData] = useState<DashboardData | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    if (!_hasHydrated) return
     if (!token) {
       router.push('/auth/login')
       return
@@ -36,9 +37,9 @@ export default function DashboardPage() {
       .then(setData)
       .catch(() => {})
       .finally(() => setLoading(false))
-  }, [token, router])
+  }, [token, router, _hasHydrated])
 
-  if (!token) return null
+  if (!_hasHydrated || !token) return null
 
   return (
     <div className="space-y-8">
