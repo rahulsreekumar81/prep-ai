@@ -14,7 +14,8 @@
     "db:push": "dotenv -e ../../.env -- drizzle-kit push",
     "db:studio": "dotenv -e ../../.env -- drizzle-kit studio",
     "db:seed": "dotenv -e ../../.env -- tsx src/seed/index.ts",
-    "db:seed:dsa": "dotenv -e ../../.env -- tsx src/seed/dsa.ts"
+    "db:seed:dsa": "dotenv -e ../../.env -- tsx src/seed/dsa.ts",
+    "db:seed:pipelines": "dotenv -e ../../.env -- tsx src/seed/pipelines.ts"
   },
   "dependencies": {
     "drizzle-orm": "^0.38.0",

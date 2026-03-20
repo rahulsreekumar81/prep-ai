@@ -127,4 +127,42 @@ export const api = {
     dashboard: (token: string) => request<any>('/api/users/dashboard', { token }),
     progress: (token: string) => request<any>('/api/users/progress', { token }),
   },
+
+  pipelines: {
+    list: (token: string) => request<any>('/api/pipelines', { token }),
+    byCompany: (token: string, company: string) =>
+      request<any>(`/api/pipelines/company/${encodeURIComponent(company)}`, { token }),
+    myAttempts: (token: string) => request<any>('/api/pipelines/my-attempts', { token }),
+
+    startAttempt: (
+      token: string,
+      data: { pipelineId: string; resumeText?: string; jobDescription?: string },
+    ) =>
+      request<any>('/api/pipelines/attempts', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        token,
+      }),
+
+    getAttempt: (token: string, attemptId: string) =>
+      request<any>(`/api/pipelines/attempts/${attemptId}`, { token }),
+
+    startRound: (token: string, roundSessionId: string) =>
+      request<any>(`/api/pipelines/round-sessions/${roundSessionId}/start`, {
+        method: 'POST',
+        token,
+      }),
+
+    completeRound: (token: string, roundSessionId: string) =>
+      request<any>(`/api/pipelines/round-sessions/${roundSessionId}/complete`, {
+        method: 'POST',
+        token,
+      }),
+
+    getRoundQuestions: (token: string, roundSessionId: string) =>
+      request<any>(`/api/pipelines/round-sessions/${roundSessionId}/questions`, { token }),
+
+    getConversation: (token: string, roundSessionId: string) =>
+      request<any>(`/api/round-sessions/${roundSessionId}/conversation`, { token }),
+  },
 }

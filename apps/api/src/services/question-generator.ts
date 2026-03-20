@@ -8,6 +8,8 @@ interface GenerateQuestionsInput {
   companyName: string
   roleTitle: string
   companyContext: Array<{ content: string }>
+  roundType?: 'behavioral' | 'system_design' | 'technical'
+  questionCount?: number
 }
 
 export interface GeneratedQuestion {
@@ -41,7 +43,8 @@ export async function generateQuestions(
 
     if (!Array.isArray(rawQuestions)) throw new Error('Questions is not an array')
 
-    return rawQuestions.slice(0, 7).map((q: any) => ({
+    const limit = input.questionCount || 7
+    return rawQuestions.slice(0, limit).map((q: any) => ({
       content: String(q.content || q.question || q.text || ''),
       type: VALID_TYPES.includes(q.type) ? q.type : 'technical',
       difficulty: VALID_DIFFICULTIES.includes(q.difficulty) ? q.difficulty : 'medium',
@@ -59,7 +62,8 @@ export async function generateQuestions(
       throw new Error('Failed to generate questions. AI response was not in expected format.')
     }
 
-    return lines.slice(0, 7).map((line) => ({
+    const limit = input.questionCount || 7
+    return lines.slice(0, limit).map((line) => ({
       content: line.replace(/^\d+[\.\)]\s*/, ''),
       type: 'technical' as const,
       difficulty: 'medium' as const,

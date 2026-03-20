@@ -6,6 +6,8 @@ import { authRoutes } from './routes/auth'
 import { interviewRoutes } from './routes/interview'
 import { evaluationRoutes } from './routes/evaluation'
 import { userRoutes } from './routes/user'
+import { pipelineRoutes } from './routes/pipeline'
+import { aiInteractRoutes } from './routes/ai-interact'
 import { errorHandler } from './middleware/error-handler'
 
 const app = new Hono()
@@ -37,6 +39,8 @@ app.route('/api/auth', authRoutes)
 app.route('/api/interviews', interviewRoutes)
 app.route('/api/evaluations', evaluationRoutes)
 app.route('/api/users', userRoutes)
+app.route('/api/pipelines', pipelineRoutes)
+app.route('/api', aiInteractRoutes)
 
 const port = parseInt(process.env.PORT || '3001')
 

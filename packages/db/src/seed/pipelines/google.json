@@ -1,0 +1,62 @@
+{
+  "company": "Google",
+  "role": "L3 Software Engineer",
+  "description": "Google's standard L3 interview loop — 6 rounds covering coding, system design, and behavioral skills",
+  "passingThreshold": 0.6,
+  "rounds": [
+    {
+      "name": "Online Assessment",
+      "roundType": "oa",
+      "orderIndex": 0,
+      "durationMinutes": 90,
+      "questionCount": 2,
+      "passingScore": 5.0,
+      "description": "Two medium-hard coding problems, timed. Tests your problem-solving speed and ability to write clean code under pressure."
+    },
+    {
+      "name": "Phone Screen",
+      "roundType": "coding",
+      "orderIndex": 1,
+      "durationMinutes": 45,
+      "questionCount": 1,
+      "passingScore": 6.0,
+      "description": "One coding problem with a Google engineer observing your thought process. Think aloud and communicate your approach."
+    },
+    {
+      "name": "Onsite: Coding 1",
+      "roundType": "coding",
+      "orderIndex": 2,
+      "durationMinutes": 45,
+      "questionCount": 1,
+      "passingScore": 6.0,
+      "description": "Medium-hard algorithm problem. Interviewers value communication and trade-off discussion as much as correct code."
+    },
+    {
+      "name": "Onsite: Coding 2",
+      "roundType": "coding",
+      "orderIndex": 3,
+      "durationMinutes": 45,
+      "questionCount": 1,
+      "passingScore": 6.0,
+      "description": "Hard algorithm problem. Multiple approaches expected — start with brute force then optimize."
+    },
+    {
+      "name": "Onsite: System Design",
+      "roundType": "system_design",
+      "orderIndex": 4,
+      "durationMinutes": 45,
+      "questionCount": 1,
+      "passingScore": 6.0,
+      "description": "Design a large-scale distributed system. Focus on scalability, reliability, and trade-offs between architectural choices."
+    },
+    {
+      "name": "Onsite: Googleyness",
+      "roundType": "behavioral",
+      "orderIndex": 5,
+      "durationMinutes": 45,
+      "questionCount": 3,
+      "passingScore": 6.0,
+      "description": "Assesses collaboration, intellectual humility, comfort with ambiguity, and ability to get things done."
+    }
+  ]
+}

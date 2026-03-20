@@ -36,18 +36,26 @@ evaluationRoutes.post('/', zValidator('json', submitAnswerSchema), async (c) => 
     return c.json({ error: 'Question not found' }, 404)
   }
 
-  const interviewResult = await db
-    .select()
-    .from(interviews)
-    .where(eq(interviews.id, interviewId))
-    .limit(1)
+  // Pipeline submissions use "pipeline-{attemptId}" as interviewId — skip interview lookup
+  let jobDescription = 'Software Engineer position'
+  let companyName = 'Unknown'
 
-  if (interviewResult.length === 0) {
-    return c.json({ error: 'Interview not found' }, 404)
+  if (!interviewId.startsWith('pipeline-')) {
+    const interviewResult = await db
+      .select()
+      .from(interviews)
+      .where(eq(interviews.id, interviewId))
+      .limit(1)
+
+    if (interviewResult.length === 0) {
+      return c.json({ error: 'Interview not found' }, 404)
+    }
+    jobDescription = interviewResult[0].jobDescription
+    companyName = interviewResult[0].companyName || 'Unknown'
   }
 
   const question = questionResult[0]
-  const interview = interviewResult[0]
+  const interview = { jobDescription, companyName }
 
   // DSA code evaluation
   if (question.type === 'dsa' && codeAnswer && language) {

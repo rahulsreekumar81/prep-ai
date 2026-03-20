@@ -24,6 +24,16 @@ export function Navbar() {
         </Link>
 
         <div className="flex items-center gap-2">
+          {user && (
+            <nav className="hidden items-center gap-1 sm:flex">
+              <Button variant="ghost" size="sm" asChild>
+                <Link href="/dashboard">Dashboard</Link>
+              </Button>
+              <Button variant="ghost" size="sm" asChild>
+                <Link href="/pipelines">Pipelines</Link>
+              </Button>
+            </nav>
+          )}
           <ThemeToggle />
           {user ? (
             <>

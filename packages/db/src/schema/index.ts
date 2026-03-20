@@ -31,6 +31,27 @@ export const questionTypeEnum = pgEnum('question_type', [
   'dsa',
 ])
 export const difficultyEnum = pgEnum('difficulty', ['easy', 'medium', 'hard'])
+export const roundTypeEnum = pgEnum('round_type', [
+  'oa',
+  'phone_screen',
+  'coding',
+  'system_design',
+  'behavioral',
+  'mixed',
+])
+export const attemptStatusEnum = pgEnum('attempt_status', [
+  'in_progress',
+  'passed',
+  'failed',
+  'abandoned',
+])
+export const roundSessionStatusEnum = pgEnum('round_session_status', [
+  'pending',
+  'in_progress',
+  'completed',
+  'passed',
+  'failed',
+])
 
 // Tables
 export const users = pgTable('users', {
@@ -72,11 +93,76 @@ export const interviews = pgTable('interviews', {
   completedAt: timestamp('completed_at'),
 })
 
+export const companyPipelines = pgTable('company_pipelines', {
+  id: text('id').primaryKey(),
+  company: text('company').notNull(),
+  role: text('role').notNull(),
+  description: text('description'),
+  totalRounds: integer('total_rounds').notNull().default(0),
+  passingThreshold: real('passing_threshold').notNull().default(0.6),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+})
+
+export const pipelineRounds = pgTable('pipeline_rounds', {
+  id: text('id').primaryKey(),
+  pipelineId: text('pipeline_id')
+    .references(() => companyPipelines.id)
+    .notNull(),
+  name: text('name').notNull(),
+  roundType: roundTypeEnum('round_type').notNull(),
+  orderIndex: integer('order_index').notNull(),
+  durationMinutes: integer('duration_minutes').notNull().default(45),
+  questionCount: integer('question_count').notNull().default(1),
+  description: text('description'),
+  passingScore: real('passing_score').notNull().default(6.0),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+})
+
+export const pipelineAttempts = pgTable('pipeline_attempts', {
+  id: text('id').primaryKey(),
+  userId: text('user_id')
+    .references(() => users.id)
+    .notNull(),
+  pipelineId: text('pipeline_id')
+    .references(() => companyPipelines.id)
+    .notNull(),
+  resumeText: text('resume_text'),
+  jobDescription: text('job_description'),
+  currentRoundIndex: integer('current_round_index').notNull().default(0),
+  status: attemptStatusEnum('status').notNull().default('in_progress'),
+  startedAt: timestamp('started_at').defaultNow().notNull(),
+  completedAt: timestamp('completed_at'),
+})
+
+export const roundSessions = pgTable('round_sessions', {
+  id: text('id').primaryKey(),
+  attemptId: text('attempt_id')
+    .references(() => pipelineAttempts.id)
+    .notNull(),
+  roundId: text('round_id')
+    .references(() => pipelineRounds.id)
+    .notNull(),
+  status: roundSessionStatusEnum('status').notNull().default('pending'),
+  score: real('score'),
+  feedback: text('feedback'),
+  aiConversation: jsonb('ai_conversation')
+    .$type<
+      Array<{
+        role: 'interviewer' | 'candidate'
+        content: string
+        codeSnapshot?: string
+        timestamp: string
+      }>
+    >()
+    .default([]),
+  startedAt: timestamp('started_at'),
+  completedAt: timestamp('completed_at'),
+})
+
 export const questions = pgTable('questions', {
   id: text('id').primaryKey(),
-  interviewId: text('interview_id')
-    .references(() => interviews.id)
-    .notNull(),
+  interviewId: text('interview_id').references(() => interviews.id),
+  roundSessionId: text('round_session_id').references(() => roundSessions.id),
   content: text('content').notNull(),
   type: questionTypeEnum('type').notNull(),
   difficulty: difficultyEnum('difficulty').default('medium').notNull(),

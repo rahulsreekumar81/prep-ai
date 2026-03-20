@@ -15,6 +15,13 @@
       "when": 1773757045760,
       "tag": "0001_special_praxagora",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1773985801539,
+      "tag": "0002_sweet_pepper_potts",
+      "breakpoints": true
     }
   ]
 }
