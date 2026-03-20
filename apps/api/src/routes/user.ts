@@ -1,5 +1,5 @@
 import { Hono } from 'hono'
-import { eq, desc, sql, and } from 'drizzle-orm'
+import { eq, desc, sql, inArray } from 'drizzle-orm'
 import { getDb } from '@prepai/db'
 import { interviews, evaluations, questions } from '@prepai/db/schema'
 import { requireAuth } from '../middleware/auth'
@@ -9,63 +9,53 @@ export const userRoutes = new Hono<{ Variables: AuthVariables }>()
 
 userRoutes.use('*', requireAuth)
 
-// Dashboard stats
+// Dashboard stats — single pass with JOINs instead of N+1 loops
 userRoutes.get('/dashboard', async (c) => {
   const userId = c.get('userId')
   const db = getDb()
 
-  // Total interviews
-  const interviewCount = await db
-    .select({ count: sql<number>`count(*)::int` })
-    .from(interviews)
-    .where(eq(interviews.userId, userId))
+  // Run all queries in parallel
+  const [interviewRows, recentInterviews, evalAggRows] = await Promise.all([
+    // Total count
+    db
+      .select({ count: sql<number>`count(*)::int` })
+      .from(interviews)
+      .where(eq(interviews.userId, userId)),
 
-  // Recent interviews
-  const recentInterviews = await db
-    .select()
-    .from(interviews)
-    .where(eq(interviews.userId, userId))
-    .orderBy(desc(interviews.createdAt))
-    .limit(5)
+    // 5 most recent interviews
+    db
+      .select()
+      .from(interviews)
+      .where(eq(interviews.userId, userId))
+      .orderBy(desc(interviews.createdAt))
+      .limit(5),
 
-  // Gather all evaluations for this user
-  const allInterviewIds = await db
-    .select({ id: interviews.id })
-    .from(interviews)
-    .where(eq(interviews.userId, userId))
+    // All evaluations for this user via a single JOIN
+    db
+      .select({
+        overallScore: evaluations.overallScore,
+        relevanceScore: evaluations.relevanceScore,
+        depthScore: evaluations.depthScore,
+        clarityScore: evaluations.clarityScore,
+        structureScore: evaluations.structureScore,
+      })
+      .from(evaluations)
+      .innerJoin(questions, eq(evaluations.questionId, questions.id))
+      .innerJoin(interviews, eq(questions.interviewId, interviews.id))
+      .where(eq(interviews.userId, userId)),
+  ])
 
-  let totalScore = 0
-  let totalEvaluations = 0
-  const scoresByCategory: Record<string, number[]> = {
-    relevance: [],
-    depth: [],
-    clarity: [],
-    structure: [],
-  }
-
-  for (const interview of allInterviewIds) {
-    const qs = await db
-      .select({ id: questions.id })
-      .from(questions)
-      .where(eq(questions.interviewId, interview.id))
-
-    for (const q of qs) {
-      const evals = await db.select().from(evaluations).where(eq(evaluations.questionId, q.id))
-
-      for (const e of evals) {
-        totalEvaluations++
-        totalScore += e.overallScore
-        scoresByCategory.relevance.push(e.relevanceScore)
-        scoresByCategory.depth.push(e.depthScore)
-        scoresByCategory.clarity.push(e.clarityScore)
-        scoresByCategory.structure.push(e.structureScore)
-      }
-    }
-  }
-
+  const totalEvaluations = evalAggRows.length
+  const totalScore = evalAggRows.reduce((sum, e) => sum + e.overallScore, 0)
   const averageScore = totalEvaluations > 0 ? totalScore / totalEvaluations : 0
 
-  // Find weak areas (average < 6)
+  const scoresByCategory = {
+    relevance: evalAggRows.map((e) => e.relevanceScore),
+    depth: evalAggRows.map((e) => e.depthScore),
+    clarity: evalAggRows.map((e) => e.clarityScore),
+    structure: evalAggRows.map((e) => e.structureScore),
+  }
+
   const weakAreas: string[] = []
   for (const [area, scores] of Object.entries(scoresByCategory)) {
     if (scores.length > 0) {
@@ -76,7 +66,7 @@ userRoutes.get('/dashboard', async (c) => {
 
   return c.json({
     data: {
-      totalInterviews: interviewCount[0].count,
+      totalInterviews: interviewRows[0].count,
       averageScore: Math.round(averageScore * 10) / 10,
       totalEvaluations,
       weakAreas,

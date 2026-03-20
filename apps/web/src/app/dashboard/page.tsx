@@ -25,6 +25,7 @@ export default function DashboardPage() {
   const router = useRouter()
   const [data, setData] = useState<DashboardData | null>(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     if (!_hasHydrated) return
@@ -35,11 +36,25 @@ export default function DashboardPage() {
     api.users
       .dashboard(token)
       .then(setData)
-      .catch(() => {})
+      .catch(() => setError(true))
       .finally(() => setLoading(false))
   }, [token, router, _hasHydrated])
 
   if (!_hasHydrated || !token) return null
+
+  if (!loading && error) {
+    return (
+      <div className="flex flex-col items-center justify-center py-20 text-center space-y-3">
+        <p className="text-sm font-medium">Could not load dashboard</p>
+        <p className="text-xs text-muted-foreground">
+          Make sure the API server is running and try refreshing.
+        </p>
+        <Button size="sm" onClick={() => window.location.reload()}>
+          Retry
+        </Button>
+      </div>
+    )
+  }
 
   return (
     <div className="space-y-8">
