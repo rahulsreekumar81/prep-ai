@@ -1,8 +1,12 @@
 'use client'
 
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState, useCallback, forwardRef, useImperativeHandle } from 'react'
 import { Button } from '@/components/ui/button'
 import { SendHorizonal, Zap } from 'lucide-react'
+
+export interface AiChatHandle {
+  triggerCodeUpdate: () => void
+}
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
 
@@ -22,7 +26,7 @@ interface AiChatProps {
   disabled?: boolean
 }
 
-export function AiChat({
+export const AiChat = forwardRef<AiChatHandle, AiChatProps>(function AiChat({
   roundSessionId,
   token,
   initialMessages = [],
@@ -30,7 +34,7 @@ export function AiChat({
   company,
   maxInteractions = 20,
   disabled = false,
-}: AiChatProps) {
+}: AiChatProps, ref) {
   const [messages, setMessages] = useState<Message[]>(
     initialMessages.length > 0
       ? initialMessages
@@ -50,6 +54,15 @@ export function AiChat({
 
   const scrollRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  // Stable ref so useImperativeHandle doesn't depend on sendInteraction's identity
+  const sendInteractionRef = useRef<((msg?: string) => void) | null>(null)
+
+  // Expose triggerCodeUpdate so the parent (round page debounce) can fire the AI
+  useImperativeHandle(ref, () => ({
+    triggerCodeUpdate: () => {
+      sendInteractionRef.current?.()
+    },
+  }))
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -147,6 +160,9 @@ export function AiChat({
     [isStreaming, interactionCount, maxInteractions, disabled, codeRef, messages, roundSessionId, token],
   )
 
+  // Keep ref in sync so useImperativeHandle always calls the latest version
+  sendInteractionRef.current = sendInteraction
+
   const handleSend = () => {
     if (input.trim()) sendInteraction(input.trim())
   }
@@ -236,4 +252,4 @@ export function AiChat({
       </div>
     </div>
   )
-}
+})

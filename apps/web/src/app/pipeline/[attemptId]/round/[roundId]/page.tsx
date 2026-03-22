@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/select'
 import { useAuth } from '@/lib/store'
 import { api } from '@/lib/api-client'
-import { AiChat } from '@/components/ai-chat'
+import { AiChat, type AiChatHandle } from '@/components/ai-chat'
 import { useCodeDebounce } from '@/hooks/use-code-debounce'
 import { toast } from 'sonner'
 import { Loader2, Timer, ChevronDown, ChevronUp, Zap, ArrowLeft } from 'lucide-react'
@@ -92,6 +92,7 @@ export default function ActiveRoundPage() {
   const [showTestCases, setShowTestCases] = useState(false)
 
   const codeRef = useRef('')
+  const aiChatRef = useRef<AiChatHandle>(null)
 
   useEffect(() => {
     codeRef.current = code
@@ -108,6 +109,7 @@ export default function ActiveRoundPage() {
 
   const handleAiTrigger = useCallback((newCode: string) => {
     codeRef.current = newCode
+    aiChatRef.current?.triggerCodeUpdate()
   }, [])
   const { handleCodeChange } = useCodeDebounce(handleAiTrigger)
 
@@ -456,6 +458,7 @@ export default function ActiveRoundPage() {
         {/* Right panel: AI Chat */}
         <div className="w-80 flex-shrink-0 flex flex-col overflow-hidden bg-[#141720]">
           <AiChat
+            ref={aiChatRef}
             roundSessionId={roundId}
             token={token}
             codeRef={codeRef}

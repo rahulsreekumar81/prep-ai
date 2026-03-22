@@ -122,20 +122,27 @@ aiInteractRoutes.post(
       }>
     ) || []
 
+    // Include the current user message in the conversation history BEFORE building the prompt
+    // so the LLM actually sees what the candidate just said/typed
+    const userMessage = message?.trim() || (code.trim() ? '[Code update]' : '[Session started]')
+    const conversationForPrompt = message?.trim()
+      ? [
+          ...aiConversation,
+          { role: 'candidate' as const, content: message.trim(), timestamp: new Date().toISOString() },
+        ]
+      : aiConversation
+
     const prompt = dsaInterviewerPrompt({
       company,
       roundName: round.name,
       problemTitle: metadata?.title || firstQuestion?.content?.split('\n')[0] || 'Coding Problem',
       problemContent: firstQuestion?.content || 'No problem loaded yet.',
       testCases: metadata?.testCases || [],
-      conversationHistory: aiConversation,
+      conversationHistory: conversationForPrompt,
       currentCode: code,
       interactionCount: interviewerMessages,
       maxInteractions: MAX_INTERACTIONS,
     })
-
-    // If user sent a message, append it to conversation before streaming
-    const userMessage = message?.trim() || (code.trim() ? '[Code update]' : '[Session started]')
 
     // Stream the AI response
     const result = await streamText({
